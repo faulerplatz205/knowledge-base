@@ -142,26 +142,26 @@ Congestion control protects the *network* from being overwhelmed and works indep
 
 ### TCP vs. UDP
 
-|           | TCP                                                                           | [UDP](./udp.md)                                                     |
-| --------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Criterion | Completeness matters more than latency                                        | A late packet is worthless                                          |
-| Examples  | File transfer, web pages, e-mail, remote administration, database connections | Live audio and video, online games, simple query/response protocols |
+|           | TCP                                                                           | [UDP](./udp.md)                                                                 |
+| --------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Criterion | Completeness matters more than latency                                        | A late packet is worthless, or the overhead of a connection exceeds the payload |
+| Examples  | File transfer, web pages, e-mail, remote administration, database connections | Live audio and video, online games, simple query/response protocols             |
 
 ### Well-Known TCP Ports
 
-| Port    | Service                                        |
-| ------- | ---------------------------------------------- |
-| 20/21   | FTP data / control                             |
-| 22      | SSH                                            |
-| 25      | SMTP                                           |
-| 53      | DNS zone transfer and responses over 512 bytes |
-| 80      | HTTP                                           |
-| 110/995 | POP3 / POP3S                                   |
-| 143/993 | IMAP / IMAPS                                   |
-| 443     | HTTPS                                          |
-| 3306    | MySQL / MariaDB                                |
+| Port    | Service                                                       |
+| ------- | ------------------------------------------------------------- |
+| 20/21   | FTP data / control                                            |
+| 22      | SSH                                                           |
+| 25      | SMTP                                                          |
+| 53      | DNS zone transfers and responses exceeding the UDP size limit |
+| 80      | HTTP                                                          |
+| 110/995 | POP3 / POP3S                                                  |
+| 143/993 | IMAP / IMAPS                                                  |
+| 443     | HTTPS                                                         |
+| 3306    | MySQL / MariaDB                                               |
 
 ## See Also
 
-- [UDP](./udp.md): the connectionless counterpart, including a direct comparison of both protocols
+- [UDP](./udp.md): the connectionless counterpart without connection setup, reliability or flow control
 - [OSI Model](./osi-model.md): where the transport layer sits between network and session layer

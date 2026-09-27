@@ -142,26 +142,26 @@ Die Staukontrolle schützt das *Netz* vor Überlastung und arbeitet unabhängig 
 
 ### TCP vs. UDP
 
-|           | TCP                                                                            | [UDP](./udp.md)                                                         |
-| --------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| Kriterium | Vollständigkeit ist wichtiger als Latenz                                       | Ein verspätetes Paket ist wertlos                                       |
-| Beispiele | Dateiübertragung, Webseiten, E-Mail, Fernadministration, Datenbankverbindungen | Live-Audio und -Video, Online-Spiele, einfache Frage-Antwort-Protokolle |
+|           | TCP                                                                            | [UDP](./udp.md)                                                                               |
+| --------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| Kriterium | Vollständigkeit ist wichtiger als Latenz                                       | Ein verspätetes Paket ist wertlos, oder der Aufwand einer Verbindung übersteigt die Nutzdaten |
+| Beispiele | Dateiübertragung, Webseiten, E-Mail, Fernadministration, Datenbankverbindungen | Live-Audio und -Video, Online-Spiele, einfache Frage-Antwort-Protokolle                       |
 
 ### Bekannte TCP-Ports
 
-| Port    | Dienst                                        |
-| ------- | --------------------------------------------- |
-| 20/21   | FTP-Daten / FTP-Steuerung                     |
-| 22      | SSH                                           |
-| 25      | SMTP                                          |
-| 53      | DNS-Zonentransfer und Antworten über 512 Byte |
-| 80      | HTTP                                          |
-| 110/995 | POP3 / POP3S                                  |
-| 143/993 | IMAP / IMAPS                                  |
-| 443     | HTTPS                                         |
-| 3306    | MySQL / MariaDB                               |
+| Port    | Dienst                                                         |
+| ------- | -------------------------------------------------------------- |
+| 20/21   | FTP-Daten / FTP-Steuerung                                      |
+| 22      | SSH                                                            |
+| 25      | SMTP                                                           |
+| 53      | DNS-Zonentransfers und Antworten oberhalb der UDP-Größengrenze |
+| 80      | HTTP                                                           |
+| 110/995 | POP3 / POP3S                                                   |
+| 143/993 | IMAP / IMAPS                                                   |
+| 443     | HTTPS                                                          |
+| 3306    | MySQL / MariaDB                                                |
 
 ## Siehe auch
 
-- [UDP](./udp.md): das verbindungslose Gegenstück, inklusive eines direkten Vergleichs beider Protokolle
+- [UDP](./udp.md): das verbindungslose Gegenstück ohne Verbindungsaufbau, Zuverlässigkeit oder Flusskontrolle
 - [OSI-Modell](./osi-model.md): wo die Transportschicht zwischen Netzwerk- und Sitzungsschicht sitzt
