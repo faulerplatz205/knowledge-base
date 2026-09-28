@@ -2,14 +2,14 @@
 title: "Database Development Phases"
 description: "Overview of the four phases of database development: external, conceptual, semantic, and physical."
 keywords:
-  - "database design"
-  - "database development"
-  - "ER model"
-  - "conceptual design"
-  - "physical design"
-  - "normalization"
+    - "database design"
+    - "database development"
+    - "ER model"
+    - "conceptual design"
+    - "physical design"
+    - "normalization"
 tags:
-  - ap2
+    - ap2
 ---
 
 # Database Development Phases
@@ -30,7 +30,7 @@ The conceptual model is technology-agnostic: it describes *what* the data looks 
 
 ## 3. Semantic Phase
 
-Refine and formalize the conceptual model by defining integrity constraints, cardinalities, and business rules precisely. The ERM is then transformed into a **relational model** (tables, columns, primary keys, foreign keys).
+Refine and formalize the conceptual model by defining integrity constraints, cardinalities, and business rules precisely. The ERM is then transformed into a [**relational database schema**](./database-schema.md) (tables, columns, primary keys, foreign keys).
 
 This phase also includes [**normalization**](./normalization.md), which eliminates redundancy and anomalies.
 

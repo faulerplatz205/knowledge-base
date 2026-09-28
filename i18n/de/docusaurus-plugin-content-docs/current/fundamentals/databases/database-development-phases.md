@@ -2,14 +2,14 @@
 title: "Datenbankentwicklungsphasen"
 description: "Überblick über die vier Phasen der Datenbankentwicklung: externe, konzeptionelle, semantische und physische Phase."
 keywords:
-  - "Datenbankdesign"
-  - "Datenbankentwicklung"
-  - "ER-Modell"
-  - "konzeptioneller Entwurf"
-  - "physischer Entwurf"
-  - "Normalisierung"
+    - "Datenbankdesign"
+    - "Datenbankentwicklung"
+    - "ER-Modell"
+    - "konzeptioneller Entwurf"
+    - "physischer Entwurf"
+    - "Normalisierung"
 tags:
-  - ap2
+    - ap2
 ---
 
 # Datenbankentwicklungsphasen
@@ -30,7 +30,7 @@ Das konzeptionelle Modell ist technologieunabhängig: Es beschreibt, *was* die D
 
 ## 3. Semantische Phase
 
-Das konzeptionelle Modell wird verfeinert und formalisiert, indem Integritätsbedingungen, Kardinalitäten und Geschäftsregeln präzise definiert werden. Das ERM wird dann in ein **relationales Modell** umgewandelt (Tabellen, Spalten, Primärschlüssel, Fremdschlüssel).
+Das konzeptionelle Modell wird verfeinert und formalisiert, indem Integritätsbedingungen, Kardinalitäten und Geschäftsregeln präzise definiert werden. Das ERM wird dann in ein [**relationales Datenbankschema**](./database-schema.md) umgewandelt (Tabellen, Spalten, Primärschlüssel, Fremdschlüssel).
 
 Diese Phase umfasst auch die [**Normalisierung**](./normalization.md), die Redundanzen und Anomalien beseitigt.
 
