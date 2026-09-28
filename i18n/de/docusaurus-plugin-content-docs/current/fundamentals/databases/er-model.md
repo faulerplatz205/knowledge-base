@@ -1,103 +1,142 @@
 ---
 title: "ER-Modell"
-description: "Ein Überblick zum Entity-Relationship Modell: Entitäten, Attribute, Beziehungen, Kardinalitäten und schwachen Entitäten."
+description: "Ein Überblick über das Entity-Relationship-Modell: Entitäten, Attribute, Beziehungen, Kardinalitäten, schwache Entitäten und Chen-Notation."
 keywords:
-  - "ER-Modell"
-  - "Entity-Relationship"
-  - "Datenbank Design"
-  - "Datenmodellierung"
-  - "Entitäten"
-  - "Attribute"
-  - "Beziehungen"
-  - "Kardinalitäten"
-  - "schwache Entitäten"
+    - "ER-Modell"
+    - "Entity-Relationship"
+    - "Datenbankdesign"
+    - "Datenmodellierung"
+    - "Entitäten"
+    - "Attribute"
+    - "Beziehungen"
+    - "Kardinalitäten"
+    - "schwache Entitäten"
+    - "Chen-Notation"
 tags:
-  - ap2
+    - ap2
 ---
 
 # ER-Modell
 
-Das Entity-Relationship (ER) Modell ist ein konzeptionelles Datenbankmodell, das dazu dient, die Struktur einer Datenbank auf einer übergeordneten Ebene zu beschreiben, unabhängig von einem bestimmten Datenbanksystem. Es wurde 1976 von Peter Chen eingeführt.
+Das Entity-Relationship-Modell (ER-Modell) ist ein konzeptionelles Datenmodell, das die Struktur einer Datenbank auf einer übergeordneten Ebene und unabhängig von einem bestimmten Datenbanksystem beschreibt. Es wurde 1976 von Peter Chen eingeführt. Im nächsten Entwurfsschritt wird das ER-Modell in ein [Datenbankschema](./database-schema.md) aus Tabellen, Primärschlüsseln und Fremdschlüsseln überführt.
 
 ## Kernkonzepte
 
 ### Entitäten
 
-Eine Entität ist ein Objekt oder Konzept aus der realen Welt, das sich von anderen Objekten unterscheiden lässt. Entitäten des selben Types werden zu **Entitätstypen** zusammengefasst (z.B. `Kunde`, `Produkt`, `Bestellung`). Ein einzelnes Vorkommen wird als **Entitätsinstanz** bezeichnet.
+Eine Entität, auch **Entitätsinstanz** genannt, ist ein eindeutig identifizierbares Objekt der realen Welt oder der Vorstellung, z.B. ein bestimmter Kunde oder eine bestimmte Bestellung. Entitäten desselben Typs werden zu **Entitätstypen** zusammengefasst (z.B. `Customer`, `Product`, `Order`).
 
 ### Attribute
 
-Attribute beschreiben die Eigenschaften eins Entitätstypen.
+Attribute beschreiben die Eigenschaften eines Entitätstyps.
 
-| Typ         | Beschreibung                          | Beispiel                              |
-| ----------- | ------------------------------------- | ------------------------------------- |
-| Simple      | Atomar, unteilbarer Wert              | `Vorname`, `Alter`                    |
-| Composite   | Besteht aus Unterattributen           | `Adresse` = (Straße, Stadt, PLZ)      |
-| Multivalued | Kann mehrere Werte enthalten          | `Handynummern`                        |
-| Derived     | Berechnet aus einem anderen Attribut  | `Alter` abgeleitet aus `Geburtsdatum` |
+| Typ              | Beschreibung                         | Beispiel                         |
+| ---------------- | ------------------------------------ | -------------------------------- |
+| Einfach          | Atomarer, unteilbarer Wert           | `FirstName`, `Age`               |
+| Zusammengesetzt  | Besteht aus Unterattributen          | `Address` = (Straße, Stadt, PLZ) |
+| Mehrwertig       | Kann mehrere Werte enthalten         | `PhoneNumbers`                   |
+| Abgeleitet       | Berechnet aus einem anderen Attribut | `Age` abgeleitet aus `BirthDate` |
 
-Das **Schlüsselattribut** (Primärschlüssel) identifiziert jede Entitätsinstanz eindeutig, z.B. `KundenID`.
+Das **Schlüsselattribut** identifiziert jede Entitätsinstanz eindeutig, z.B. `CustomerID`. Im Datenbankschema wird es dann zum Primärschlüssel.
 
 ### Beziehungen
 
-Eine Beziehung beschreibt eine Verbindung zwischen zwei oder mehreren Entitätstypen. Genau wie Entitäten werden Beziehungen in **Beziehungstypen** gruppiert (z.B. ein `Kunde` *platziert* eine `Bestellung`). Beziehungen können auch ihre eigenen Attribute haben (z.B. eine `ArbeitetFür`-Beziehung könnte ein `Startdatum` beinhalten).
+Eine Beziehung beschreibt eine Verbindung zwischen zwei oder mehreren Entitätstypen. Wie Entitäten werden Beziehungen zu **Beziehungstypen** zusammengefasst (z.B. ein `Customer` *gibt* eine `Order` *auf*). Der Beziehungstyp selbst drückt diese Verbindung aus, deshalb enthält das ER-Modell keine Fremdschlüssel. Diese entstehen erst bei der Überführung in das Datenbankschema. Beziehungen können auch eigene Attribute haben (z.B. kann eine `WorksFor`-Beziehung ein `StartDate` tragen).
 
 ## Kardinalitäten
 
-Kardinalität definiert wie viele Instanzen einer Entität mit einer Instanz einer anderen Entität verknüpft werden können.
+Die Kardinalität legt fest, wie viele Instanzen einer Entität mit Instanzen einer anderen Entität verknüpft sein können.
 
 | Typ | Beschreibung                                    | Beispiel                                                       |
 | --- | ----------------------------------------------- | -------------------------------------------------------------- |
-| 1:1 | Eine Instanz bezieht sich genau auf eine andere | Eine Person hat einen Reisepass                                |
-| 1:N | Eine Instanz bezieht sich auf viele andere      | Ein Kunde kann viele Bestellungen machen                       |
+| 1:1 | Eine Instanz bezieht sich auf genau eine andere | Eine Person hat einen Reisepass                                |
+| 1:N | Eine Instanz bezieht sich auf viele andere      | Ein Kunde gibt viele Bestellungen auf                          |
 | N:M | Viele Instanzen beziehen sich auf viele andere  | Studenten belegen mehrere Kurse; Kurse haben mehrere Studenten |
 
-**Participation** legt darüber hinaus fest, ob jede Entitätsinstanz an einer Beziehung beteiligt sein muss:
+Die **Teilnahme** legt darüber hinaus fest, ob jede Entitätsinstanz an einer Beziehung beteiligt sein muss:
 
-- **Total participation** (Pflicht): Jede Instanz muss in mindestens einer Beziehung sein, z.B. jede Bestellung muss einem Kunden zugeordnet sein.
-- **Partial participation** (optional): Manche Instanzen nehmen eventuell nicht teil, z.B. nicht jeder Kunde hat eine Bestellung durchgeführt.
+- **Totale Teilnahme** (obligatorisch): Jede Instanz muss an mindestens einer Beziehung beteiligt sein, z.B. muss jede Bestellung einem Kunden zugeordnet sein.
+- **Partielle Teilnahme** (optional): Manche Instanzen nehmen möglicherweise nicht teil, z.B. hat nicht jeder Kunde eine Bestellung aufgegeben.
 
 ## Schwache Entitäten
 
-Eine **schwache Entität** kann nicht eindeutig anhand ihrer eigenen Attribute identifiziert werden. Sie ist abhängig von einer **starken (Besitzer) Entität** für ihre Identität.
+Eine **schwache Entität** kann nicht allein anhand ihrer eigenen Attribute eindeutig identifiziert werden. Für ihre Identität ist sie von einer **starken Entität** (Eigentümer) abhängig.
 
 - Die schwache Entität hat einen **Teilschlüssel** (Diskriminator), der nur im Kontext ihres Eigentümers eindeutig ist.
-- Die Beziehung, die eine schwache Entität mit ihrem Besitzer verbindet, wird als **identifizierende Beziehung** bezeichnet.
+- Die Beziehung, die eine schwache Entität mit ihrem Eigentümer verbindet, wird als **identifizierende Beziehung** bezeichnet.
+- Eine schwache Entität nimmt an ihrer identifizierenden Beziehung immer total teil.
 
-**Beispiel**: `OrderItem` ist eine schwache Entität. Der Teilschlüssel `LineNumber` ist nur eindeutig innerhalb einer spezifischen `Order`. Die vollständige Identität lautet `(OrderID, LineNumber)`.
+**Beispiel:** `OrderItem` ist eine schwache Entität. Ihr Teilschlüssel `LineNumber` ist nur innerhalb einer bestimmten `Order` eindeutig. Die vollständige Identität lautet `(OrderID, LineNumber)`.
 
-## Beispiel: Bestellmanagement
+## Notation
 
-Das folgenden Beispiel zeigt einen `Customer` welcher `Orders` platzieren kann, jede Bestellung besteht aus einem oder mehreren `OrderItems`. `OrderItem` ist eine schwache Entität, da eine `LineNumber` nur im Zusammenhang mit einem bestimmten Auftrag Sinn ergibt.
+| Element                                       | Bedeutung                                           |
+| --------------------------------------------- | --------------------------------------------------- |
+| Rechteck                                      | Entitätstyp                                         |
+| Doppelt umrandetes Rechteck                   | Schwacher Entitätstyp                               |
+| Raute                                         | Beziehungstyp                                       |
+| Doppelt umrandete Raute                       | Identifizierende Beziehung                          |
+| Ellipse                                       | Attribut                                            |
+| Ellipse mit unterstrichenem Namen             | Schlüsselattribut                                   |
+| Ellipse mit gestrichelt unterstrichenem Namen | Teilschlüssel einer schwachen Entität               |
+| Doppelt umrandete Ellipse                     | Mehrwertiges Attribut                               |
+| Gestrichelte Ellipse                          | Abgeleitetes Attribut                               |
+| Ellipse mit weiteren Ellipsen                 | Zusammengesetztes Attribut und seine Unterattribute |
+| Einfache Linie                                | Partielle Teilnahme                                 |
+| Doppelte Linie                                | Totale Teilnahme                                    |
+| `1`, `N`, `M` an einer Linie                  | Kardinalität                                        |
+
+**Wichtig:** Im Gegensatz zu einem [Tabellendiagramm](./database-schema.md#tabellendiagramm) oder einem [UML-Klassendiagramm](../uml/class-diagram.md) werden die Attribute einer Entität nicht in ihr Rechteck geschrieben. Jedes Attribut erhält eine eigene Ellipse, die durch eine Linie mit der Entität verbunden ist.
+
+## Beispiel: Bestellverwaltung
+
+Ein `Customer` gibt `Orders` auf, die jeweils aus einem oder mehreren `OrderItems` bestehen. Jede Bestellung gehört zu einem Kunden und enthält mindestens eine Position, daher nimmt `Order` an beiden Beziehungen total teil. Ein Kunde ohne Bestellungen ist zulässig.
 
 ```text
-┌──────────────────┐                      ┌──────────────────┐
-│    Customer      │                      │     Order        │
-├──────────────────┤                      ├──────────────────┤
-│ CustomerID (PK)  │─── 1 ── places ── N ─│ OrderID (PK)     │
-│ Name             │                      │ OrderDate        │
-│ Email            │                      └────────┬─────────┘
-└──────────────────┘                               │ 1
-                                                   │
-                                               contains
-                                            (identifying)
-                                                   │
-                                                   │ 1..*
-                                          ╔════════╧═════════╗
-                                          ║    OrderItem     ║
-                                          ╠══════════════════╣
-                                          ║ ~LineNumber      ║
-                                          ║  Quantity        ║
-                                          ╚══════════════════╝
+  ╭────────────╮    ╭──────╮    ╭───────╮
+  │ CustomerID │    │ Name │    │ Email │
+  │ ────────── │    ╰───┬──╯    ╰───┬───╯
+  ╰─────┬──────╯        │           │
+        └───────────────┼───────────┘
+                        │
+                ┌───────┴───────┐
+                │   Customer    │
+                └───────┬───────┘
+                        │ 1
+                  ╱─────┴─────╲
+                 ╱    places   ╲
+                 ╲             ╱
+                  ╲─────╥─────╱
+                        ║ N
+                ┌───────╨───────┐        ╭─────────╮
+                │     Order     ├───┬────┤ OrderID │
+                └───────╥───────┘   │    │ ─────── │
+                        ║           │    ╰─────────╯
+                        ║ 1         │    ╭───────────╮
+                        ║           └────┤ OrderDate │
+                  ╱═════╩═════╲          ╰───────────╯
+                 ╱╱  contains ╲╲
+                 ╲╲           ╱╱
+                  ╲═════╦═════╱
+                        ║ N
+                ╔═══════╩═══════╗        ╭────────────╮
+                ║   OrderItem   ╟───┬────┤ LineNumber │
+                ╚═══════════════╝   │    │ ╌╌╌╌╌╌╌╌╌╌ │
+                                    │    ╰────────────╯
+                                    │    ╭──────────╮
+                                    └────┤ Quantity │
+                                         ╰──────────╯
 ```
 
-## Zuordnung zu relationalen Tabellen
+## Häufige Fehler
 
-| ER-Konzept        | Relationale Zuordnung                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------- |
-| Entitätstyp       | Tabelle                                                                                  |
-| Attribut          | Spalte                                                                                   |
-| Schlüsselattribut | Primärschlüssel                                                                          |
-| 1:N Beziehung     | Fremdschlüssel auf der N-seitigen Tabelle                                                |
-| N:M Beziehung     | Verbindungstabelle mit Fremdschlüsseln zu beiden Entitätstabellen                        |
-| Schwache Entität  | Tabelle mit einem zusammengesetzten Primärschlüssel (Eigentümerschlüssel + Teilschlüssel) |
+1. **Attribute im Entitätsrechteck:** Ein Rechteck mit einer Liste von Spalten ist eine Tabelle eines Datenbankschemas, kein Entitätstyp nach Chen.
+2. **Fremdschlüssel als Attribute:** `CustomerID` als Attribut von `Order` dupliziert die Beziehung `places` und gehört erst als Fremdschlüssel ins Datenbankschema.
+3. **UML-Multiplizitäten in einem Chen-Diagramm:** Statt UML-Bereichen wie `1..*` oder `0..1` verwendet Chen `1`, `N` und `M` und drückt das Minimum über einfache oder doppelte Linien aus.
+4. **Schwache Entität ohne identifizierende Beziehung:** Ein doppelt umrandetes Rechteck erfordert eine doppelt umrandete Raute, die es mit seinem Eigentümer verbindet.
+
+## Siehe auch
+
+- [Datenbankschema](./database-schema.md): die aus einem ER-Modell abgeleiteten Tabellen, Schlüssel und Überführungsregeln
+- [Datenbankentwicklungsphasen](./database-development-phases.md): das ER-Modell als Ergebnis der konzeptionellen Phase
+- [Normalisierung](./normalization.md): Beseitigung von Redundanz in den aus einem ER-Modell abgeleiteten Tabellen
