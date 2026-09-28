@@ -185,12 +185,21 @@ Rules:
 - **No filler words**: Intensifiers and hedges that add no content are dropped, e.g. "actually", "at all", "really", "simply", "basically", "just", or in German "tatsächlich", "überhaupt", "eigentlich", "einfach", "letztlich". Such a word stays only where removing it changes the statement
 - **No comma afterthoughts**: Sentences of the form "statement, short appended afterthought." are rewritten as complete, self-contained sentences, e.g. not "`Check availability` is a step, not a partner" or "Drawn as X, it looks like Y"
 
+### Common Mistakes Section
+
+- **Heading:** `## Common Mistakes` (en) and `## Häufige Fehler` (de), no variants such as "Common Mistakes to Avoid"
+- **Position:** After the worked example, before `## Tools` and `## See Also`
+- **Form:** A numbered list. Each entry is `1. **Mistake:** Explanation.` The mistake is a noun phrase naming the wrong practice, e.g. `**Reply as a solid arrow:**`. The explanation consists of complete sentences, each ending with a full stop
+- **Content:** The explanation states why the practice is wrong, what it causes or what is correct instead. It does not restate the mistake name. A concrete example is used as evidence for that statement, never on its own
+- **No instructions:** Entries describe the mistake, not a rule to follow ("Always specify …" is rewritten as the mistake it prevents)
+- **Existing files:** Existing sections are aligned only when the file is touched for another reason, following the same per-file rule as in **Markdown Formatting**
+
 ### Markdown Formatting
 
 - **Headings**: Every heading in `.md` files must be surrounded by a blank line (before and after) for proper formatting and readability
 - **Lists**: Every list in `.md` files must be surrounded by a blank line (before and after) for proper formatting and readability
 - **List punctuation**: Bullets that are fragments (single words, noun phrases, incomplete sentences) get no full stop; bullets that are complete sentences end with a full stop. Both styles must never be mixed inside one list — if one entry needs a full sentence, every entry of that list ends with a full stop
-- **Term lists**: Lists of the form *term + explanation* use a colon inside the bold markers, `- **Term:** explanation`, never a dash (`- **Term** – explanation`). See the `### Actors` section in `docs/fundamentals/uml/use-case-diagram.md`
+- **Term lists**: Lists of the form *term + explanation* use a colon inside the bold markers, `- **Term:** explanation`, never a dash (`- **Term** – explanation`). The explanation starts with a capital letter in both locales. See the `## Keys` section in `docs/fundamentals/databases/database-schema.md`
 - **Existing files**: The two rules above are applied to an existing file only when that file is touched for another reason. The unit is the **file**, not the line: once a file is being changed anyway, every violation in it may be fixed, regardless of whether the affected lines are part of the actual change. What is avoided is a blanket migration across untouched files, which bloats the merge request with pure formatting noise
 - **Code Blocks**: Fenced code blocks should always have a language specified
 - **Multiplication sign**: Use `x` (the letter) instead of `×` (Unicode symbol) for multiplication in formulas, to keep content easily searchable
