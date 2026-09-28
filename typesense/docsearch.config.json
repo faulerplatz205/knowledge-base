@@ -27,7 +27,8 @@
         "text": "article p, article li, article td"
     },
     "selectors_exclude": [
-        ".theme-doc-card-container"
+        ".theme-doc-card-container",
+        ".theme-doc-breadcrumbs"
     ],
     "strip_chars": " .,;:#",
     "custom_settings": {

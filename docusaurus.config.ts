@@ -241,6 +241,7 @@ const config: Config = {
                 vector_query: "embedding:([], k: 5, distance_threshold: 1.0, alpha: 0.3)",
                 group_by: "url_without_anchor",
                 group_limit: 2,
+                sort_by: "_text_match:desc,item_priority:desc",
             },
 
             contextualSearch: true,
