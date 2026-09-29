@@ -101,14 +101,14 @@ Der eingebundene Anwendungsfall ist ein Baustein, den mehrere Basisanwendungsfä
  ╭─────────────────────────────╮
 (      Bestellung aufgeben      )
 (  ---------------------------  )              ╭────────────────────╮
-(  Erweiterungspunkte:          )◄╌╌╌╌╌╌┬╌╌╌╌╌(  Gutschein einlösen  )
+(  extension points:            )◄╌╌╌╌╌╌┬╌╌╌╌╌(  Gutschein einlösen  )
 (   Zahlungsart gewählt         )       ╎      ╰────────────────────╯
  ╰─────────────────────────────╯   <<extend>>
                                         ╎
                      ┌──────────────────┴──────────╮
-                     │ Bedingung:                  │
+                     │ Condition:                  │
                      │ {Gutscheincode eingegeben}  │
-                     │ Erweiterungspunkt:          │
+                     │ extension point:            │
                      │  Zahlungsart gewählt        │
                      └─────────────────────────────┘
 ```
