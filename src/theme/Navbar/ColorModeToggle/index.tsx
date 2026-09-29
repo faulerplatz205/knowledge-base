@@ -1,3 +1,4 @@
+import type { ReactElement} from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
@@ -6,19 +7,19 @@ type ThemeStyle = "light" | "dark" | "homepage";
 
 const STORAGE_KEY = "theme-style";
 
-const SunIcon = () => (
+const SunIcon = (): ReactElement => (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
         <path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
     </svg>
 );
 
-const MoonIcon = () => (
+const MoonIcon = (): ReactElement => (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
         <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" fill="none" />
     </svg>
 );
 
-const TerminalIcon = () => (
+const TerminalIcon = (): ReactElement => (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="4 17 10 11 4 5" />
         <line x1="12" y1="19" x2="20" y2="19" />
@@ -43,30 +44,17 @@ interface Props {
 export default function ColorModeToggle({ className }: Props): React.ReactNode {
     const { colorMode, setColorMode } = useColorMode();
     const [ isOpen, setIsOpen ] = useState(false);
-    const [ activeStyle, setActiveStyle ] = useState<ThemeStyle>(() => {
-        const stored = getStoredThemeStyle();
-        return stored ?? (colorMode === "dark" ? "dark" : "light");
-    });
+    const [ isHomepage, setIsHomepage ] = useState(false);
+    const activeStyle: ThemeStyle = isHomepage ? "homepage" : colorMode;
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Sync activeStyle from localStorage on mount
     useEffect(() => {
-        const stored = getStoredThemeStyle();
-        if (stored === "homepage") {
-            setActiveStyle("homepage");
+        if (getStoredThemeStyle() === "homepage") {
+            setIsHomepage(true);
             setColorMode("dark");
             document.documentElement.setAttribute("data-theme-style", "homepage");
-        } else if (stored) {
-            setActiveStyle(stored);
         }
     }, [ setColorMode ]);
-
-    // Keep activeStyle in sync when colorMode changes externally
-    useEffect(() => {
-        if (activeStyle !== "homepage") {
-            setActiveStyle(colorMode === "dark" ? "dark" : "light");
-        }
-    }, [ colorMode, activeStyle ]);
 
     // Close dropdown on outside click
     useEffect(() => {
@@ -80,7 +68,7 @@ export default function ColorModeToggle({ className }: Props): React.ReactNode {
     }, []);
 
     const handleSelect = useCallback((style: ThemeStyle) => {
-        setActiveStyle(style);
+        setIsHomepage(style === "homepage");
         setIsOpen(false);
         localStorage.setItem(STORAGE_KEY, style);
 
