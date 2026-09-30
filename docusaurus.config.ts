@@ -32,6 +32,8 @@ const config: Config = {
         locales: [ "en", "de" ],
     },
 
+    clientModules: [ "./src/clientModules/rememberLocale.ts" ],
+
     presets: [
         [
             "classic",
