@@ -1,0 +1,341 @@
+---
+title: "O-Notation"
+description: "Wie der Aufwand eines Algorithmus mit der Eingabegröße wächst: die gängigen Komplexitätsklassen, Regeln zum Bestimmen der Klasse, bester, durchschnittlicher und schlechtester Fall, Speicherkomplexität und die Klassen gängiger Such- und Sortierverfahren."
+keywords:
+    - O-Notation
+    - Big-O-Notation
+    - Zeitkomplexität
+    - Speicherkomplexität
+    - Komplexitätsklasse
+    - Laufzeit
+    - Worst Case
+    - Asymptotische Analyse
+    - Landau-Notation
+tags:
+    - ap2
+---
+
+# O-Notation
+
+## Überblick
+
+Die O-Notation beschreibt, wie der Aufwand eines Algorithmus mit seiner Eingabe wächst. Statt einer Zeit in Sekunden gibt sie die Form dieses Wachstums an.
+
+Die Eingabegröße heißt **n**: Sie steht für die Anzahl der Elemente einer Liste, der Zeichen eines Strings oder der Zeilen einer Tabelle. Jede Komplexitätsklasse beantwortet die Frage: **Was passiert mit der Anzahl der Schritte, wenn sich n verdoppelt?**
+
+| Notation   | Name          | Aufwand bei doppeltem n                | Beispiel                                                  |
+| ---------- | ------------- | -------------------------------------- | --------------------------------------------------------- |
+| O(1)       | Konstant      | bleibt gleich                          | Arrayzugriff über den Index                               |
+| O(log n)   | Logarithmisch | wächst um einen Schritt                | Binäre Suche                                              |
+| O(n)       | Linear        | verdoppelt sich                        | Lineare Suche                                             |
+| O(n log n) | Quasilinear   | wächst etwas mehr als auf das Doppelte | Merge Sort                                                |
+| O(n²)      | Quadratisch   | vervierfacht sich                      | Bubble Sort, verschachtelte Schleifen über dieselbe Liste |
+| O(2ⁿ)      | Exponentiell  | wird quadriert                         | Ausprobieren aller Teilmengen einer Menge                 |
+
+Bei O(2ⁿ) verdoppelt bereits ein einziges zusätzliches Element den Aufwand.
+
+---
+
+## Wachstum in Zahlen
+
+Anzahl der Schritte, die jede Komplexitätsklasse für eine Eingabe von n Elementen braucht (Logarithmus zur Basis 2, gerundet):
+
+| n         | O(1) | O(log n) | O(n)      | O(n log n) | O(n²)     | O(2ⁿ)         |
+| --------- | ---- | -------- | --------- | ---------- | --------- | ------------- |
+| 10        | 1    | 3        | 10        | 33         | 100       | 1.024         |
+| 100       | 1    | 7        | 100       | 664        | 10.000    | ≈ 1,3 x 10³⁰  |
+| 1.000     | 1    | 10       | 1.000     | 9.966      | 1.000.000 | ≈ 1,1 x 10³⁰¹ |
+| 1.000.000 | 1    | 20       | 1.000.000 | ≈ 2 x 10⁷  | 10¹²      | ≈ 10³⁰¹⁰³⁰    |
+
+Bei einer Mikrosekunde pro Schritt und einer Million Elementen braucht ein O(log n)-Algorithmus 20 µs, ein O(n)-Algorithmus eine Sekunde, ein O(n log n)-Algorithmus etwa 20 Sekunden und ein O(n²)-Algorithmus 10⁶ Sekunden, also etwa 11,6 Tage.
+
+---
+
+## Formale Definition
+
+f(n) ist die Anzahl der Schritte, die ein Algorithmus braucht, g(n) eine einfache Vergleichsfunktion wie n oder n². f(n) liegt in O(g(n)), wenn f ab einer bestimmten Eingabegröße höchstens so schnell wächst wie g, multipliziert mit einem festen Faktor.
+
+Formal: Es gibt eine Konstante c > 0 und eine Schwelle n₀, sodass f(n) ≤ c x g(n) für alle n ≥ n₀ gilt.
+
+Beispiel: f(n) = 3n + 5 liegt in O(n). Mit c = 4 und n₀ = 5 gilt 3n + 5 ≤ 4n für alle n ≥ 5.
+
+- Konstante Faktoren werden von c aufgenommen. `3n`, `n / 2` und `100n` liegen alle in O(n).
+- Das Verhalten unterhalb von n₀ spielt keine Rolle, weil die O-Notation nur große Eingaben beschreibt.
+- O ist eine obere Schranke. Streng genommen liegt die binäre Suche auch in O(n) und in O(n²). In der Praxis wird die kleinste passende Klasse angegeben.
+- Die untere Schranke wird Ω (Omega) geschrieben. Eine Schranke, die zugleich obere und untere Schranke ist, wird Θ (Theta) geschrieben.
+
+---
+
+## Komplexitätsklasse bestimmen
+
+Die Komplexitätsklasse wird bestimmt, indem die am häufigsten ausgeführte Operation, meist ein Vergleich oder eine Zuweisung in der innersten Schleife, als Funktion von n gezählt und das Ergebnis vereinfacht wird.
+
+### Einzelne Anweisungen: O(1)
+
+Zuweisungen, Rechenoperationen, Vergleiche, Arrayzugriffe über den Index und `RETURN` laufen eine feste, von n unabhängige Anzahl von Malen.
+
+```text
+first = list[0]
+sum = a + b
+```
+
+### Schleife über die Eingabe: O(n)
+
+```text
+FOR i = 0 TO n - 1
+    sum = sum + list[i]
+END FOR
+```
+
+Das `FOR` läuft n-mal. Eine Schleife, die `n / 2`- oder `2n`-mal läuft, ist ebenfalls O(n).
+
+### Verschachtelte Schleifen: multiplizieren
+
+Bei verschachtelten Schleifen werden die Durchlaufzahlen multipliziert. Laufen beide Schleifen über die Eingabe, ergibt das n x n Schritte und O(n²):
+
+```text
+FOR i = 0 TO n - 1
+    FOR j = 0 TO n - 1
+        ...
+    END FOR
+END FOR
+```
+
+Hat die innere Schleife eine feste Anzahl an Durchläufen, ergibt das n x 7 = 7n Schritte und damit O(n):
+
+```text
+FOR i = 0 TO n - 1
+    FOR day = 1 TO 7        // 7 iterations, independent of n
+        ...
+    END FOR
+END FOR
+```
+
+### Blöcke nacheinander: der größte Anteil bleibt
+
+Laufen Codeblöcke nacheinander, werden ihre Schrittzahlen addiert. Nur der am schnellsten wachsende Anteil der Summe bestimmt die Klasse:
+
+```text
+FOR i = 0 TO n - 1              // n steps
+    ...
+END FOR
+FOR i = 0 TO n - 1              // n x n steps
+    FOR j = 0 TO n - 1
+        ...
+    END FOR
+END FOR
+```
+
+n + n² Schritte ergeben O(n²). Je größer n wird, desto weniger fällt der kleinere Anteil ins Gewicht.
+
+### Halbieren: O(log n)
+
+Wenn jeder Schritt das verbleibende Problem halbiert, entspricht die Anzahl der Schritte der Anzahl, wie oft sich n halbieren lässt, bis ein Element übrig ist. Diese Anzahl ist log₂ n. Die O-Notation lässt die Basis weg, weil sich log₂ n und log₁₀ n nur um einen konstanten Faktor unterscheiden.
+
+```text
+1.000.000 => 500.000 => 250.000 => ... => 1      20 Halbierungen
+```
+
+Die binäre Suche arbeitet auf einer sortierten Liste nach diesem Prinzip:
+
+```text
+low = 0
+high = n - 1
+WHILE low <= high
+    mid = (low + high) DIV 2
+    IF list[mid] == target THEN
+        RETURN mid
+    ELSE IF list[mid] < target THEN
+        low = mid + 1
+    ELSE
+        high = mid - 1
+    END IF
+END WHILE
+RETURN -1
+```
+
+### Teile und herrsche: O(n log n)
+
+Merge Sort halbiert die Liste, bis einzelne Elemente übrig sind. Das ergibt log n Ebenen. Auf jeder Ebene werden alle n Elemente einmal zusammengeführt. log n Ebenen x n Schritte pro Ebene ergeben O(n log n).
+
+### Zwei Eingaben: zwei Variablen
+
+Arbeitet ein Algorithmus auf zwei unabhängigen Eingaben der Größen n und m, tauchen beide im Ergebnis auf:
+
+```text
+FOR EACH customer IN customers          // n customers
+    FOR EACH product IN products        // m products
+        ...
+    END FOR
+END FOR
+```
+
+Die verschachtelten Schleifen ergeben n x m Schritte und damit O(n x m). Zwei Schleifen nacheinander ergeben O(n + m). Anders als bei n + n² fällt hier kein Term weg, weil offen ist, welche der beiden Eingaben größer ist.
+
+---
+
+## Bester, durchschnittlicher und schlechtester Fall
+
+Derselbe Algorithmus braucht je nach Eingabe unterschiedlich viele Schritte:
+
+- **Bester Fall (Best Case):** Die günstigste Eingabe. Bei der linearen Suche ist das ein Wert an erster Position, der nach einem Vergleich gefunden wird. Der beste Fall beschreibt einen glücklichen Zufall und sagt wenig über das typische Verhalten aus.
+- **Durchschnittlicher Fall (Average Case):** Der erwartete Aufwand über alle Eingaben. Bei der linearen Suche sind das n / 2 Vergleiche, also O(n).
+- **Schlechtester Fall (Worst Case):** Die ungünstigste Eingabe. Bei der linearen Suche ist das ein Wert an letzter Position oder ein fehlender Wert, der n Vergleiche kostet. Der schlechteste Fall ist eine Garantie, die der Algorithmus nie überschreitet.
+
+Eine Komplexität ohne Zusatz bezieht sich auf den schlechtesten Fall. Durchschnittlicher und schlechtester Fall können in drastisch unterschiedlichen Klassen liegen: Quicksort braucht im Durchschnitt O(n log n), aber O(n²), wenn das Pivotelement immer der kleinste oder größte Wert ist.
+
+---
+
+## Speicherkomplexität
+
+Dieselbe Notation beschreibt den Speicher, den ein Algorithmus zusätzlich zu seiner Eingabe benötigt.
+
+- **O(1):** Eine feste Anzahl an Variablen, z.B. Bubble Sort, das Elemente innerhalb der Liste vertauscht (in place).
+- **O(log n):** Eine Rekursion, die das Problem halbiert, hält log n Aufrufe gleichzeitig auf dem Stack.
+- **O(n):** Eine Hilfsstruktur, die mit der Eingabe wächst, z.B. die temporäre Liste bei Merge Sort oder eine Menge aller bereits gesehenen Werte.
+
+Zeit und Speicher lassen sich oft gegeneinander tauschen. Das [Beispiel](#beispiel-duplikate-finden) zeigt einen solchen Tausch.
+
+---
+
+## Klassen gängiger Algorithmen
+
+### Suchen
+
+| Algorithmus   | Bester Fall | Durchschnitt | Schlechtester Fall | Zusatzspeicher | Voraussetzung                              |
+| ------------- | ----------- | ------------ | ------------------ | -------------- | ------------------------------------------ |
+| Lineare Suche | O(1)        | O(n)         | O(n)               | O(1)           | Keine                                      |
+| Binäre Suche  | O(1)        | O(log n)     | O(log n)           | O(1)           | Sortierte Daten mit Zugriff über den Index |
+
+### Sortieren
+
+| Algorithmus    | Bester Fall | Durchschnitt | Schlechtester Fall | Zusatzspeicher | Stabil |
+| -------------- | ----------- | ------------ | ------------------ | -------------- | ------ |
+| Bubble Sort    | O(n)¹       | O(n²)        | O(n²)              | O(1)           | Ja     |
+| Selection Sort | O(n²)       | O(n²)        | O(n²)              | O(1)           | Nein   |
+| Insertion Sort | O(n)²       | O(n²)        | O(n²)              | O(1)           | Ja     |
+| Merge Sort     | O(n log n)  | O(n log n)   | O(n log n)         | O(n)           | Ja     |
+| Quicksort      | O(n log n)  | O(n log n)   | O(n²)              | O(log n)       | Nein   |
+
+¹ Nur mit vorzeitigem Abbruch, der nach einem Durchlauf ohne Vertauschung stoppt. Ohne ihn braucht Bubble Sort immer O(n²).
+
+² Bei einer bereits sortierten Liste wird jedes Element einmal mit seinem Vorgänger verglichen und bleibt an seinem Platz.
+
+Ein Sortierverfahren ist **stabil**, wenn Elemente mit gleichem Schlüssel ihre ursprüngliche Reihenfolge behalten. Der Schlüssel ist der Wert, nach dem sortiert wird. Wird eine bereits nach Namen sortierte Personenliste stabil nach Alter sortiert, bleiben Personen gleichen Alters alphabetisch geordnet.
+
+Ein Sortierverfahren, das nur je zwei Elemente miteinander vergleicht, braucht im schlechtesten Fall mindestens etwa n log n Vergleiche. Merge Sort erreicht damit die bestmögliche Klasse für vergleichsbasiertes Sortieren. Schneller sein können nur Verfahren, die die Werte direkt verwenden, etwa Counting Sort für kleine ganze Zahlen.
+
+### Datenstrukturen
+
+| Operation                             | Array                   | Verkettete Liste | Hashtabelle                              |
+| ------------------------------------- | ----------------------- | ---------------- | ---------------------------------------- |
+| Zugriff auf das Element an Position i | O(1)                    | O(n)¹            | Nicht anwendbar²                         |
+| Suche nach einem Wert oder Schlüssel  | O(n), sortiert O(log n) | O(n)             | O(1) im Durchschnitt über den Schlüssel³ |
+| Einfügen am Anfang                    | O(n)⁴                   | O(1)⁵            | Nicht anwendbar²                         |
+
+¹ Jedes Element kennt nur seinen Nachfolger, daher wird die Liste vom Anfang an durchlaufen.
+
+² Eine Hashtabelle kennt keine Reihenfolge ihrer Elemente, daher gibt es keine Position.
+
+³ Eine Hashfunktion berechnet den Speicherplatz, den Bucket, direkt aus dem Schlüssel. Landen viele Schlüssel im selben Bucket, werden sie einzeln durchsucht, und die Suche verschlechtert sich im schlechtesten Fall auf O(n).
+
+{/* TODO: link the hash table entry here once it exists */}
+
+⁴ Alle n vorhandenen Elemente werden um eine Position nach rechts verschoben.
+
+⁵ Es wird nur eine Referenz umgebogen.
+
+---
+
+## Beispiel: Duplikate finden
+
+Eine Funktion prüft, ob eine Liste einen Wert doppelt enthält.
+
+### Variante 1: jedes Paar vergleichen
+
+```text
+FUNCTION hasDuplicates(list)
+    n = LENGTH(list)
+    FOR i = 0 TO n - 2
+        FOR j = i + 1 TO n - 1
+            IF list[i] == list[j] THEN
+                RETURN true
+            END IF
+        END FOR
+    END FOR
+    RETURN false
+END FUNCTION
+```
+
+Der schlechteste Fall ist eine Liste ohne Duplikate, sodass jedes Paar verglichen wird:
+
+```text
+i = 0        n - 1 Vergleiche
+i = 1        n - 2 Vergleiche
+...
+i = n - 2    1 Vergleich
+
+Summe:  (n - 1) + (n - 2) + ... + 1  =  n x (n - 1) / 2  =  0,5n² - 0,5n
+n = 5:  4 + 3 + 2 + 1                =  5 x 4 / 2        =  10
+```
+
+Ohne den kleineren Term `0,5n` und den konstanten Faktor `0,5` bleibt **O(n²)**. Die innere Schleife wird mit jedem Durchlauf kürzer, läuft im Mittel aber immer noch über die halbe Liste. Bei n = 1.000 sind das 499.500 Vergleiche, bei n = 2.000 sind es 1.999.000, also viermal so viele.
+
+### Variante 2: erst sortieren, dann Nachbarn vergleichen
+
+```text
+FUNCTION hasDuplicates(list)
+    n = LENGTH(list)
+    sort(list)                          // O(n log n)
+    FOR i = 0 TO n - 2                  // O(n)
+        IF list[i] == list[i + 1] THEN
+            RETURN true
+        END IF
+    END FOR
+    RETURN false
+END FUNCTION
+```
+
+Nach dem Sortieren stehen gleiche Werte nebeneinander, und ein Durchlauf über benachbarte Paare genügt. O(n log n) + O(n) ergibt **O(n log n)**. Sortiert die Funktion keine Kopie, verändert sie die Reihenfolge der übergebenen Liste. Eine Kopie kostet O(n) Speicher.
+
+### Variante 3: gesehene Werte merken
+
+```text
+FUNCTION hasDuplicates(list)
+    seen = empty set
+    FOR EACH value IN list              // n iterations
+        IF seen CONTAINS value THEN     // O(1) average
+            RETURN true
+        END IF
+        ADD value TO seen               // O(1) average
+    END FOR
+    RETURN false
+END FUNCTION
+```
+
+Eine hashbasierte Menge beantwortet "enthält" im Durchschnitt in konstanter Zeit. n Durchläufe mit je O(1) ergeben **O(n)**. Die Menge kostet O(n) zusätzlichen Speicher.
+
+### Vergleich
+
+| Variante          | Zeit       | Zusatzspeicher       | Schritte bei n = 1.000.000 |
+| ----------------- | ---------- | -------------------- | -------------------------- |
+| 1: Jedes Paar     | O(n²)      | O(1)                 | ≈ 5 x 10¹¹                 |
+| 2: Erst sortieren | O(n log n) | O(1), mit Kopie O(n) | ≈ 2 x 10⁷                  |
+| 3: Menge          | O(n)       | O(n)                 | ≈ 10⁶                      |
+
+Was dieses Beispiel zeigt:
+
+- Nur ein anderer Ansatz verbessert die Klasse. Eine Optimierung der inneren Schleife von Variante 1 ändert allein den konstanten Faktor.
+- Variante 3 erkauft ihre Geschwindigkeit mit Speicher.
+
+---
+
+## Häufige Fehler
+
+1. **Jede verschachtelte Schleife als O(n²) gezählt:** Die Klasse hängt davon ab, wie oft jede Schleife läuft. Eine innere Schleife mit fester Anzahl an Durchläufen, z.B. über die sieben Tage einer Woche, multipliziert nur mit einem konstanten Faktor, und das Ergebnis bleibt O(n).
+2. **Zwei verschiedene Eingaben als n geschrieben:** Eine Schleife über n Kunden, verschachtelt mit einer Schleife über m Produkte, ist O(n x m). O(n²) unterstellt, dass beide Eingaben gleich groß sind, und verdeckt, welche von beiden den Aufwand treibt.
+3. **Konstanten und kleinere Terme beibehalten:** O(2n + 5) und O(n² + n) sind formal korrekt, aber nicht vereinfacht. Die Klasse ist O(n) bzw. O(n²), weil Konstanten und kleinere Terme für große n keinen Einfluss auf das Wachstum haben.
+4. **O-Notation als Laufzeit in Sekunden gelesen:** Die Notation verbirgt konstante Faktoren, deshalb kann ein O(n²)-Algorithmus für kleine n schneller sein als ein O(n log n)-Algorithmus. Insertion Sort schlägt Merge Sort bei kurzen Listen, weshalb praktische Sortierimplementierungen wie Timsort für kurze Abschnitte Insertion Sort verwenden.
+5. **Binäre Suche auf unsortierten Daten:** O(log n) gilt nur für sortierte Daten mit Zugriff über den Index. Vorheriges Sortieren kostet O(n log n) und lohnt sich nur, wenn dieselben Daten viele Male durchsucht werden.
+6. **log n mit n log n verwechselt:** O(log n) wächst langsamer als linear und braucht weit weniger Schritte, als es Elemente gibt. O(n log n) wächst schneller als linear und führt für jedes Element log n Schritte aus.
+7. **Bester Fall als Komplexität angegeben:** Der beste Fall der linearen Suche ist O(1) und sagt nichts über typische Eingaben aus. Eine Komplexität ohne Zusatz bezieht sich auf den schlechtesten Fall.
