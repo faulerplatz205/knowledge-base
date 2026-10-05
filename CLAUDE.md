@@ -138,6 +138,12 @@ Self-hosted Umami instance at `analytics.moritz-grimm.dev`. The tracking script 
 4. For German translation, create the corresponding file in `i18n/de/docusaurus-plugin-content-docs/current/` with the same structure
 5. Run `npm run write-translations:de` to autogenerate metadata, then update `i18n/de/docusaurus-plugin-content-docs/current.json` if needed
 
+### Source Material
+
+- Worksheets, school notes or other material handed over for an entry define the topic, not the scope. The entry covers everything about the topic that is important, including points the source does not mention. Only an explicit instruction to stay within the source limits the entry to it.
+- Every addition beyond the source is listed in the chat answer, so it can be reviewed separately.
+- Errors in the source are not carried over. The entry states the correct version, and the chat answer names the deviation.
+
 ### Tags
 
 Tags are declared centrally in `docs/tags.yml` and mirrored in
