@@ -1,0 +1,79 @@
+---
+title: "Speicherbedarf von Bildern"
+description: "Wie Auflösung und Farbtiefe den Speicherbedarf eines unkomprimierten Rasterbildes bestimmen, mit Formel und Rechenbeispielen."
+keywords:
+    - Bildgröße
+    - Speicherbedarf
+    - Pixel
+    - Megapixel
+    - Auflösung
+    - Farbtiefe
+    - Bittiefe
+    - True Color
+tags:
+    - ap2
+---
+
+# Speicherbedarf von Bildern
+
+## Pixel und Farbtiefe
+
+Ein Rasterbild besteht aus einem Raster von **Pixeln**. Die **Auflösung** ist die Anzahl der Pixel, angegeben entweder als Breite x Höhe (z.B. `1920 x 1080`) oder als Gesamtzahl in **Megapixeln** (1 MP = 1.000.000 Pixel).
+
+Die **Farbtiefe** gibt an, wie viele Bit jedes Pixel zum Speichern seiner Farbe verwendet. Mit `n` Bit kann ein Pixel `2ⁿ` verschiedene Farben annehmen.
+
+| Farbtiefe | Farben     | Bezeichnung                                                |
+| --------- | ---------- | ---------------------------------------------------------- |
+| 1 Bit     | 2          | Monochrom (schwarz-weiß)                                   |
+| 8 Bit     | 256        | Graustufen oder indizierte Farben                          |
+| 16 Bit    | 65.536     | High Color                                                 |
+| 24 Bit    | 16.777.216 | True Color, je 8 Bit für Rot, Grün und Blau                |
+| 32 Bit    | 16.777.216 | True Color plus 8 Bit Alphakanal (Transparenz)             |
+
+---
+
+## Formel
+
+```text
+Speicherbedarf in Bit  = Anzahl Pixel x Farbtiefe
+Speicherbedarf in Byte = Anzahl Pixel x Farbtiefe ÷ 8
+```
+
+Das Ergebnis ist die Größe der rohen, unkomprimierten Bilddaten. Formate wie JPEG oder PNG komprimieren diese Daten, und jede Datei enthält zusätzlich Header und Metadaten. Eine reale Datei weicht daher vom berechneten Wert ab.
+
+---
+
+## Beispiel
+
+Ein Foto mit 50 Megapixeln und einer Farbtiefe von 24 Bit:
+
+```text
+Pixel:         50 MP x 10⁶ = 50.000.000 Pixel
+Bit:           50.000.000 x 24 Bit = 1.200.000.000 Bit
+Byte:          1.200.000.000 Bit ÷ 8 = 150.000.000 B
+Dezimal:       150.000.000 B ÷ 10⁶ = 150 MB
+Binär:         150.000.000 B ÷ 2²⁰ ≈ 143,05 MiB
+```
+
+Ist die Auflösung als Breite x Höhe angegeben, wird zuerst die Pixelanzahl berechnet:
+
+```text
+Pixel:         1920 x 1080 = 2.073.600 Pixel
+Byte:          2.073.600 x 24 Bit ÷ 8 = 6.220.800 B
+Dezimal:       6.220.800 B ÷ 10⁶ ≈ 6,22 MB
+Binär:         6.220.800 B ÷ 2²⁰ ≈ 5,93 MiB
+```
+
+---
+
+## Häufige Fehler
+
+1. **Fehlende Division durch 8:** Das Produkt aus Pixeln und Farbtiefe ist eine Anzahl Bit. Ohne Division durch 8 ist das Ergebnis achtmal zu groß, z.B. 1.200 MB statt 150 MB.
+2. **Megapixel mit 1.024² gerechnet:** Das Präfix Mega in Megapixel ist immer dezimal. 50 MP sind 50.000.000 Pixel, nicht 52.428.800.
+3. **MB und MiB vermischt:** 150.000.000 B sind 150 MB, aber nur etwa 143,05 MiB. Die Zieleinheit bestimmt den Divisor: 10⁶ für MB, 2²⁰ für MiB{/* TODO: add back once german file exists: (siehe [Bit, Byte & Einheitenumrechnung](./bit-byte-conversions.md)) */}.
+4. **Farbanzahl als Farbtiefe verwendet:** True Color hat 16.777.216 Farben, jedes Pixel speichert aber 24 Bit. In die Formel gehen die Bit ein, nicht die Anzahl der Farben.
+
+{/* ## Siehe auch */}
+
+{/* TODO: add link once german file exists: - [Bit, Byte & Einheitenumrechnung](./bit-byte-conversions.md) */}
+{/* TODO: Add back once file exists - [Zahlensysteme](./number-systems.md) */}

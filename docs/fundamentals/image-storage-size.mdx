@@ -1,0 +1,79 @@
+---
+title: "Image Storage Size"
+description: "How resolution and colour depth determine the storage size of an uncompressed raster image, with the formula and worked examples."
+keywords:
+    - Image Size
+    - Storage Size
+    - Pixel
+    - Megapixel
+    - Resolution
+    - Colour Depth
+    - Bit Depth
+    - True Color
+tags:
+    - ap2
+---
+
+# Image Storage Size
+
+## Pixels and Colour Depth
+
+A raster image consists of a grid of **pixels**. The **resolution** is the number of pixels, given either as width x height (e.g. `1920 x 1080`) or as a total in **megapixels** (1 MP = 1,000,000 pixels).
+
+The **colour depth** states how many bits each pixel uses to store its colour. With `n` bits, a pixel can take `2ⁿ` different colours.
+
+| Colour depth | Colours    | Name                                                       |
+| ------------ | ---------- | ---------------------------------------------------------- |
+| 1 bit        | 2          | Monochrome (black and white)                               |
+| 8 bit        | 256        | Greyscale or indexed colour                                |
+| 16 bit       | 65,536     | High Color                                                 |
+| 24 bit       | 16,777,216 | True Color, 8 bits each for red, green and blue            |
+| 32 bit       | 16,777,216 | True Color plus 8 bits alpha channel (transparency)        |
+
+---
+
+## Formula
+
+```text
+Storage size in bits  = number of pixels x colour depth
+Storage size in bytes = number of pixels x colour depth ÷ 8
+```
+
+The result is the size of the raw, uncompressed image data. Formats such as JPEG or PNG compress this data, and every file adds a header and metadata. A real file differs from the calculated value.
+
+---
+
+## Example
+
+A photo with 50 megapixels and a colour depth of 24 bits:
+
+```text
+Pixels:        50 MP x 10⁶ = 50,000,000 pixels
+Bits:          50,000,000 x 24 bit = 1,200,000,000 bit
+Bytes:         1,200,000,000 bit ÷ 8 = 150,000,000 B
+Decimal:       150,000,000 B ÷ 10⁶ = 150 MB
+Binary:        150,000,000 B ÷ 2²⁰ ≈ 143.05 MiB
+```
+
+When the resolution is given as width x height, the pixel count is calculated first:
+
+```text
+Pixels:        1920 x 1080 = 2,073,600 pixels
+Bytes:         2,073,600 x 24 bit ÷ 8 = 6,220,800 B
+Decimal:       6,220,800 B ÷ 10⁶ ≈ 6.22 MB
+Binary:        6,220,800 B ÷ 2²⁰ ≈ 5.93 MiB
+```
+
+---
+
+## Common Mistakes
+
+1. **Missing division by 8:** The product of pixels and colour depth is a number of bits. Without dividing by 8, the result is eight times too large, e.g. 1,200 MB instead of 150 MB.
+2. **Megapixels calculated with 1,024²:** The prefix mega in megapixel is always decimal. 50 MP are 50,000,000 pixels, not 52,428,800.
+3. **Mixing MB and MiB:** 150,000,000 B are 150 MB but only about 143.05 MiB. The target unit determines the divisor: 10⁶ for MB, 2²⁰ for MiB (see [Bit, Byte & Unit Conversions](./bit-byte-conversions.md)).
+4. **Colour count used as colour depth:** True Color has 16,777,216 colours, but each pixel stores 24 bits. The formula takes the bits, not the number of colours.
+
+## See Also
+
+- [Bit, Byte & Unit Conversions](./bit-byte-conversions.md)
+{/* TODO: add back once file exists: - [Number Systems](./number-systems.md) */}
