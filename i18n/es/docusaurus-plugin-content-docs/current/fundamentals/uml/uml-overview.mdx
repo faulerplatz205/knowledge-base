@@ -1,0 +1,200 @@
+---
+title: "Visión general de UML"
+description: "Visión general del Lenguaje Unificado de Modelado: los 14 tipos de diagrama de UML 2.5, la división en diagramas de estructura y de comportamiento con los diagramas de interacción como subgrupo, aplicaciones típicas, criterios para elegir el diagrama adecuado y el papel de UML en el diseño de software."
+keywords:
+    - UML
+    - Lenguaje Unificado de Modelado
+    - UML 2.5
+    - Tipos de diagrama
+    - Diagrama de estructura
+    - Diagrama de comportamiento
+    - Diagrama de interacción
+    - Modelado
+    - Diseño de software
+    - OMG
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Visión general de UML
+
+## Visión general {/* #overview */}
+
+El **Lenguaje Unificado de Modelado (UML)** es una notación gráfica estandarizada para el modelado de sistemas de software. Es mantenido por el **Object Management Group (OMG)**. La versión actual es **UML 2.5** (2.5.1 desde 2017) y define **14 tipos de diagrama**.
+
+UML aborda un problema práctico: la prosa es ambigua y el código fuente es demasiado detallado para discutirlo. Un diagrama se sitúa entre ambos. Muestra la parte de un sistema que se está tratando en ese momento y omite deliberadamente todo lo demás.
+
+Aplicaciones típicas:
+
+- Recoger requisitos junto con los clientes antes de implementar nada
+- Diseñar la estructura estática de un sistema orientado a objetos
+- Aclarar un proceso o un algoritmo más allá de los límites de equipos y departamentos
+- Documentar un sistema existente para poder entregarlo o ampliarlo
+- Discutir decisiones de arquitectura sin tener que leer el código
+
+---
+
+## Qué es UML y qué no es {/* #what-uml-is-and-what-it-is-not */}
+
+UML **es**:
+
+- Una **notación**: un vocabulario fijo de símbolos con un significado definido
+- Un **estándar**: el mismo símbolo significa lo mismo en cada empresa y en cada herramienta
+- **Independiente del lenguaje**: un diagrama de clases no dice nada sobre Java, C# o TypeScript
+- **Selectivo**: cada diagrama modela un aspecto, nunca el sistema completo
+
+UML **no es**:
+
+- **Un método ni un modelo de proceso:** UML no dice nada sobre *cuándo* se elabora qué diagrama, ni por quién. Eso lo decide el modelo de proceso ([Scrum](../../projectmanagement/scrum.md), modelo en V, Proceso Unificado). UML es la notación, el modelo de proceso es el método.
+- **Un lenguaje de programación:** los modelos pueden convertirse en esqueletos de código, pero un diagrama no es ejecutable y no sustituye a una implementación.
+- **Una descripción completa:** un modelo siempre es una simplificación. Un diagrama que contiene todo lo que contiene el código no tiene ventaja alguna sobre el código.
+- **Un estándar de modelado de datos:** el [modelo ER](../databases/er-model.md) es una notación independiente para el diseño de bases de datos y no forma parte de UML, aunque un diagrama de clases pueda expresar hechos similares.
+- **Una garantía de calidad:** un sistema mal dividido sigue estando mal dividido, por muy ordenado que esté dibujado.
+
+El malentendido más frecuente en este ámbito consiste en tratar UML como una metodología. Saber dibujar un diagrama de casos de uso no dice nada sobre *cuándo* se recopilan los requisitos, *quién* los aprueba y *cómo* se incorporan al plan del proyecto.
+
+---
+
+## Los 14 tipos de diagrama {/* #the-14-diagram-types */}
+
+UML 2.5 divide sus diagramas en dos grupos principales. Los **diagramas de estructura** describen de qué consta un sistema, los **diagramas de comportamiento** describen lo que hace. Los **diagramas de interacción** son un subgrupo de los diagramas de comportamiento: describen el comportamiento mediante el intercambio de mensajes entre participantes.
+
+| #   | Diagrama                                                          | Grupo                      | Responde a la pregunta                                                                  |
+| --- | ----------------------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------------- |
+| 1   | [Diagrama de clases](./class-diagram.md)                          | Estructura                 | ¿Qué clases existen, qué contienen y cómo se relacionan?                                |
+| 2   | [Diagrama de objetos](./further-uml-diagrams.md)                  | Estructura                 | ¿Qué objetos y valores concretos existen en un momento dado?                            |
+| 3   | [Diagrama de paquetes](./further-uml-diagrams.md)                 | Estructura                 | ¿Cómo se divide un modelo grande en grupos y qué depende de qué?                        |
+| 4   | [Diagrama de componentes](./component-diagram.md)                 | Estructura                 | ¿De qué partes intercambiables consta el software y qué interfaces tienen?              |
+| 5   | [Diagrama de estructura compuesta](./further-uml-diagrams.md)     | Estructura                 | ¿Cómo se construye internamente un elemento a partir de partes que cooperan?            |
+| 6   | [Diagrama de despliegue](./deployment-diagram.md)                 | Estructura                 | ¿Qué artefactos se ejecutan en qué nodos y cómo se conectan estos?                      |
+| 7   | [Diagrama de perfiles](./further-uml-diagrams.md)                 | Estructura                 | ¿Cómo se amplía el propio UML para un dominio (estereotipos, valores etiquetados)?      |
+| 8   | [Diagrama de casos de uso](./use-case-diagram.md)                 | Comportamiento             | ¿Qué hace el sistema y para qué actores?                                                |
+| 9   | [Diagrama de actividades](./activity-diagram.md)                  | Comportamiento             | ¿En qué orden se ejecutan los pasos, incluidas bifurcaciones, bucles y trabajo paralelo? |
+| 10  | [Diagrama de máquina de estados](./state-machine-diagram.md)      | Comportamiento             | ¿Qué estados puede adoptar un objeto y qué eventos provocan transiciones?               |
+| 11  | [Diagrama de secuencia](./sequence-diagram.md)                    | Comportamiento / Interacción | ¿Qué mensajes intercambian los objetos y en qué orden cronológico?                    |
+| 12  | [Diagrama de comunicación](./further-uml-diagrams.md)             | Comportamiento / Interacción | ¿Quién habla con quién y cómo están vinculados los participantes?                     |
+| 13  | [Diagrama de tiempos](./further-uml-diagrams.md)                  | Comportamiento / Interacción | ¿Cómo cambian los estados a lo largo de un eje temporal y qué restricciones de tiempo se aplican? |
+| 14  | [Diagrama de vista general de interacción](./further-uml-diagrams.md) | Comportamiento / Interacción | ¿Cómo se combinan varias interacciones en un único flujo global?                  |
+
+El conjunto de símbolos que comparten todos ellos se describe en los [fundamentos de notación](./uml-notation-basics.md).
+
+---
+
+## Diagramas de estructura {/* #structure-diagrams */}
+
+Los diagramas de estructura muestran un sistema en reposo. El tiempo no interviene en ellos y no contienen ningún orden de ejecución.
+
+- **Diagrama de clases:** el diagrama central del diseño orientado a objetos. Clases con atributos y operaciones, conectadas mediante asociación, agregación, composición, generalización y dependencia, anotadas con visibilidades y multiplicidades.
+- **Diagrama de objetos:** una instantánea de un diagrama de clases. En lugar de la clase `Order` muestra el objeto `order42` con sus valores de atributo reales. Útil para concretar con un ejemplo un conjunto complejo de relaciones.
+- **Diagrama de paquetes:** agrupa elementos del modelo en paquetes y muestra las dependencias entre ellos. Hace visible la estratificación prevista de una arquitectura y revela dependencias cíclicas.
+- **Diagrama de componentes:** componentes con interfaces proporcionadas y requeridas (notación de bola y encaje). Describe cómo se divide el software en unidades intercambiables.
+- **Diagrama de estructura compuesta:** examina el interior de un único clasificador y muestra sus partes, puertos y conectores. Rara vez se usa fuera de la ingeniería de sistemas y de sistemas embebidos.
+- **Diagrama de despliegue:** nodos (hardware o entornos de ejecución), los artefactos desplegados en ellos y las rutas de comunicación entre ellos. El puente entre el diseño de software y la operación.
+- **Diagrama de perfiles:** el mecanismo de extensión del propio UML. Estereotipos, valores etiquetados y restricciones adaptan el lenguaje a un dominio, por ejemplo `«entity»` o `«controller»`.
+
+---
+
+## Diagramas de comportamiento {/* #behavioural-diagrams */}
+
+Los diagramas de comportamiento muestran lo que ocurre a lo largo del tiempo: en qué orden, desencadenado por qué y con qué resultado.
+
+- **Diagrama de casos de uso:** actores, casos de uso y límite del sistema. Es deliberadamente general y sirve como índice de los requisitos, no como descripción de un proceso.
+- **Diagrama de actividades:** flujo de control a través de acciones, con decisión, fusión, bifurcación y unión, agrupado opcionalmente en calles. El diagrama de UML más cercano a un diagrama de flujo clásico, adecuado tanto para procesos de negocio como para algoritmos.
+- **Diagrama de máquina de estados:** el ciclo de vida de un único objeto. Estados, transiciones desencadenadas por eventos, condiciones de guarda, acciones de entrada y de salida. El diagrama indicado siempre que un objeto reaccione de forma distinta a la misma entrada según su historial.
+
+### Diagramas de interacción {/* #interaction-diagrams */}
+
+Los cuatro diagramas de interacción describen el mismo asunto desde ángulos diferentes: participantes que intercambian mensajes.
+
+- **Diagrama de secuencia:** líneas de vida dispuestas horizontalmente, con el tiempo transcurriendo hacia abajo y mensajes como flechas entre las líneas de vida. El mayor énfasis en el orden cronológico, lo que lo convierte en el más utilizado de los cuatro.
+- **Diagrama de comunicación:** la misma información dispuesta como una red de participantes vinculados, con los mensajes numerados en lugar de ordenados por posición. El mayor énfasis en *quién está conectado con quién*.
+- **Diagrama de tiempos:** cambios de estado de los participantes representados frente a un eje temporal explícito. Se utiliza cuando la duración y las restricciones de tiempo son relevantes, por ejemplo en sistemas de tiempo real y embebidos.
+- **Diagrama de vista general de interacción:** un diagrama de actividades cuyos nodos son interacciones completas en lugar de acciones individuales. Se utiliza para ordenar varios diagramas de secuencia en un flujo global.
+
+Los diagramas de secuencia y de comunicación son semánticamente casi equivalentes, y muchas herramientas convierten uno en otro automáticamente.
+
+---
+
+## Elegir el diagrama adecuado {/* #choosing-the-right-diagram */}
+
+| Pregunta que debe responderse                                      | Diagrama adecuado                |
+| ------------------------------------------------------------------ | -------------------------------- |
+| ¿Quién usa el sistema y para qué?                                  | Diagrama de casos de uso         |
+| ¿En qué orden se ejecutan los pasos de un proceso?                 | Diagrama de actividades          |
+| ¿Cómo se estructura un algoritmo antes de empezar a programar?     | Diagrama de actividades          |
+| ¿Qué clases se necesitan y cómo se relacionan?                     | Diagrama de clases               |
+| ¿Qué aspecto tienen los datos en un caso concreto?                 | Diagrama de objetos              |
+| ¿Cómo cooperan los objetos para cumplir un caso de uso?            | Diagrama de secuencia            |
+| ¿Por qué estados pasa un pedido, un ticket o un dispositivo?       | Diagrama de máquina de estados   |
+| ¿Cómo se divide el sistema en módulos intercambiables?             | Diagrama de componentes          |
+| ¿Qué servidor, qué contenedor, qué cliente?                        | Diagrama de despliegue           |
+| ¿Cómo se mantiene organizado un modelo grande?                     | Diagrama de paquetes             |
+| ¿Qué restricciones de tiempo deben respetarse?                     | Diagrama de tiempos              |
+
+Reglas prácticas para la selección:
+
+- **Una pregunta, un diagrama.** Un diagrama que responde a tres preguntas a la vez suele no responder con claridad a ninguna.
+- **¿Primero estructura o comportamiento?** Los requisitos comienzan con el comportamiento (casos de uso, actividades), la implementación comienza con la estructura (clases, componentes).
+- **El nivel de abstracción se mantiene constante.** Un diagrama que mezcla términos de negocio con columnas de base de datos resulta difícil de usar para cualquiera de los dos públicos.
+- **Un diagrama que nadie lee es un desperdicio.** El público determina el nivel de detalle: los clientes necesitan diagramas de casos de uso y de actividades, los desarrolladores necesitan diagramas de clases y de secuencia, la operación necesita diagramas de despliegue.
+- **Los costes de mantenimiento cuentan.** Los diagramas que se desincronizan del código son peores que no tener diagramas, porque se confía en ellos y están equivocados.
+
+En la práctica, un número reducido de tipos de diagrama asume casi todo el trabajo: los diagramas de clases, de actividades, de casos de uso, de secuencia y de máquina de estados. Los demás tipos son especializados y aparecen solo cuando surge su pregunta específica.
+
+---
+
+## UML en el proceso de diseño de software {/* #uml-in-the-software-design-process */}
+
+UML no está ligado a un único modelo de proceso, pero sus diagramas se corresponden de forma natural con las fases del desarrollo.
+
+| Fase                    | Pregunta                                   | Diagramas típicos                              |
+| ----------------------- | ------------------------------------------ | ---------------------------------------------- |
+| Análisis de requisitos  | ¿Qué debe hacer el sistema?                | Casos de uso, actividades                      |
+| Modelado del dominio    | ¿Qué conceptos existen en el dominio?      | Clases (como modelo de dominio), objetos       |
+| Diseño                  | ¿Cómo se construye la solución?            | Clases, secuencia, máquina de estados          |
+| Arquitectura            | ¿Cómo se divide y distribuye el sistema?   | Componentes, paquetes, despliegue              |
+| Implementación          | ¿Cómo se materializa el diseño?            | Diagrama de clases como esqueleto de código    |
+| Pruebas                 | ¿Qué flujos deben cubrirse?                | Actividades, secuencia, máquina de estados     |
+| Documentación           | ¿Cómo funciona el sistema?                 | Todos los anteriores, reducidos a lo esencial  |
+
+El modelado en el diseño de software cumple tres propósitos:
+
+- **Comunicación:** una imagen compartida para personas con formaciones diferentes
+- **Análisis:** las contradicciones y las lagunas se hacen visibles antes de implementarse
+- **Documentación:** un sistema puede entenderse sin leer todo su código fuente
+
+---
+
+## Errores comunes {/* #common-mistakes */}
+
+1. **UML tratado como método:** UML define símbolos, no un procedimiento. El procedimiento proviene del modelo de proceso.
+2. **Diagramas de interacción contados como un tercer grupo principal:** son un subgrupo de los diagramas de comportamiento.
+3. **Confusión entre diagrama de actividades y de secuencia:** un diagrama de actividades muestra el flujo de control entre acciones, un diagrama de secuencia muestra mensajes entre objetos.
+4. **Confusión entre diagrama de clases y de objetos:** un diagrama de clases muestra tipos, un diagrama de objetos muestra instancias con valores concretos.
+5. **Diagrama de casos de uso utilizado como descripción de proceso:** enumera lo que ofrece el sistema, el flujo dentro de un caso de uso pertenece a un diagrama de actividades.
+6. **Modelo ER contado como diagrama UML:** es una notación independiente para el modelado de datos.
+7. **Modelarlo todo:** un modelo que cubre el sistema completo con todo detalle cuesta más de lo que ahorra y queda obsoleto tras el primer cambio.
+8. **Notación inventada ad hoc:** el valor de UML reside en que los símbolos signifiquen lo mismo en todas partes, y las flechas de invención propia destruyen precisamente eso.
+
+---
+
+## Herramientas {/* #tools */}
+
+- draw.io / diagrams.net (gratuita, basada en navegador, biblioteca de formas UML incluida)
+- PlantUML (basada en texto, el diagrama se genera a partir del código fuente y puede versionarse)
+- Mermaid (basada en texto, se renderiza directamente en Markdown en muchas plataformas)
+- Visual Paradigm, StarUML, Enterprise Architect, Lucidchart (comerciales, con niveles gratuitos)
+
+## Véase también {/* #see-also */}
+
+- [Fundamentos de notación UML](./uml-notation-basics.md): los símbolos y tipos de relación compartidos por todos los tipos de diagrama
+- [Diagrama de clases](./class-diagram.md): el diagrama de estructura central del diseño orientado a objetos
+- [Diagrama de actividades](./activity-diagram.md): procesos y algoritmos como flujo de control
+- [Diagrama de casos de uso](./use-case-diagram.md): límite del sistema, actores y lo que ofrece el sistema
+- [Diagrama de secuencia](./sequence-diagram.md): intercambio cronológico de mensajes entre objetos
+- [Diagrama de máquina de estados](./state-machine-diagram.md): el ciclo de vida de un objeto como estados y transiciones
+- [Diagrama de componentes](./component-diagram.md): la división en unidades intercambiables con interfaces
+- [Diagrama de despliegue](./deployment-diagram.md): distribución de artefactos entre nodos
+- [Otros diagramas UML](./further-uml-diagrams.md): diagramas de objetos, de paquetes, de estructura compuesta, de perfiles, de comunicación, de tiempos y de vista general de interacción
+- [Modelo ER](../databases/er-model.md): modelado de datos fuera de UML

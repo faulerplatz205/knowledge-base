@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Knowledge Base",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Ma photo de profil GitHub",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Knowledge": {
+    "message": "Connaissances",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.AP2": {
+    "message": "AP2",
+    "description": "Navbar item with label AP2"
+  }
+}

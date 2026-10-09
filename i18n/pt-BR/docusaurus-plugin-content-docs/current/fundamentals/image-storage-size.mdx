@@ -1,0 +1,80 @@
+---
+title: "Tamanho de armazenamento de imagens"
+description: "Como a resolução e a profundidade de cor determinam o tamanho de armazenamento de uma imagem raster não comprimida, com a fórmula e exemplos resolvidos."
+keywords:
+    - Tamanho da imagem
+    - Tamanho de armazenamento
+    - Pixel
+    - Megapixel
+    - Resolução
+    - Profundidade de cor
+    - Profundidade de bits
+    - True Color
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Tamanho de armazenamento de imagens
+
+## Pixels e profundidade de cor {/* #pixels-and-colour-depth */}
+
+Uma imagem raster consiste em uma grade de **pixels**. A **resolução** é o número de pixels, indicado como largura x altura (por exemplo `1920 x 1080`) ou como total em **megapixels** (1 MP = 1.000.000 de pixels).
+
+A **profundidade de cor** indica quantos bits cada pixel usa para armazenar sua cor. Com `n` bits, um pixel pode assumir `2ⁿ` cores diferentes.
+
+| Profundidade de cor | Cores    | Nome                                                       |
+| ------------ | ---------- | ---------------------------------------------------------- |
+| 1 bit        | 2          | Monocromático (preto e branco)                               |
+| 8 bits        | 256        | Escala de cinza ou cor indexada                                |
+| 16 bits       | 65.536     | High Color                                                 |
+| 24 bits       | 16.777.216 | True Color, 8 bits para cada um de vermelho, verde e azul            |
+| 32 bits       | 16.777.216 | True Color mais 8 bits de canal alfa (transparência)        |
+
+---
+
+## Fórmula {/* #formula */}
+
+```text
+Storage size in bits  = number of pixels x colour depth
+Storage size in bytes = number of pixels x colour depth ÷ 8
+```
+
+O resultado é o tamanho dos dados brutos e não comprimidos da imagem. Formatos como JPEG ou PNG comprimem esses dados, e todo arquivo acrescenta um cabeçalho e metadados. Um arquivo real difere do valor calculado.
+
+---
+
+## Exemplo {/* #example */}
+
+Uma foto com 50 megapixels e profundidade de cor de 24 bits:
+
+```text
+Pixels:        50 MP x 10⁶ = 50,000,000 pixels
+Bits:          50,000,000 x 24 bit = 1,200,000,000 bit
+Bytes:         1,200,000,000 bit ÷ 8 = 150,000,000 B
+Decimal:       150,000,000 B ÷ 10⁶ = 150 MB
+Binary:        150,000,000 B ÷ 2²⁰ ≈ 143.05 MiB
+```
+
+Quando a resolução é dada como largura x altura, a contagem de pixels é calculada primeiro:
+
+```text
+Pixels:        1920 x 1080 = 2,073,600 pixels
+Bytes:         2,073,600 x 24 bit ÷ 8 = 6,220,800 B
+Decimal:       6,220,800 B ÷ 10⁶ ≈ 6.22 MB
+Binary:        6,220,800 B ÷ 2²⁰ ≈ 5.93 MiB
+```
+
+---
+
+## Erros comuns {/* #common-mistakes */}
+
+1. **Divisão por 8 ausente:** O produto de pixels e profundidade de cor é um número de bits. Sem a divisão por 8, o resultado fica oito vezes maior, por exemplo 1.200 MB em vez de 150 MB.
+2. **Megapixels calculados com 1.024²:** O prefixo mega em megapixel é sempre decimal. 50 MP são 50.000.000 de pixels, não 52.428.800.
+3. **Mistura de MB e MiB:** 150.000.000 B são 150 MB, mas apenas cerca de 143,05 MiB. A unidade de destino determina o divisor: 10⁶ para MB, 2²⁰ para MiB (ver [Conversões de bit, byte e unidades](./bit-byte-conversions.md)).
+4. **Número de cores usado como profundidade de cor:** O True Color tem 16.777.216 cores, mas cada pixel armazena 24 bits. A fórmula usa os bits, não o número de cores.
+
+## Veja também {/* #see-also */}
+
+- [Conversões de bit, byte e unidades](./bit-byte-conversions.md)
+{/* TODO: add back once file exists: - [Number Systems](./number-systems.md) */}

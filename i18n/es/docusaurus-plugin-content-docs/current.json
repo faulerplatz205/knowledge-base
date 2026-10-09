@@ -1,0 +1,90 @@
+{
+  "version.label": {
+    "message": "Próxima",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Cloud Computing": {
+    "message": "Computación en la nube",
+    "description": "The label for category 'Cloud Computing' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Commercial": {
+    "message": "Comercial",
+    "description": "The label for category 'Commercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Business Cooperation": {
+    "message": "Cooperación empresarial",
+    "description": "The label for category 'Business Cooperation' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.IT Service Management (ITSM)": {
+    "message": "Gestión de servicios de TI (ITSM)",
+    "description": "The label for category 'IT Service Management (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentals": {
+    "message": "Fundamentos",
+    "description": "The label for category 'Fundamentals' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Databases": {
+    "message": "Bases de datos",
+    "description": "The label for category 'Databases' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Database Systems": {
+    "message": "Sistemas de bases de datos",
+    "description": "The label for category 'Database Systems' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.UML": {
+    "message": "UML",
+    "description": "The label for category 'UML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Projectmanagement": {
+    "message": "Gestión de proyectos",
+    "description": "The label for category 'Projectmanagement' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "Herramientas",
+    "description": "The label for category 'Tools' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Git": {
+    "message": "Git",
+    "description": "The label for category 'Git' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category 'TypeScript' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Web": {
+    "message": "Web",
+    "description": "The label for category 'Web' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.HTML": {
+    "message": "HTML",
+    "description": "The label for category 'HTML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Comercial": {
+    "message": "Comercial",
+    "description": "The label for category 'Comercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Cooperación empresarial": {
+    "message": "Cooperación empresarial",
+    "description": "The label for category 'Cooperación empresarial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Gestión de servicios de TI (ITSM)": {
+    "message": "Gestión de servicios de TI (ITSM)",
+    "description": "The label for category 'Gestión de servicios de TI (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentos": {
+    "message": "Fundamentos",
+    "description": "The label for category 'Fundamentos' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Gestión de proyectos": {
+    "message": "Gestión de proyectos",
+    "description": "The label for category 'Gestión de proyectos' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Herramientas": {
+    "message": "Herramientas",
+    "description": "The label for category 'Herramientas' in sidebar 'docs'"
+  }
+}

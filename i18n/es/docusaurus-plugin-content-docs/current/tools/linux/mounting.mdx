@@ -1,0 +1,29 @@
+---
+title: "Montaje en Linux"
+description: "Conexión y desconexión de sistemas de archivos en Linux con los comandos `mount` y `umount`."
+keywords:
+    - Linux
+    - mount
+    - umount
+    - Sistema de archivos
+    - punto de montaje
+machine_translated: true
+---
+
+# Montaje en Linux
+
+En Linux no se accede a un dispositivo de almacenamiento (un disco, una partición o una memoria USB) mediante una letra de unidad, sino que se **monta** en el árbol de directorios en un **punto de montaje** elegido. Una vez montado, su contenido aparece bajo ese directorio.
+
+## Montaje {/* #mounting */}
+
+```bash
+mount /dev/sdb1 /mnt/usb    # Attach the device /dev/sdb1 at /mnt/usb
+```
+
+## Desmontaje {/* #unmounting */}
+
+```bash
+umount /mnt/usb    # Detach the filesystem (note: the command is "umount", without the first "n")
+```
+
+{/* TODO: Still to be added => /etc/fstab (automatic mounting at boot), lsblk and findmnt for listing, df for usage, and mount options (e.g. -o ro). */}

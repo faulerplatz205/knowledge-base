@@ -1,0 +1,98 @@
+{
+  "version.label": {
+    "message": "التالي",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Cloud Computing": {
+    "message": "الحوسبة السحابية",
+    "description": "The label for category 'Cloud Computing' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Commercial": {
+    "message": "الجانب التجاري",
+    "description": "The label for category 'Commercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Business Cooperation": {
+    "message": "التعاون بين الشركات",
+    "description": "The label for category 'Business Cooperation' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.IT Service Management (ITSM)": {
+    "message": "إدارة خدمات تقنية المعلومات (ITSM)",
+    "description": "The label for category 'IT Service Management (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentals": {
+    "message": "الأساسيات",
+    "description": "The label for category 'Fundamentals' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Databases": {
+    "message": "قواعد البيانات",
+    "description": "The label for category 'Databases' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Database Systems": {
+    "message": "أنظمة قواعد البيانات",
+    "description": "The label for category 'Database Systems' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.UML": {
+    "message": "UML",
+    "description": "The label for category 'UML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Projectmanagement": {
+    "message": "إدارة المشاريع",
+    "description": "The label for category 'Projectmanagement' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "الأدوات",
+    "description": "The label for category 'Tools' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Git": {
+    "message": "Git",
+    "description": "The label for category 'Git' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category 'TypeScript' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Web": {
+    "message": "الويب",
+    "description": "The label for category 'Web' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.HTML": {
+    "message": "HTML",
+    "description": "The label for category 'HTML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.الأساسيات": {
+    "message": "الأساسيات",
+    "description": "The label for category 'الأساسيات' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.إدارة المشاريع": {
+    "message": "إدارة المشاريع",
+    "description": "The label for category 'إدارة المشاريع' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.الأدوات": {
+    "message": "الأدوات",
+    "description": "The label for category 'الأدوات' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.الويب": {
+    "message": "الويب",
+    "description": "The label for category 'الويب' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.الحوسبة السحابية": {
+    "message": "الحوسبة السحابية",
+    "description": "The label for category 'الحوسبة السحابية' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.الأعمال التجارية": {
+    "message": "الأعمال التجارية",
+    "description": "The label for category 'الأعمال التجارية' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.التعاون بين الشركات": {
+    "message": "التعاون بين الشركات",
+    "description": "The label for category 'التعاون بين الشركات' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.إدارة خدمات تقنية المعلومات (ITSM)": {
+    "message": "إدارة خدمات تقنية المعلومات (ITSM)",
+    "description": "The label for category 'إدارة خدمات تقنية المعلومات (ITSM)' in sidebar 'docs'"
+  }
+}

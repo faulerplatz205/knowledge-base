@@ -1,0 +1,94 @@
+{
+  "version.label": {
+    "message": "次期バージョン",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Cloud Computing": {
+    "message": "クラウドコンピューティング",
+    "description": "The label for category 'Cloud Computing' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Commercial": {
+    "message": "商業",
+    "description": "The label for category 'Commercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Business Cooperation": {
+    "message": "企業間協力",
+    "description": "The label for category 'Business Cooperation' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.IT Service Management (ITSM)": {
+    "message": "ITサービスマネジメント (ITSM)",
+    "description": "The label for category 'IT Service Management (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentals": {
+    "message": "基礎",
+    "description": "The label for category 'Fundamentals' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Databases": {
+    "message": "データベース",
+    "description": "The label for category 'Databases' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Database Systems": {
+    "message": "データベースシステム",
+    "description": "The label for category 'Database Systems' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.UML": {
+    "message": "UML",
+    "description": "The label for category 'UML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Projectmanagement": {
+    "message": "プロジェクトマネジメント",
+    "description": "The label for category 'Projectmanagement' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "ツール",
+    "description": "The label for category 'Tools' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Git": {
+    "message": "Git",
+    "description": "The label for category 'Git' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category 'TypeScript' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Web": {
+    "message": "Web",
+    "description": "The label for category 'Web' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.HTML": {
+    "message": "HTML",
+    "description": "The label for category 'HTML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.クラウドコンピューティング": {
+    "message": "クラウドコンピューティング",
+    "description": "The label for category 'クラウドコンピューティング' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.商業": {
+    "message": "商業",
+    "description": "The label for category '商業' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.企業間協力": {
+    "message": "企業間協力",
+    "description": "The label for category '企業間協力' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.基礎": {
+    "message": "基礎",
+    "description": "The label for category '基礎' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.プロジェクトマネジメント": {
+    "message": "プロジェクトマネジメント",
+    "description": "The label for category 'プロジェクトマネジメント' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.ツール": {
+    "message": "ツール",
+    "description": "The label for category 'ツール' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.ITサービスマネジメント(ITSM)": {
+    "message": "ITサービスマネジメント(ITSM)",
+    "description": "The label for category 'ITサービスマネジメント(ITSM)' in sidebar 'docs'"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "version.label": {
+    "message": "Próxima",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Cloud Computing": {
+    "message": "Computação em Nuvem",
+    "description": "The label for category 'Cloud Computing' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Commercial": {
+    "message": "Comercial",
+    "description": "The label for category 'Commercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Business Cooperation": {
+    "message": "Cooperação Empresarial",
+    "description": "The label for category 'Business Cooperation' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.IT Service Management (ITSM)": {
+    "message": "Gerenciamento de Serviços de TI (ITSM)",
+    "description": "The label for category 'IT Service Management (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentals": {
+    "message": "Fundamentos",
+    "description": "The label for category 'Fundamentals' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Databases": {
+    "message": "Bancos de Dados",
+    "description": "The label for category 'Databases' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Database Systems": {
+    "message": "Sistemas de Banco de Dados",
+    "description": "The label for category 'Database Systems' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.UML": {
+    "message": "UML",
+    "description": "The label for category 'UML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Projectmanagement": {
+    "message": "Gerenciamento de Projetos",
+    "description": "The label for category 'Projectmanagement' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "Ferramentas",
+    "description": "The label for category 'Tools' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Git": {
+    "message": "Git",
+    "description": "The label for category 'Git' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category 'TypeScript' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Web": {
+    "message": "Web",
+    "description": "The label for category 'Web' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.HTML": {
+    "message": "HTML",
+    "description": "The label for category 'HTML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Computação em Nuvem": {
+    "message": "Computação em Nuvem",
+    "description": "The label for category 'Computação em Nuvem' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Comercial": {
+    "message": "Comercial",
+    "description": "The label for category 'Comercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Cooperação Empresarial": {
+    "message": "Cooperação Empresarial",
+    "description": "The label for category 'Cooperação Empresarial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Gerenciamento de Serviços de TI (ITSM)": {
+    "message": "Gerenciamento de Serviços de TI (ITSM)",
+    "description": "The label for category 'Gerenciamento de Serviços de TI (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentos": {
+    "message": "Fundamentos",
+    "description": "The label for category 'Fundamentos' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Gerenciamento de projetos": {
+    "message": "Gerenciamento de Projetos",
+    "description": "The label for category 'Gerenciamento de projetos' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Ferramentas": {
+    "message": "Ferramentas",
+    "description": "The label for category 'Ferramentas' in sidebar 'docs'"
+  }
+}

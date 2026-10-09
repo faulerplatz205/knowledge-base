@@ -1,0 +1,80 @@
+---
+title: "Taille de stockage d'une image"
+description: "Comment la résolution et la profondeur de couleur déterminent la taille de stockage d'une image matricielle non compressée, avec la formule et des exemples détaillés."
+keywords:
+    - Taille d'image
+    - Taille de stockage
+    - Pixel
+    - Mégapixel
+    - Résolution
+    - Profondeur de couleur
+    - Profondeur de bits
+    - True Color
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Taille de stockage d'une image
+
+## Pixels et profondeur de couleur {/* #pixels-and-colour-depth */}
+
+Une image matricielle se compose d'une grille de **pixels**. La **résolution** est le nombre de pixels, indiqué soit sous la forme largeur x hauteur (par ex. `1920 x 1080`), soit comme total en **mégapixels** (1 MP = 1 000 000 de pixels).
+
+La **profondeur de couleur** indique combien de bits chaque pixel utilise pour stocker sa couleur. Avec `n` bits, un pixel peut prendre `2ⁿ` couleurs différentes.
+
+| Profondeur de couleur | Couleurs   | Nom                                                          |
+| --------------------- | ---------- | ------------------------------------------------------------ |
+| 1 bit                 | 2          | Monochrome (noir et blanc)                                   |
+| 8 bits                | 256        | Niveaux de gris ou couleurs indexées                         |
+| 16 bits               | 65 536     | High Color                                                   |
+| 24 bits               | 16 777 216 | True Color, 8 bits chacun pour le rouge, le vert et le bleu  |
+| 32 bits               | 16 777 216 | True Color plus 8 bits de canal alpha (transparence)         |
+
+---
+
+## Formule {/* #formula */}
+
+```text
+Storage size in bits  = number of pixels x colour depth
+Storage size in bytes = number of pixels x colour depth ÷ 8
+```
+
+Le résultat est la taille des données d'image brutes, non compressées. Des formats tels que JPEG ou PNG compressent ces données, et chaque fichier ajoute un en-tête et des métadonnées. Un fichier réel diffère de la valeur calculée.
+
+---
+
+## Exemple {/* #example */}
+
+Une photo de 50 mégapixels avec une profondeur de couleur de 24 bits :
+
+```text
+Pixels:        50 MP x 10⁶ = 50,000,000 pixels
+Bits:          50,000,000 x 24 bit = 1,200,000,000 bit
+Bytes:         1,200,000,000 bit ÷ 8 = 150,000,000 B
+Decimal:       150,000,000 B ÷ 10⁶ = 150 MB
+Binary:        150,000,000 B ÷ 2²⁰ ≈ 143.05 MiB
+```
+
+Lorsque la résolution est donnée sous la forme largeur x hauteur, le nombre de pixels est calculé en premier :
+
+```text
+Pixels:        1920 x 1080 = 2,073,600 pixels
+Bytes:         2,073,600 x 24 bit ÷ 8 = 6,220,800 B
+Decimal:       6,220,800 B ÷ 10⁶ ≈ 6.22 MB
+Binary:        6,220,800 B ÷ 2²⁰ ≈ 5.93 MiB
+```
+
+---
+
+## Erreurs courantes {/* #common-mistakes */}
+
+1. **Division par 8 oubliée :** Le produit du nombre de pixels et de la profondeur de couleur est un nombre de bits. Sans division par 8, le résultat est huit fois trop grand, par ex. 1 200 Mo au lieu de 150 Mo.
+2. **Mégapixels calculés avec 1 024² :** Le préfixe méga de mégapixel est toujours décimal. 50 MP correspondent à 50 000 000 de pixels, et non à 52 428 800.
+3. **Confusion entre Mo et Mio :** 150 000 000 o correspondent à 150 Mo, mais seulement à environ 143,05 Mio. L'unité cible détermine le diviseur : 10⁶ pour Mo, 2²⁰ pour Mio (voir [Bit, octet et conversions d'unités](./bit-byte-conversions.md)).
+4. **Nombre de couleurs utilisé comme profondeur de couleur :** True Color compte 16 777 216 couleurs, mais chaque pixel stocke 24 bits. La formule utilise les bits, non le nombre de couleurs.
+
+## Voir aussi {/* #see-also */}
+
+- [Bit, octet et conversions d'unités](./bit-byte-conversions.md)
+{/* TODO: add back once file exists: - [Number Systems](./number-systems.md) */}

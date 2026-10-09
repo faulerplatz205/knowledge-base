@@ -1,0 +1,29 @@
+---
+title: "Linux 中的挂载"
+description: "使用 `mount` 和 `umount` 命令在 Linux 中挂载和卸载文件系统。"
+keywords:
+    - Linux
+    - mount
+    - umount
+    - 文件系统
+    - 挂载点
+machine_translated: true
+---
+
+# Linux 中的挂载
+
+在 Linux 中，存储设备（磁盘、分区或 U 盘）不是通过盘符访问的，而是被**挂载**到目录树中选定的**挂载点**上。挂载完成后，其内容会出现在该目录下。
+
+## 挂载 {/* #mounting */}
+
+```bash
+mount /dev/sdb1 /mnt/usb    # Attach the device /dev/sdb1 at /mnt/usb
+```
+
+## 卸载 {/* #unmounting */}
+
+```bash
+umount /mnt/usb    # Detach the filesystem (note: the command is "umount", without the first "n")
+```
+
+{/* TODO: Still to be added => /etc/fstab (automatic mounting at boot), lsblk and findmnt for listing, df for usage, and mount options (e.g. -o ro). */}

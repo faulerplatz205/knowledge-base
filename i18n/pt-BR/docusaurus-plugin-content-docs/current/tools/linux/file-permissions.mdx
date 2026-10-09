@@ -1,0 +1,67 @@
+---
+title: "Permissões de arquivos no Linux"
+description: "Leitura de metadados e permissões de arquivos no Linux com `ls -l`, exibição de arquivos ocultos com `ls -a` e como ler a notação de permissões `-rwxr-xr-x`."
+keywords:
+    - Linux
+    - Permissões de arquivos
+    - ls
+    - rwx
+    - Sistema de arquivos
+    - arquivos ocultos
+machine_translated: true
+---
+
+# Permissões de arquivos no Linux
+
+Duas opções do `ls` cobrem os casos do dia a dia: listar detalhes (incluindo permissões) e exibir arquivos ocultos.
+
+## Listar arquivos {/* #listing-files */}
+
+```bash
+ls -l    # Long format: permissions, owner, size, date, name
+ls -a    # Show all files, including hidden ones
+```
+
+Arquivos e diretórios cujo nome começa com um ponto (`.bashrc`, `.config`) são **ocultos** e só aparecem com `ls -a`. As duas opções costumam ser combinadas como `ls -la`.
+
+## Exemplo de saída {/* #example-output */}
+
+Cada linha de `ls -l` descreve uma entrada em várias colunas:
+
+```bash
+-rw-r--r-- 1 user staff 1024 Apr 25 10:00 notes.txt
+drwxr-xr-x 2 user staff 4096 Apr 25 09:30 projects
+```
+
+| Coluna         | Exemplo        | Significado                       |
+| -------------- | -------------- | --------------------------------- |
+| Permissões     | `-rw-r--r--`   | Tipo de arquivo e permissões      |
+| Links          | `1`            | Número de hard links              |
+| Proprietário   | `user`         | Proprietário do arquivo           |
+| Grupo          | `staff`        | Grupo ao qual o arquivo pertence  |
+| Tamanho        | `1024`         | Tamanho em bytes                  |
+| Data e hora    | `Apr 25 10:00` | Horário da última modificação     |
+| Nome           | `notes.txt`    | Nome do arquivo ou diretório      |
+
+## Leitura da notação de permissões {/* #reading-the-permission-notation */}
+
+Uma linha de `ls -l` começa com uma sequência de 10 caracteres, como `-rwxr-xr-x`. Ela se divide em quatro partes:
+
+| Posição | Exemplo | Significado                                                        |
+| ------- | ------- | ------------------------------------------------------------------ |
+| 1       | `-`     | Tipo de arquivo (`-` = arquivo, `d` = diretório, `l` = link simbólico) |
+| 2-4     | `rwx`   | Permissões do **proprietário**                                     |
+| 5-7     | `r-x`   | Permissões do **grupo**                                            |
+| 8-10    | `r-x`   | Permissões de **outros**                                           |
+
+Cada um dos três grupos usa os mesmos três flags:
+
+| Flag | Significado | Efeito em um arquivo   | Efeito em um diretório        |
+| ---- | ----------- | ---------------------- | ----------------------------- |
+| `r`  | leitura     | Ler o conteúdo         | Listar as entradas            |
+| `w`  | escrita     | Modificar o conteúdo   | Criar/excluir entradas        |
+| `x`  | execução    | Executar como programa | Entrar (`cd`) no diretório |
+
+Um `-` no lugar de uma letra significa que a permissão não foi concedida. Assim, `-rwxr-xr-x` significa: um arquivo regular, o proprietário pode ler/escrever/executar, e grupo e outros podem ler e executar, mas não escrever.
+
+{/* TODO: Still to be added => chmod, octal notation (e.g. 755, 644), and chown. */}

@@ -1,0 +1,67 @@
+---
+title: "Permisos de archivos en Linux"
+description: "Lectura de metadatos y permisos de archivos en Linux con `ls -l`, visualización de archivos ocultos con `ls -a` y cómo leer la notación de permisos `-rwxr-xr-x`."
+keywords:
+    - Linux
+    - Permisos de archivos
+    - ls
+    - rwx
+    - Sistema de archivos
+    - archivos ocultos
+machine_translated: true
+---
+
+# Permisos de archivos en Linux
+
+Dos opciones de `ls` cubren los casos cotidianos: listar detalles (incluidos los permisos) y mostrar archivos ocultos.
+
+## Listar archivos {/* #listing-files */}
+
+```bash
+ls -l    # Long format: permissions, owner, size, date, name
+ls -a    # Show all files, including hidden ones
+```
+
+Los archivos y directorios cuyo nombre empieza por un punto (`.bashrc`, `.config`) están **ocultos** y solo aparecen con `ls -a`. Ambas opciones suelen combinarse como `ls -la`.
+
+## Ejemplo de salida {/* #example-output */}
+
+Cada línea de `ls -l` describe una entrada en varias columnas:
+
+```bash
+-rw-r--r-- 1 user staff 1024 Apr 25 10:00 notes.txt
+drwxr-xr-x 2 user staff 4096 Apr 25 09:30 projects
+```
+
+| Columna        | Ejemplo        | Significado                          |
+| -------------- | -------------- | ------------------------------------ |
+| Permisos       | `-rw-r--r--`   | Tipo de archivo y permisos           |
+| Enlaces        | `1`            | Número de enlaces duros              |
+| Propietario    | `user`         | Propietario del archivo              |
+| Grupo          | `staff`        | Grupo al que pertenece el archivo    |
+| Tamaño         | `1024`         | Tamaño en bytes                      |
+| Fecha y hora   | `Apr 25 10:00` | Hora de la última modificación       |
+| Nombre         | `notes.txt`    | Nombre del archivo o directorio      |
+
+## Lectura de la notación de permisos {/* #reading-the-permission-notation */}
+
+Una línea de `ls -l` comienza con una cadena de 10 caracteres como `-rwxr-xr-x`. Se divide en cuatro partes:
+
+| Posición | Ejemplo | Significado                                                              |
+| -------- | ------- | ------------------------------------------------------------------------ |
+| 1        | `-`     | Tipo de archivo (`-` = archivo, `d` = directorio, `l` = enlace simbólico) |
+| 2-4      | `rwx`   | Permisos del **propietario**                                             |
+| 5-7      | `r-x`   | Permisos del **grupo**                                                   |
+| 8-10     | `r-x`   | Permisos de **otros**                                                    |
+
+Cada uno de los tres grupos utiliza los mismos tres indicadores:
+
+| Indicador | Significado | Efecto en un archivo     | Efecto en un directorio            |
+| --------- | ----------- | ------------------------ | ---------------------------------- |
+| `r`   | lectura     | Leer el contenido        | Listar las entradas                |
+| `w`   | escritura   | Modificar el contenido   | Crear/eliminar entradas            |
+| `x`   | ejecución   | Ejecutar como programa   | Entrar (`cd`) en el directorio  |
+
+Un `-` en lugar de una letra significa que ese permiso no está concedido. Así, `-rwxr-xr-x` significa: un archivo regular, el propietario puede leer, escribir y ejecutar, y el grupo y otros pueden leer y ejecutar, pero no escribir.
+
+{/* TODO: Still to be added => chmod, octal notation (e.g. 755, 644), and chown. */}

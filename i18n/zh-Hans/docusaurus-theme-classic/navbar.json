@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "知识库",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "我的 GitHub 头像",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Knowledge": {
+    "message": "知识",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.AP2": {
+    "message": "AP2",
+    "description": "Navbar item with label AP2"
+  }
+}

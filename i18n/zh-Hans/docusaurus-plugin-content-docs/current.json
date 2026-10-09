@@ -1,0 +1,94 @@
+{
+  "version.label": {
+    "message": "下一版本",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Cloud Computing": {
+    "message": "云计算",
+    "description": "The label for category 'Cloud Computing' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Commercial": {
+    "message": "商业",
+    "description": "The label for category 'Commercial' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Business Cooperation": {
+    "message": "业务合作",
+    "description": "The label for category 'Business Cooperation' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.IT Service Management (ITSM)": {
+    "message": "IT 服务管理（ITSM）",
+    "description": "The label for category 'IT Service Management (ITSM)' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Fundamentals": {
+    "message": "基础知识",
+    "description": "The label for category 'Fundamentals' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Databases": {
+    "message": "数据库",
+    "description": "The label for category 'Databases' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Database Systems": {
+    "message": "数据库系统",
+    "description": "The label for category 'Database Systems' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.UML": {
+    "message": "UML",
+    "description": "The label for category 'UML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Projectmanagement": {
+    "message": "项目管理",
+    "description": "The label for category 'Projectmanagement' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "工具",
+    "description": "The label for category 'Tools' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Git": {
+    "message": "Git",
+    "description": "The label for category 'Git' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category 'TypeScript' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Web": {
+    "message": "Web",
+    "description": "The label for category 'Web' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.HTML": {
+    "message": "HTML",
+    "description": "The label for category 'HTML' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.云计算": {
+    "message": "云计算",
+    "description": "The label for category '云计算' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.商务": {
+    "message": "商务",
+    "description": "The label for category '商务' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.企业合作": {
+    "message": "企业合作",
+    "description": "The label for category '企业合作' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.IT 服务管理（ITSM）": {
+    "message": "IT 服务管理（ITSM）",
+    "description": "The label for category 'IT 服务管理（ITSM）' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.基础知识": {
+    "message": "基础知识",
+    "description": "The label for category '基础知识' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.项目管理": {
+    "message": "项目管理",
+    "description": "The label for category '项目管理' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.工具": {
+    "message": "工具",
+    "description": "The label for category '工具' in sidebar 'docs'"
+  }
+}

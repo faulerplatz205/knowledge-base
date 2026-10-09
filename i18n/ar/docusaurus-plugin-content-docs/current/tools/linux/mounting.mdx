@@ -1,0 +1,29 @@
+---
+title: "الربط (Mounting) في Linux"
+description: "ربط أنظمة الملفات وفصلها في Linux باستخدام الأمرين `mount` و`umount`."
+keywords:
+    - Linux
+    - mount
+    - umount
+    - نظام الملفات
+    - mountpoint
+machine_translated: true
+---
+
+# الربط (Mounting) في Linux
+
+في Linux لا يتم الوصول إلى وحدة التخزين (قرص أو قسم أو ذاكرة USB) عبر حرف محرك أقراص، بل يتم **ربطها** (mount) في شجرة الدلائل عند **نقطة ربط** (mountpoint) يتم اختيارها. بعد الربط تظهر محتوياتها تحت ذلك الدليل.
+
+## الربط {/* #mounting */}
+
+```bash
+mount /dev/sdb1 /mnt/usb    # Attach the device /dev/sdb1 at /mnt/usb
+```
+
+## فصل الربط {/* #unmounting */}
+
+```bash
+umount /mnt/usb    # Detach the filesystem (note: the command is "umount", without the first "n")
+```
+
+{/* TODO: Still to be added => /etc/fstab (automatic mounting at boot), lsblk and findmnt for listing, df for usage, and mount options (e.g. -o ro). */}

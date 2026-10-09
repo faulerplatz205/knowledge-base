@@ -1,0 +1,100 @@
+---
+title: "Conversor Analógico-Digital (ADC)"
+description: "Como um conversor analógico-digital transforma uma tensão contínua em um valor digital, incluindo resolução, passos de quantização, resolução de medição e as fórmulas para calcular uma saída binária."
+keywords:
+    - Conversor Analógico-Digital
+    - ADC
+    - Conversor A/D
+    - Resolução
+    - Quantização
+    - Bit
+    - Amostragem
+    - Faixa de Tensão
+    - Microcontrolador
+    - Sensor
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Conversor Analógico-Digital (ADC)
+
+## Por que um ADC é Necessário {/* #why-an-adc-is-needed */}
+
+Um sensor mede uma grandeza física (temperatura, luz, pressão etc.) e emite um sinal **analógico** proporcional, geralmente uma tensão contínua. Um microcontrolador ou um Raspberry Pi só consegue processar valores **digitais**. Muitas placas (por exemplo, o Raspberry Pi) não têm nenhuma entrada analógica e leriam apenas `0` ou `1`.
+
+Um **conversor analógico-digital (ADC)** preenche essa lacuna: ele amostra a tensão analógica e a codifica como um número digital. O resultado é então transferido ao controlador, frequentemente por meio de um barramento como o I²C.
+
+## Resolução e Passos de Quantização {/* #resolution-and-quantization-steps */}
+
+A **resolução** de um ADC é expressa em **bits**. O número de bits determina quantos valores digitais distintos (**passos de quantização**) o conversor pode emitir:
+
+```text
+Number of steps = 2^n        (n = resolution in bits)
+```
+
+- 8 bits  => 2^8  = 256 passos
+- 10 bits => 2^10 = 1024 passos
+- 16 bits => 2^16 = 65536 passos
+
+Mais bits significam uma divisão mais fina da faixa de entrada e, portanto, uma medição mais precisa.
+
+## Resolução de Medição (Menor Variação Detectável) {/* #measurement-resolution-smallest-detectable-change */}
+
+A **resolução de medição** é a menor variação de tensão que ainda corresponde a um valor digital diferente. Ela é a faixa de tensão dividida pelo número de passos:
+
+```text
+Resolution = voltage range / number of steps
+```
+
+**Exemplo:** Um ADC de 10 bits mede uma faixa de 0 V a 10 V.
+
+```text
+Steps = 2¹⁰ = 1024 steps
+Resolution = 10 V / 1024 steps = 0.009766 V ≈ 9.77 mV
+```
+
+Qualquer variação menor que ~9,77 mV não pode ser distinguida por esse conversor.
+
+## De um Valor Medido a uma Saída Binária {/* #from-a-measured-value-to-a-binary-output */}
+
+A conversão de uma medição física na saída digital do ADC é feita em três etapas.
+
+**Cenário:** Um sensor de temperatura cobre de -20 °C a +80 °C e emite uma tensão proporcional de 0 V a 10 V. O ADC tem resolução de 10 bits. Qual valor binário corresponde exatamente a 25 °C?
+
+**Etapa 1 — Mapear o valor medido para uma tensão.**
+
+Primeiro determina-se a tensão por unidade, que é depois multiplicada pela distância do valor em relação ao mínimo:
+
+```text
+Voltage span / temperature span = 10 V / 100 °C = 0.1 V per °C
+
+25 °C is 45 °C above the minimum of -20 °C
+U = 45 °C x 0.1 V = 4.5 V
+```
+
+**Etapa 2 — Converter a tensão em um valor digital.**
+
+```text
+Digital value = (U / voltage range) x number of steps
+Digital value = (4.5 V / 10 V) x 1024 = 460.8 ≈ 461
+```
+
+O resultado é arredondado para o passo inteiro mais próximo, pois a saída só pode ser um número inteiro.
+
+**Etapa 3 — Expressar o valor em binário.**
+
+```text
+461 = 0001 1100 1101
+```
+
+:::info
+Alguns livros didáticos dividem por `2^n - 1` (aqui 1023) em vez de `2^n` (1024), de modo que a entrada máxima corresponda exatamente ao código mais alto. Ambas as convenções aparecem na prática; a diferença é desprezível em resoluções mais altas. Esta página usa `2^n` para corresponder à contagem de passos.
+:::
+
+## Veja Também {/* #see-also */}
+
+- [Visão Geral do Raspberry Pi](./raspberry-pi.md): por que o Pi precisa de um ADC para ler um sensor analógico
+- [Unidades Elétricas](./electrical-units.md): tensão, corrente, potência e as fórmulas que as relacionam
+- [Conversões de Bit, Byte e Unidades](./bit-byte-conversions.md): fundamentos de binário por trás da saída digital
+- [Modulação por Largura de Pulso (PWM)](./pulse-width-modulation.md): a ideia inversa — aproximar um nível analógico com uma saída digital

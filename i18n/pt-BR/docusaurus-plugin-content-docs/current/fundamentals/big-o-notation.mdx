@@ -1,0 +1,341 @@
+---
+title: "Notação Big O"
+description: "Como o esforço de um algoritmo cresce com o tamanho da entrada: as classes de complexidade comuns, regras para determinar a classe, melhor caso, caso médio e pior caso, complexidade de espaço e as classes de algoritmos comuns de busca e ordenação."
+keywords:
+    - Notação Big O
+    - Complexidade de Tempo
+    - Complexidade de Espaço
+    - Classe de Complexidade
+    - Tempo de Execução
+    - Pior Caso
+    - Análise Assintótica
+    - Notação de Landau
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Notação Big O
+
+## Visão Geral {/* #overview */}
+
+A notação Big O descreve como o esforço de um algoritmo cresce com sua entrada. Em vez de um tempo em segundos, ela indica a forma desse crescimento.
+
+O tamanho da entrada é chamado de **n**: ele representa o número de elementos de uma lista, de caracteres de uma string ou de linhas de uma tabela. Toda classe de complexidade responde à pergunta: **o que acontece com o número de passos quando n dobra?**
+
+| Notação    | Nome          | Quando n dobra, o esforço ... | Exemplo                                          |
+| ---------- | ------------- | ----------------------------- | ------------------------------------------------ |
+| O(1)       | Constante     | permanece igual               | Acesso a um array por índice                     |
+| O(log n)   | Logarítmica   | cresce em um passo            | Busca binária                                    |
+| O(n)       | Linear        | dobra                         | Busca linear                                     |
+| O(n log n) | Linearítmica  | um pouco mais que dobra       | Merge sort                                       |
+| O(n²)      | Quadrática    | quadruplica                   | Bubble sort, laços aninhados sobre a mesma lista |
+| O(2ⁿ)      | Exponencial   | é elevado ao quadrado         | Testar todos os subconjuntos de um conjunto      |
+
+Em O(2ⁿ), um único elemento adicional já dobra o esforço.
+
+---
+
+## Crescimento em Números {/* #growth-in-numbers */}
+
+Número de passos de que cada classe de complexidade precisa para uma entrada de n elementos (log na base 2, arredondado):
+
+| n         | O(1) | O(log n) | O(n)      | O(n log n) | O(n²)     | O(2ⁿ)         |
+| --------- | ---- | -------- | --------- | ---------- | --------- | ------------- |
+| 10        | 1    | 3        | 10        | 33         | 100       | 1.024         |
+| 100       | 1    | 7        | 100       | 664        | 10.000    | ≈ 1,3 x 10³⁰  |
+| 1.000     | 1    | 10       | 1.000     | 9.966      | 1.000.000 | ≈ 1,1 x 10³⁰¹ |
+| 1.000.000 | 1    | 20       | 1.000.000 | ≈ 2 x 10⁷  | 10¹²      | ≈ 10³⁰¹⁰³⁰    |
+
+Com um microssegundo por passo e um milhão de elementos, um algoritmo O(log n) precisa de 20 µs, um algoritmo O(n) de um segundo, um algoritmo O(n log n) de cerca de 20 segundos e um algoritmo O(n²) de 10⁶ segundos, ou seja, cerca de 11,6 dias.
+
+---
+
+## Definição Formal {/* #formal-definition */}
+
+f(n) é o número de passos de que um algoritmo precisa, g(n) uma função de comparação simples, como n ou n². f(n) pertence a O(g(n)) se, a partir de um certo tamanho de entrada, f cresce no máximo tão rápido quanto g multiplicada por um fator fixo.
+
+Formalmente: existem uma constante c > 0 e um limiar n₀ tais que f(n) ≤ c x g(n) vale para todo n ≥ n₀.
+
+Exemplo: f(n) = 3n + 5 pertence a O(n). Com c = 4 e n₀ = 5, 3n + 5 ≤ 4n vale para todo n ≥ 5.
+
+- Fatores constantes são absorvidos por c. `3n`, `n / 2` e `100n` pertencem todos a O(n).
+- O comportamento abaixo de n₀ é irrelevante, pois o Big O descreve apenas entradas grandes.
+- O é um limite superior. A rigor, a busca binária também pertence a O(n) e a O(n²). Na prática, indica-se a menor classe adequada.
+- O limite inferior é escrito Ω (Ômega). Um limite que é ao mesmo tempo superior e inferior é escrito Θ (Teta).
+
+---
+
+## Determinação da Classe de Complexidade {/* #determining-the-complexity-class */}
+
+A classe de complexidade é determinada contando-se a operação mais frequente, geralmente uma comparação ou uma atribuição no laço mais interno, como função de n e simplificando-se o resultado.
+
+### Instruções Isoladas: O(1) {/* #single-statements-o1 */}
+
+Atribuições, aritmética, comparações, acesso a array por índice e `RETURN` são executados um número fixo de vezes que não depende de n.
+
+```text
+first = list[0]
+sum = a + b
+```
+
+### Laço sobre a Entrada: O(n) {/* #loop-over-the-input-on */}
+
+```text
+FOR i = 0 TO n - 1
+    sum = sum + list[i]
+END FOR
+```
+
+O `FOR` é executado n vezes. Um laço executado `n / 2` ou `2n` vezes também é O(n).
+
+### Laços Aninhados: Multiplicar {/* #nested-loops-multiply */}
+
+As contagens de iterações de laços aninhados são multiplicadas. Quando ambos os laços percorrem a entrada, resultam n x n passos e O(n²):
+
+```text
+FOR i = 0 TO n - 1
+    FOR j = 0 TO n - 1
+        ...
+    END FOR
+END FOR
+```
+
+Quando o laço interno tem um número fixo de iterações, resultam n x 7 = 7n passos e, portanto, O(n):
+
+```text
+FOR i = 0 TO n - 1
+    FOR day = 1 TO 7        // 7 iterations, independent of n
+        ...
+    END FOR
+END FOR
+```
+
+### Blocos Consecutivos: Manter o Maior Termo {/* #consecutive-blocks-keep-the-largest-term */}
+
+Quando blocos de código são executados um após o outro, suas contagens de passos são somadas. Somente a parte da soma que cresce mais rápido determina a classe:
+
+```text
+FOR i = 0 TO n - 1              // n steps
+    ...
+END FOR
+FOR i = 0 TO n - 1              // n x n steps
+    FOR j = 0 TO n - 1
+        ...
+    END FOR
+END FOR
+```
+
+n + n² passos resultam em O(n²). Quanto maior o n, menos importa a parte menor.
+
+### Divisão ao Meio: O(log n) {/* #halving-olog-n */}
+
+Quando cada passo divide o problema restante ao meio, o número de passos é igual ao número de vezes que n pode ser dividido ao meio até restar um elemento. Esse número é log₂ n. O Big O omite a base, pois log₂ n e log₁₀ n diferem apenas por um fator constante.
+
+```text
+1,000,000 => 500,000 => 250,000 => ... => 1      20 halvings
+```
+
+A busca binária funciona assim em uma lista ordenada:
+
+```text
+low = 0
+high = n - 1
+WHILE low <= high
+    mid = (low + high) DIV 2
+    IF list[mid] == target THEN
+        RETURN mid
+    ELSE IF list[mid] < target THEN
+        low = mid + 1
+    ELSE
+        high = mid - 1
+    END IF
+END WHILE
+RETURN -1
+```
+
+### Dividir e Conquistar: O(n log n) {/* #divide-and-conquer-on-log-n */}
+
+O merge sort divide a lista ao meio até restarem elementos isolados. Isso resulta em log n níveis. Em cada nível, todos os n elementos são mesclados uma vez. log n níveis x n passos por nível resultam em O(n log n).
+
+### Duas Entradas: Duas Variáveis {/* #two-inputs-two-variables */}
+
+Quando um algoritmo trabalha com duas entradas independentes de tamanhos n e m, ambos aparecem no resultado:
+
+```text
+FOR EACH customer IN customers          // n customers
+    FOR EACH product IN products        // m products
+        ...
+    END FOR
+END FOR
+```
+
+Os laços aninhados resultam em n x m passos e, portanto, em O(n x m). Dois laços em sequência resultam em O(n + m). Diferentemente de n + n², nenhum dos termos pode ser descartado, pois não se sabe qual das duas entradas é maior.
+
+---
+
+## Melhor Caso, Caso Médio e Pior Caso {/* #best-average-and-worst-case */}
+
+O mesmo algoritmo precisa de um número diferente de passos conforme a entrada:
+
+- **Melhor caso:** A entrada mais favorável. Na busca linear, é um valor na primeira posição, encontrado após uma comparação. O melhor caso descreve uma coincidência feliz e diz pouco sobre o comportamento típico.
+- **Caso médio:** O esforço esperado sobre todas as entradas. Na busca linear, são n / 2 comparações, o que é O(n).
+- **Pior caso:** A entrada mais desfavorável. Na busca linear, é um valor na última posição ou um valor ausente, o que custa n comparações. O pior caso é uma garantia que o algoritmo nunca excede.
+
+Uma complexidade indicada sem qualificação refere-se ao pior caso. O caso médio e o pior caso podem diferir drasticamente em sua classe: o Quicksort precisa de O(n log n) em média, mas de O(n²) quando o elemento pivô é sempre o menor ou o maior valor.
+
+---
+
+## Complexidade de Espaço {/* #space-complexity */}
+
+A mesma notação descreve a memória de que um algoritmo precisa além de sua entrada.
+
+- **O(1):** Um número fixo de variáveis, p. ex. o bubble sort, que troca elementos dentro da lista (in place).
+- **O(log n):** Uma recursão que divide o problema ao meio mantém log n chamadas na pilha ao mesmo tempo.
+- **O(n):** Uma estrutura auxiliar que cresce com a entrada, p. ex. a lista temporária no merge sort ou um conjunto de todos os valores já vistos.
+
+Tempo e memória muitas vezes podem ser trocados entre si. O [exemplo prático](#worked-example-finding-duplicates) mostra uma troca desse tipo.
+
+---
+
+## Classes de Algoritmos Comuns {/* #classes-of-common-algorithms */}
+
+### Busca {/* #searching */}
+
+| Algoritmo     | Melhor caso | Caso médio | Pior caso | Espaço extra | Pré-condição                          |
+| ------------- | ----------- | ---------- | --------- | ------------ | ------------------------------------- |
+| Busca linear  | O(1)        | O(n)       | O(n)      | O(1)         | Nenhuma                               |
+| Busca binária | O(1)        | O(log n)   | O(log n)  | O(1)         | Dados ordenados com acesso por índice |
+
+### Ordenação {/* #sorting */}
+
+| Algoritmo      | Melhor caso | Caso médio | Pior caso  | Espaço extra | Estável |
+| -------------- | ----------- | ---------- | ---------- | ------------ | ------- |
+| Bubble sort    | O(n)¹       | O(n²)      | O(n²)      | O(1)         | Sim     |
+| Selection sort | O(n²)       | O(n²)      | O(n²)      | O(1)         | Não     |
+| Insertion sort | O(n)²       | O(n²)      | O(n²)      | O(1)         | Sim     |
+| Merge sort     | O(n log n)  | O(n log n) | O(n log n) | O(n)         | Sim     |
+| Quicksort      | O(n log n)  | O(n log n) | O(n²)      | O(log n)     | Não     |
+
+¹ Somente com uma saída antecipada que interrompe após uma passagem sem nenhuma troca. Sem ela, o bubble sort sempre precisa de O(n²).
+
+² Em uma lista já ordenada, cada elemento é comparado uma vez com seu antecessor e permanece no lugar.
+
+Uma ordenação é **estável** quando elementos com chaves iguais mantêm sua ordem original. A chave é o valor pelo qual a lista é ordenada. Uma lista de pessoas já ordenada por nome e depois ordenada de forma estável por idade mantém as pessoas da mesma idade em ordem alfabética.
+
+Uma ordenação que compara apenas dois elementos por vez precisa de pelo menos cerca de n log n comparações no pior caso. O merge sort alcança, portanto, a melhor classe possível para ordenação baseada em comparações. Somente ordenações que usam os valores diretamente, como o counting sort para inteiros pequenos, podem ser mais rápidas.
+
+### Estruturas de Dados {/* #data-structures */}
+
+| Operação                      | Array                      | Lista encadeada | Tabela hash                  |
+| ----------------------------- | -------------------------- | --------------- | ---------------------------- |
+| Acesso ao elemento na posição i | O(1)                     | O(n)¹           | Não aplicável²               |
+| Busca por um valor ou chave   | O(n), ordenado O(log n)    | O(n)            | O(1) em média, por chave³    |
+| Inserção no início            | O(n)⁴                      | O(1)⁵           | Não aplicável²               |
+
+¹ Cada elemento conhece apenas seu sucessor, de modo que a lista é percorrida desde o início.
+
+² Uma tabela hash não tem ordem de seus elementos, portanto não há posição.
+
+³ Uma função hash calcula diretamente a posição de armazenamento, o bucket, a partir da chave. Quando muitas chaves caem no mesmo bucket, elas são pesquisadas uma a uma, e a consulta degrada para O(n) no pior caso.
+
+{/* TODO: link the hash table entry here once it exists */}
+
+⁴ Todos os n elementos existentes são deslocados uma posição para a direita.
+
+⁵ Somente uma referência é redirecionada.
+
+---
+
+## Exemplo Prático: Encontrar Duplicatas {/* #worked-example-finding-duplicates */}
+
+Uma função verifica se uma lista contém algum valor duas vezes.
+
+### Variante 1: Comparar Cada Par {/* #variant-1-compare-every-pair */}
+
+```text
+FUNCTION hasDuplicates(list)
+    n = LENGTH(list)
+    FOR i = 0 TO n - 2
+        FOR j = i + 1 TO n - 1
+            IF list[i] == list[j] THEN
+                RETURN true
+            END IF
+        END FOR
+    END FOR
+    RETURN false
+END FUNCTION
+```
+
+O pior caso é uma lista sem duplicatas, de modo que todos os pares são comparados:
+
+```text
+i = 0        n - 1 comparisons
+i = 1        n - 2 comparisons
+...
+i = n - 2    1 comparison
+
+Total:  (n - 1) + (n - 2) + ... + 1  =  n x (n - 1) / 2  =  0.5n² - 0.5n
+n = 5:  4 + 3 + 2 + 1                =  5 x 4 / 2        =  10
+```
+
+Descartar o termo menor `0.5n` e o fator constante `0.5` resulta em **O(n²)**. O laço interno fica mais curto a cada passagem, mas, em média, ainda percorre metade da lista. Com n = 1.000, são 499.500 comparações; com n = 2.000, são 1.999.000, ou seja, quatro vezes mais.
+
+### Variante 2: Ordenar Primeiro, Depois Comparar os Vizinhos {/* #variant-2-sort-first-then-compare-neighbours */}
+
+```text
+FUNCTION hasDuplicates(list)
+    n = LENGTH(list)
+    sort(list)                          // O(n log n)
+    FOR i = 0 TO n - 2                  // O(n)
+        IF list[i] == list[i + 1] THEN
+            RETURN true
+        END IF
+    END FOR
+    RETURN false
+END FUNCTION
+```
+
+Após a ordenação, valores iguais ficam lado a lado, e uma passagem sobre pares vizinhos é suficiente. O(n log n) + O(n) resulta em **O(n log n)**. A menos que a função ordene uma cópia, ela altera a ordem da lista recebida. Uma cópia custa O(n) de memória.
+
+### Variante 3: Lembrar os Valores Já Vistos {/* #variant-3-remember-seen-values */}
+
+```text
+FUNCTION hasDuplicates(list)
+    seen = empty set
+    FOR EACH value IN list              // n iterations
+        IF seen CONTAINS value THEN     // O(1) average
+            RETURN true
+        END IF
+        ADD value TO seen               // O(1) average
+    END FOR
+    RETURN false
+END FUNCTION
+```
+
+Um conjunto baseado em hash responde "contém" em tempo constante, em média. n iterações com O(1) cada resultam em **O(n)**. O conjunto custa O(n) de memória adicional.
+
+### Comparação {/* #comparison */}
+
+| Variante         | Tempo      | Espaço extra            | Passos para n = 1.000.000 |
+| ---------------- | ---------- | ----------------------- | ------------------------- |
+| 1: Cada par     | O(n²)      | O(1)                    | ≈ 5 x 10¹¹                |
+| 2: Ordenar antes | O(n log n) | O(1), com cópia O(n)    | ≈ 2 x 10⁷                 |
+| 3: Conjunto      | O(n)       | O(n)                    | ≈ 10⁶                     |
+
+O que este exemplo mostra:
+
+- Somente uma abordagem diferente melhora a classe. Otimizar o laço interno da variante 1 altera apenas o fator constante.
+- A variante 3 compra sua velocidade com memória.
+
+---
+
+## Erros Comuns {/* #common-mistakes */}
+
+1. **Todo laço aninhado contado como O(n²):** A classe depende de quantas vezes cada laço é executado. Um laço interno com número fixo de iterações, p. ex. sobre os sete dias de uma semana, apenas multiplica por um fator constante, e o resultado continua sendo O(n).
+2. **Duas entradas diferentes escritas como n:** Um laço sobre n clientes aninhado com um laço sobre m produtos é O(n x m). O(n²) pressupõe que ambas as entradas têm o mesmo tamanho e oculta qual delas determina o esforço.
+3. **Constantes e termos menores mantidos:** O(2n + 5) e O(n² + n) são formalmente corretos, mas não estão simplificados. As classes são O(n) e O(n²), respectivamente, pois constantes e termos menores não influenciam o crescimento para n grande.
+4. **Big O lido como tempo de execução em segundos:** A notação oculta fatores constantes, de modo que um algoritmo O(n²) pode ser mais rápido que um algoritmo O(n log n) para n pequeno. O insertion sort supera o merge sort em listas curtas, e é por isso que implementações práticas de ordenação, como o Timsort, usam o insertion sort para trechos curtos.
+5. **Busca binária em dados não ordenados:** O(log n) vale somente para dados ordenados com acesso por índice. A ordenação prévia custa O(n log n) e só compensa quando os mesmos dados são pesquisados muitas vezes.
+6. **log n confundido com n log n:** O(log n) cresce mais devagar que o linear e precisa de muito menos passos do que há elementos. O(n log n) cresce mais rápido que o linear e executa log n passos para cada elemento.
+7. **Melhor caso indicado como a complexidade:** O melhor caso da busca linear é O(1) e não diz nada sobre entradas típicas. Uma complexidade sem qualificação refere-se ao pior caso.

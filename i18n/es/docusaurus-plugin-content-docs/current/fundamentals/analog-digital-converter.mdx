@@ -1,0 +1,100 @@
+---
+title: "Convertidor analógico-digital (ADC)"
+description: "Cómo un convertidor analógico-digital transforma una tensión continua en un valor digital, con la resolución, los escalones de cuantización, la resolución de medida y las fórmulas para calcular una salida binaria."
+keywords:
+    - Convertidor analógico-digital
+    - ADC
+    - Convertidor A/D
+    - Resolución
+    - Cuantización
+    - Bit
+    - Muestreo
+    - Rango de tensión
+    - Microcontrolador
+    - Sensor
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Convertidor analógico-digital (ADC)
+
+## Por qué se necesita un ADC {/* #why-an-adc-is-needed */}
+
+Un sensor mide una magnitud física (temperatura, luz, presión, etc.) y emite una señal **analógica** proporcional, normalmente una tensión continua. Un microcontrolador o una Raspberry Pi solo puede procesar valores **digitales**. Muchas placas (por ejemplo, la Raspberry Pi) no tienen ninguna entrada analógica y solo leerían `0` o `1`.
+
+Un **convertidor analógico-digital (ADC)** salva esta distancia: muestrea la tensión analógica y la codifica como un número digital. El resultado se transfiere después al controlador, a menudo a través de un bus como I²C.
+
+## Resolución y escalones de cuantización {/* #resolution-and-quantization-steps */}
+
+La **resolución** de un ADC se expresa en **bits**. El número de bits determina cuántos valores digitales distintos (**escalones de cuantización**) puede emitir el convertidor:
+
+```text
+Number of steps = 2^n        (n = resolution in bits)
+```
+
+- 8 bits  => 2^8  = 256 escalones
+- 10 bits => 2^10 = 1024 escalones
+- 16 bits => 2^16 = 65536 escalones
+
+Más bits significan una división más fina del rango de entrada y, por tanto, una medición más precisa.
+
+## Resolución de medida (menor cambio detectable) {/* #measurement-resolution-smallest-detectable-change */}
+
+La **resolución de medida** es el menor cambio de tensión que todavía se asigna a un valor digital distinto. Es el rango de tensión dividido por el número de escalones:
+
+```text
+Resolution = voltage range / number of steps
+```
+
+**Ejemplo:** Un ADC de 10 bits mide un rango de 0 V a 10 V.
+
+```text
+Steps = 2¹⁰ = 1024 steps
+Resolution = 10 V / 1024 steps = 0.009766 V ≈ 9.77 mV
+```
+
+Este convertidor no puede distinguir ningún cambio inferior a ~9,77 mV.
+
+## De un valor medido a una salida binaria {/* #from-a-measured-value-to-a-binary-output */}
+
+La conversión de una medición física en la salida digital del ADC se realiza en tres pasos.
+
+**Escenario:** Un sensor de temperatura cubre de -20 °C a +80 °C y emite una tensión proporcional de 0 V a 10 V. El ADC tiene una resolución de 10 bits. ¿Qué valor binario corresponde exactamente a 25 °C?
+
+**Paso 1: Asignar el valor medido a una tensión.**
+
+Primero se determina la tensión por unidad y después se multiplica por la distancia a la que se encuentra el valor por encima del mínimo:
+
+```text
+Voltage span / temperature span = 10 V / 100 °C = 0.1 V per °C
+
+25 °C is 45 °C above the minimum of -20 °C
+U = 45 °C x 0.1 V = 4.5 V
+```
+
+**Paso 2: Convertir la tensión en un valor digital.**
+
+```text
+Digital value = (U / voltage range) x number of steps
+Digital value = (4.5 V / 10 V) x 1024 = 460.8 ≈ 461
+```
+
+El resultado se redondea al escalón entero más cercano, ya que la salida solo puede ser un número entero.
+
+**Paso 3: Expresar el valor en binario.**
+
+```text
+461 = 0001 1100 1101
+```
+
+:::info
+Algunos libros de texto dividen por `2^n - 1` (aquí 1023) en lugar de `2^n` (1024), de modo que la entrada máxima se asigna exactamente al código más alto. Ambas convenciones aparecen en la práctica; la diferencia es despreciable a resoluciones más altas. Esta página utiliza `2^n` para coincidir con el número de escalones.
+:::
+
+## Véase también {/* #see-also */}
+
+- [Resumen de la Raspberry Pi](./raspberry-pi.md): por qué la Pi necesita un ADC para leer un sensor analógico
+- [Unidades eléctricas](./electrical-units.md): tensión, corriente, potencia y las fórmulas que las relacionan
+- [Bit, byte y conversiones de unidades](./bit-byte-conversions.md): fundamentos binarios de la salida digital
+- [Modulación por ancho de pulso (PWM)](./pulse-width-modulation.md): la idea inversa, aproximar un nivel analógico con una salida digital

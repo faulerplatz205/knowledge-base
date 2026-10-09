@@ -1,0 +1,100 @@
+---
+title: "模数转换器（ADC）"
+description: "模数转换器如何将连续电压转换为数字值，包括分辨率、量化级数、测量分辨率以及计算二进制输出的公式。"
+keywords:
+    - 模数转换器
+    - ADC
+    - A/D 转换器
+    - 分辨率
+    - 量化
+    - 位
+    - 采样
+    - 电压范围
+    - 微控制器
+    - 传感器
+tags:
+    - ap2
+machine_translated: true
+---
+
+# 模数转换器（ADC）
+
+## 为什么需要 ADC {/* #why-an-adc-is-needed */}
+
+传感器测量物理量（温度、光照、压力等），并输出与之成比例的**模拟**信号，通常是连续电压。微控制器或 Raspberry Pi 只能处理**数字**值。许多开发板（例如 Raspberry Pi）完全没有模拟输入，只能读取 `0` 或 `1`。
+
+**模数转换器（ADC）**弥合了这一差距：它对模拟电压进行采样，并将其编码为数字。转换结果随后被传输给控制器，通常通过 I²C 等总线完成。
+
+## 分辨率与量化级数 {/* #resolution-and-quantization-steps */}
+
+ADC 的**分辨率**以**位**为单位。位数决定了转换器可以输出多少个不同的数字值（**量化级数**）：
+
+```text
+Number of steps = 2^n        (n = resolution in bits)
+```
+
+- 8 位  => 2^8  = 256 级
+- 10 位 => 2^10 = 1024 级
+- 16 位 => 2^16 = 65536 级
+
+位数越多，输入范围的划分越精细，测量也就越精确。
+
+## 测量分辨率（可检测的最小变化） {/* #measurement-resolution-smallest-detectable-change */}
+
+**测量分辨率**是仍能映射到不同数字值的最小电压变化量，等于电压范围除以级数：
+
+```text
+Resolution = voltage range / number of steps
+```
+
+**示例：** 一个 10 位 ADC 测量 0 V 至 10 V 的范围。
+
+```text
+Steps = 2¹⁰ = 1024 steps
+Resolution = 10 V / 1024 steps = 0.009766 V ≈ 9.77 mV
+```
+
+小于约 9.77 mV 的变化无法被该转换器区分。
+
+## 从测量值到二进制输出 {/* #from-a-measured-value-to-a-binary-output */}
+
+将物理测量值转换为 ADC 的数字输出分为三步。
+
+**场景：** 温度传感器的测量范围为 -20 °C 至 +80 °C，输出与之成比例的 0 V 至 10 V 电压。ADC 的分辨率为 10 位。恰好 25 °C 对应的二进制值是多少？
+
+**第 1 步：将测量值映射为电压。**
+
+首先确定每单位对应的电压，再乘以该值高出最小值的幅度：
+
+```text
+Voltage span / temperature span = 10 V / 100 °C = 0.1 V per °C
+
+25 °C is 45 °C above the minimum of -20 °C
+U = 45 °C x 0.1 V = 4.5 V
+```
+
+**第 2 步：将电压转换为数字值。**
+
+```text
+Digital value = (U / voltage range) x number of steps
+Digital value = (4.5 V / 10 V) x 1024 = 460.8 ≈ 461
+```
+
+结果四舍五入到最接近的整数级，因为输出只能是整数。
+
+**第 3 步：用二进制表示该值。**
+
+```text
+461 = 0001 1100 1101
+```
+
+:::info
+部分教材除以 `2^n - 1`（此处为 1023）而不是 `2^n`（1024），使最大输入恰好对应最高编码。两种约定在实践中都有使用，分辨率较高时差异可以忽略。本页使用 `2^n`，以与级数保持一致。
+:::
+
+## 另请参阅 {/* #see-also */}
+
+- [Raspberry Pi 概述](./raspberry-pi.md)：为什么 Pi 需要 ADC 才能读取模拟传感器
+- [电气单位](./electrical-units.md)：电压、电流、功率及其相互关系的公式
+- [位、字节与单位换算](./bit-byte-conversions.md)：数字输出背后的二进制基础
+- [脉宽调制（PWM）](./pulse-width-modulation.md)：相反的思路，即用数字输出逼近模拟电平

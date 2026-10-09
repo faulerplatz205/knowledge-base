@@ -1,0 +1,100 @@
+---
+title: "Convertisseur analogique-numérique (CAN)"
+description: "Comment un convertisseur analogique-numérique transforme une tension continue en valeur numérique, avec la résolution, les paliers de quantification, la résolution de mesure et les formules de calcul d'une sortie binaire."
+keywords:
+    - "Convertisseur analogique-numérique"
+    - "CAN"
+    - "Convertisseur A/N"
+    - "Résolution"
+    - "Quantification"
+    - "Bit"
+    - "Échantillonnage"
+    - "Plage de tension"
+    - "Microcontrôleur"
+    - "Capteur"
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Convertisseur analogique-numérique (CAN)
+
+## Pourquoi un CAN est nécessaire {/* #why-an-adc-is-needed */}
+
+Un capteur mesure une grandeur physique (température, lumière, pression, etc.) et délivre un signal **analogique** proportionnel, généralement une tension continue. Un microcontrôleur ou un Raspberry Pi ne peut traiter que des valeurs **numériques**. De nombreuses cartes (par exemple le Raspberry Pi) n'ont aucune entrée analogique et ne liraient jamais que `0` ou `1`.
+
+Un **convertisseur analogique-numérique (CAN)** comble cet écart : il échantillonne la tension analogique et la code sous forme de nombre numérique. Le résultat est ensuite transmis au contrôleur, souvent par un bus tel que l'I²C.
+
+## Résolution et paliers de quantification {/* #resolution-and-quantization-steps */}
+
+La **résolution** d'un CAN s'exprime en **bits**. Le nombre de bits détermine le nombre de valeurs numériques distinctes (**paliers de quantification**) que le convertisseur peut délivrer :
+
+```text
+Number of steps = 2^n        (n = resolution in bits)
+```
+
+- 8 bits  => 2^8  = 256 paliers
+- 10 bits => 2^10 = 1024 paliers
+- 16 bits => 2^16 = 65536 paliers
+
+Plus de bits signifie une division plus fine de la plage d'entrée et donc une mesure plus précise.
+
+## Résolution de mesure (plus petite variation détectable) {/* #measurement-resolution-smallest-detectable-change */}
+
+La **résolution de mesure** est la plus petite variation de tension qui correspond encore à une valeur numérique différente. Il s'agit de la plage de tension divisée par le nombre de paliers :
+
+```text
+Resolution = voltage range / number of steps
+```
+
+**Exemple :** Un CAN de 10 bits mesure une plage de 0 V à 10 V.
+
+```text
+Steps = 2¹⁰ = 1024 steps
+Resolution = 10 V / 1024 steps = 0.009766 V ≈ 9.77 mV
+```
+
+Toute variation inférieure à ~9,77 mV ne peut pas être distinguée par ce convertisseur.
+
+## De la valeur mesurée à la sortie binaire {/* #from-a-measured-value-to-a-binary-output */}
+
+La conversion d'une mesure physique en sortie numérique du CAN s'effectue en trois étapes.
+
+**Scénario :** Un capteur de température couvre la plage de -20 °C à +80 °C et délivre une tension proportionnelle de 0 V à 10 V. Le CAN a une résolution de 10 bits. Quelle valeur binaire correspond exactement à 25 °C ?
+
+**Étape 1 — Associer la valeur mesurée à une tension.**
+
+La tension par unité est d'abord déterminée, puis multipliée par l'écart de la valeur au-dessus du minimum :
+
+```text
+Voltage span / temperature span = 10 V / 100 °C = 0.1 V per °C
+
+25 °C is 45 °C above the minimum of -20 °C
+U = 45 °C x 0.1 V = 4.5 V
+```
+
+**Étape 2 — Convertir la tension en valeur numérique.**
+
+```text
+Digital value = (U / voltage range) x number of steps
+Digital value = (4.5 V / 10 V) x 1024 = 460.8 ≈ 461
+```
+
+Le résultat est arrondi au palier entier le plus proche, car la sortie ne peut être qu'un entier.
+
+**Étape 3 — Exprimer la valeur en binaire.**
+
+```text
+461 = 0001 1100 1101
+```
+
+:::info
+Certains manuels divisent par `2^n - 1` (ici 1023) au lieu de `2^n` (1024), de sorte que l'entrée maximale correspond exactement au code le plus élevé. Les deux conventions existent en pratique ; la différence est négligeable aux résolutions élevées. Cette page utilise `2^n` pour correspondre au nombre de paliers.
+:::
+
+## Voir aussi {/* #see-also */}
+
+- [Aperçu du Raspberry Pi](./raspberry-pi.md) : pourquoi le Pi a besoin d'un CAN pour lire un capteur analogique
+- [Unités électriques](./electrical-units.md) : tension, courant, puissance et les formules qui les relient
+- [Conversions de bits, d'octets et d'unités](./bit-byte-conversions.md) : notions de binaire à la base de la sortie numérique
+- [Modulation de largeur d'impulsion (PWM)](./pulse-width-modulation.md) : l'idée inverse, approcher un niveau analogique avec une sortie numérique

@@ -1,0 +1,227 @@
+---
+title: "Tipos de dados"
+description: "Tipos de dados primitivos e compostos em linguagens de programação, suas faixas de valores, uso de memória e regras de conversão."
+keywords:
+    - "Tipos de dados"
+    - "Datatypes"
+    - "Tipos primitivos"
+    - "Tipos compostos"
+    - "Inteiro"
+    - "Ponto flutuante"
+    - "Booleano"
+    - "Caractere"
+    - "String"
+    - "Tupla"
+    - "Array"
+    - "Enum"
+    - "Conversão de tipos"
+    - "Faixa de valores"
+    - "Overflow"
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Tipos de dados
+
+## Visão geral {/* #overview */}
+
+Um tipo de dados define três aspectos para cada variável, parâmetro e valor de retorno:
+
+- **Faixa de valores:** quais valores são válidos, por exemplo `true` e `false` para um booleano
+- **Uso de memória:** quantos bytes são reservados para um valor
+- **Operações:** o que pode ser feito com o valor, por exemplo `+` significando adição em números, mas concatenação em strings
+
+| Categoria      | Contém                            | Exemplos                             |
+| ------------- | --------------------------------- | ------------------------------------ |
+| **Primitivo** | exatamente um valor indivisível     | `int`, `double`, `boolean`, `char`   |
+| **Composto** | vários valores sob um nome     | array, tupla, record, objeto, string |
+| **Abstrato**  | um contrato, não um layout concreto | interface, parâmetro de tipo genérico    |
+
+:::info
+Os nomes e tamanhos de tipos a seguir seguem a família C/Java/C#. Outras linguagens diferem: os inteiros do Python têm precisão arbitrária, o JavaScript possui um único tipo `number` baseado em um float de 64 bits, e o Go nomeia seus tipos pela largura (`int32`, `uint64`).
+:::
+
+---
+
+## Tipos de dados primitivos {/* #primitive-data-types */}
+
+### Tipos inteiros {/* #integer-types */}
+
+Inteiros armazenam números inteiros sem parte fracionária. A faixa de valores decorre diretamente do número de bits `n`:
+
+```text
+signed:    -2^(n-1)  to  2^(n-1) - 1
+unsigned:         0  to  2^n - 1
+```
+
+| Bits | Nome típico | Faixa com sinal                                            | Faixa sem sinal                  |
+| ---- | ------------ | ------------------------------------------------------- | ------------------------------- |
+| 8    | `byte`       | -128 a 127                                             | 0 a 255                        |
+| 16   | `short`      | -32.768 a 32.767                                       | 0 a 65.535                     |
+| 32   | `int`        | -2.147.483.648 a 2.147.483.647                         | 0 a 4.294.967.295              |
+| 64   | `long`       | -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807 | 0 a 18.446.744.073.709.551.615 |
+
+**Mais informações:**
+
+- Um bit de um inteiro com sinal codifica o sinal, razão pela qual a faixa com sinal cobre aproximadamente metade da faixa sem sinal.
+- O lado negativo alcança um passo a mais que o lado positivo, porque o zero ocupa uma posição entre os valores não negativos.
+
+### Tipos de ponto flutuante {/* #floating-point-types */}
+
+Tipos de ponto flutuante armazenam números com parte fracionária como sinal, mantissa e expoente de acordo com o IEEE 754.
+
+| Bits | Nome típico      | Dígitos decimais significativos | Magnitude aproximada |
+| ---- | ----------------- | -------------------------- | --------------------- |
+| 32   | `float`, `single` | cerca de 7                    | até 3,4 x 10^38     |
+| 64   | `double`          | cerca de 15 a 16             | até 1,8 x 10^308    |
+
+Como a mantissa é binária, frações decimais como `0.1` não têm representação exata:
+
+```text
+0.1 + 0.2 = 0.30000000000000004
+```
+
+**Considerações importantes que decorrem disso:**
+
+- Valores de ponto flutuante nunca são comparados com `==`, mas com uma pequena tolerância
+- Valores monetários não são armazenados como `float` ou `double`, mas em um [tipo de ponto fixo](#fixed-point-types) ou como um número inteiro de centavos
+
+### Tipos de ponto fixo {/* #fixed-point-types */}
+
+Um tipo de ponto fixo armazena um número fixo de casas decimais. Internamente, o valor é um inteiro escalado por uma potência de dez, de modo que `12.34` é mantido como `1234` com escala 2. Frações decimais são, portanto, representadas com exatidão, o que um tipo de ponto flutuante não consegue.
+
+**Exemplo:**
+
+`DECIMAL(10, 2)` significa 10 dígitos no total, 2 deles após a vírgula decimal, o que deixa 8 dígitos antes dela.
+
+O preço dessa exatidão é uma aritmética consideravelmente mais lenta que `double` e um uso de memória maior. Tipos de ponto fixo são, portanto, usados onde a exatidão é obrigatória, sobretudo para valores monetários, alíquotas de impostos e totais de faturas, e não para medições ou gráficos.
+
+### Booleano {/* #boolean */}
+
+Um booleano contém exatamente um dos dois valores lógicos `true` e `false` e é o tipo de resultado de toda comparação e operação lógica (`&&`, `||`, `!`). Embora um único bit bastasse, geralmente é reservado ao menos um byte, porque a memória é endereçada byte a byte.
+
+### Caractere {/* #character */}
+
+Um tipo caractere contém um único caractere, armazenado como o ponto de código numérico de uma codificação de caracteres.
+
+| Codificação | Tamanho por caractere   | Faixa                                    |
+| -------- | -------------------- | ---------------------------------------- |
+| ASCII    | 1 byte (7 bits usados) | 128 caracteres, sem caracteres acentuados               |
+| UTF-8    | 1 a 4 bytes         | Unicode completo, compatível com ASCII           |
+| UTF-16   | 2 ou 4 bytes         | Unicode completo, usado por Java e C# `char` |
+
+**Curiosidade:** Como um caractere é armazenado como número, aritmética e comparação funcionam sobre ele: `'A' + 1` resulta em `'B'`, e `'a' < 'b'` é `true`.
+
+---
+
+## Tipos de dados compostos {/* #composite-data-types */}
+
+### String {/* #string */}
+
+Uma string é uma sequência de caracteres. Duas decisões de projeto distinguem as implementações:
+
+- **Comprimento:** fixo (raro em código de aplicação) ou variável
+- **Mutabilidade:** imutável em Java, C# e Python, mutável em C++ e Rust
+
+Onde a string é imutável, cada modificação cria um novo objeto. Construir uma string por concatenação repetida dentro de um laço copia o texto inteiro a cada passagem e, por isso, é substituído por um tipo builder (`StringBuilder`, `StringBuffer`).
+
+### Array {/* #array */}
+
+Um array armazena um número fixo de elementos **do mesmo tipo** sob um nome, acessados por um índice iniciado em zero.
+
+```text
+scores = [17, 42, 8, 23]
+
+scores[0] = 17
+scores[3] = 23
+```
+
+Características:
+
+- O tamanho é fixado na criação, portanto o crescimento exige um novo array e uma cópia
+- O acesso por índice leva tempo constante, porque o endereço é calculado como `start + index x elementSize`
+- Arrays multidimensionais (`matrix[row][column]`) modelam tabelas e grades
+
+### Tupla {/* #tuple */}
+
+Uma tupla agrupa um número fixo de valores **de tipos possivelmente diferentes** em uma ordem fixa. Os elementos são acessados por posição, não por nome.
+
+```text
+point    = (3, 7)
+httpCall = ("GET", "/users", 200)
+```
+
+Tuplas são úteis para retornar vários valores de uma função sem declarar um tipo dedicado. Assim que as posições precisam de explicação, um record é a melhor escolha.
+
+### Record, struct e objeto {/* #record-struct-and-object */}
+
+Um record (também struct, ou um objeto de uma classe) agrupa valores de tipos diferentes sob campos **nomeados**.
+
+```text
+Customer {
+    id:      int
+    name:    string
+    active:  boolean
+    revenue: decimal
+}
+```
+
+Diferentemente de uma tupla, cada campo tem um nome, o que torna explícito o significado de cada valor e permite estender o tipo sem quebrar as posições existentes.
+
+### Enumeração {/* #enumeration */}
+
+Um enum define um conjunto fixo e nomeado de valores permitidos.
+
+```text
+enum OrderState { NEW, PAID, SHIPPED, CANCELLED }
+```
+
+A vantagem sobre um número mágico ou uma constante de string solta: o compilador rejeita qualquer valor fora do conjunto, e todos os estados válidos ficam documentados em um único lugar.
+
+### Coleções {/* #collections */}
+
+Listas, conjuntos, mapas e filas são tipos compostos fornecidos pela biblioteca padrão, e não pelo núcleo da linguagem. Eles são tratados separadamente em estruturas de dados. {/* TODO: add link to datastructures.md here once it exists */}
+
+---
+
+## Conversão de tipos {/* #type-conversion */}
+
+A conversão de um valor de um tipo para outro é **implícita** (executada automaticamente pelo compilador) ou **explícita** (solicitada no código-fonte por um cast ou uma função de conversão).
+
+| Direção     | Significado                            | Exemplo         | Risco                 |
+| ------------- | ---------------------------------- | --------------- | -------------------- |
+| **Ampliação (widening)**  | a faixa de destino contém a faixa de origem | `int` => `long` | nenhum, sem perdas       |
+| **Estreitamento (narrowing)** | a faixa de destino é menor            | `long` => `int` | overflow, truncamento |
+
+```text
+implicit widening:   long total = 42;          // int fits into long
+explicit narrowing:  int  count = (int) 42L;   // cast required
+truncation:          int  n     = (int) 3.99;  // yields 3, not 4
+```
+
+A conversão entre string e número não é um cast, mas **parsing** ou **formatação**, porque a representação em memória muda por completo. O parsing depende da entrada e, por isso, pode falhar, razão pela qual retorna um erro ou lança uma exceção.
+
+---
+
+## Armadilhas comuns {/* #common-pitfalls */}
+
+- **Overflow de inteiro:** somar 1 ao valor máximo retorna ao valor mínimo na maioria das linguagens, em vez de gerar um erro
+- **Divisão inteira:** `7 / 2` resulta em `3`, não em `3.5`, enquanto ambos os operandos forem inteiros
+- **Comparação de floats:** `0.1 + 0.2 == 0.3` é avaliado como `false`
+- **Dinheiro como float:** erros de arredondamento se acumulam ao longo de muitas operações
+- **Truncamento no estreitamento:** converter um valor de ponto flutuante para inteiro descarta a parte fracionária, não arredonda
+- **Tipos superdimensionados por padrão:** um `long` onde um `byte` basta desperdiça memória em arrays e records grandes
+
+---
+
+## Escolha de um tipo de dados {/* #choosing-a-data-type */}
+
+1. **Faixa de valores:** o maior e o menor valor que podem ocorrer legitimamente, incluindo o crescimento esperado
+2. **Precisão:** se uma parte fracionária é necessária e se ela precisa ser exata (dinheiro) ou pode ser aproximada (medições)
+3. **Memória e desempenho:** relevante para arrays grandes, sistemas embarcados e transferência de rede, desprezível para variáveis isoladas
+4. **Semântica:** se valores inválidos podem ser excluídos pelo próprio tipo, por exemplo um enum em vez de uma string ou um booleano em vez de `0` e `1`, de modo que um valor errado falhe em tempo de compilação
+
+## Veja também {/* #see-also */}
+
+- [Conversões de bit, byte e unidades](./bit-byte-conversions.md): conversão entre bits, bytes e seus múltiplos decimais e binários

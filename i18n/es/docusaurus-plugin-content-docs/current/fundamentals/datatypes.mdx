@@ -1,0 +1,227 @@
+---
+title: "Tipos de datos"
+description: "Tipos de datos primitivos y compuestos en los lenguajes de programación, sus rangos de valores, uso de memoria y reglas de conversión."
+keywords:
+    - "Tipos de datos"
+    - "Datatypes"
+    - "Tipos primitivos"
+    - "Tipos compuestos"
+    - "Entero"
+    - "Coma flotante"
+    - "Booleano"
+    - "Carácter"
+    - "Cadena"
+    - "Tupla"
+    - "Array"
+    - "Enum"
+    - "Conversión de tipos"
+    - "Rango de valores"
+    - "Desbordamiento"
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Tipos de datos
+
+## Visión general {/* #overview */}
+
+Un tipo de datos define tres aspectos para cada variable, parámetro y valor de retorno:
+
+- **Rango de valores:** qué valores son válidos, p. ej., `true` y `false` para un booleano
+- **Uso de memoria:** cuántos bytes se reservan para un valor
+- **Operaciones:** qué puede hacerse con el valor, p. ej., `+` significa suma en números pero concatenación en cadenas
+
+| Categoría       | Contiene                              | Ejemplos                                  |
+| --------------- | ------------------------------------- | ----------------------------------------- |
+| **Primitivo**   | exactamente un valor indivisible      | `int`, `double`, `boolean`, `char`        |
+| **Compuesto**   | varios valores bajo un mismo nombre   | array, tupla, registro, objeto, cadena    |
+| **Abstracto**   | un contrato, no una disposición concreta | interfaz, parámetro de tipo genérico   |
+
+:::info
+Los nombres y tamaños de tipos que figuran a continuación siguen la familia habitual C/Java/C#. Otros lenguajes difieren: los enteros de Python tienen precisión arbitraria, JavaScript tiene un único tipo `number` respaldado por un número de coma flotante de 64 bits, y Go nombra sus tipos según su anchura (`int32`, `uint64`).
+:::
+
+---
+
+## Tipos de datos primitivos {/* #primitive-data-types */}
+
+### Tipos enteros {/* #integer-types */}
+
+Los enteros almacenan números enteros sin parte fraccionaria. El rango de valores se deduce directamente del número de bits `n`:
+
+```text
+signed:    -2^(n-1)  to  2^(n-1) - 1
+unsigned:         0  to  2^n - 1
+```
+
+| Bits | Nombre habitual | Rango con signo                                          | Rango sin signo                 |
+| ---- | --------------- | -------------------------------------------------------- | ------------------------------- |
+| 8    | `byte`         | -128 a 127                                               | 0 a 255                         |
+| 16   | `short`         | -32.768 a 32.767                                         | 0 a 65.535                      |
+| 32   | `int`         | -2.147.483.648 a 2.147.483.647                           | 0 a 4.294.967.295               |
+| 64   | `long`         | -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807   | 0 a 18.446.744.073.709.551.615  |
+
+**Más información:**
+
+- Un bit de un entero con signo codifica el signo, por lo que el rango con signo abarca aproximadamente la mitad del rango sin signo.
+- El lado negativo llega un paso más lejos que el positivo, porque el cero ocupa un lugar entre los valores no negativos.
+
+### Tipos de coma flotante {/* #floating-point-types */}
+
+Los tipos de coma flotante almacenan números con parte fraccionaria como signo, mantisa y exponente según IEEE 754.
+
+| Bits | Nombre habitual   | Dígitos decimales significativos | Magnitud aproximada   |
+| ---- | ----------------- | -------------------------------- | --------------------- |
+| 32   | `float`, `single`  | unos 7                           | hasta 3,4 x 10^38     |
+| 64   | `double`           | unos 15 a 16                     | hasta 1,8 x 10^308    |
+
+Como la mantisa es binaria, las fracciones decimales como `0.1` no tienen una representación exacta:
+
+```text
+0.1 + 0.2 = 0.30000000000000004
+```
+
+**Consideraciones importantes que se derivan de ello:**
+
+- Los valores de coma flotante nunca se comparan con `==`, sino con una pequeña tolerancia
+- Los importes monetarios no se almacenan como `float` o `double`, sino en un [tipo de coma fija](#fixed-point-types) o como un número entero de céntimos
+
+### Tipos de coma fija {/* #fixed-point-types */}
+
+Un tipo de coma fija almacena un número fijo de posiciones decimales. Internamente el valor es un entero escalado por una potencia de diez, de modo que `12.34` se guarda como `1234` con una escala de 2. Las fracciones decimales se representan así de forma exacta, algo que un tipo de coma flotante no puede hacer.
+
+**Ejemplo:**
+
+`DECIMAL(10, 2)` significa 10 dígitos en total, 2 de ellos después de la coma decimal, lo que deja 8 dígitos antes de ella.
+
+El precio de esta exactitud es una aritmética considerablemente más lenta que `double` y un mayor consumo de memoria. Los tipos de coma fija se utilizan, por tanto, donde la exactitud es obligatoria, sobre todo para importes monetarios, tipos impositivos y totales de facturas, no para mediciones ni gráficos.
+
+### Booleano {/* #boolean */}
+
+Un booleano contiene exactamente uno de los dos valores de verdad `true` y `false` y es el tipo de resultado de toda comparación y operación lógica (`&&`, `||`, `!`). Aunque bastaría un solo bit, normalmente se reserva al menos un byte, porque la memoria se direcciona byte a byte.
+
+### Carácter {/* #character */}
+
+Un tipo carácter contiene un único carácter, almacenado como el punto de código numérico de una codificación de caracteres.
+
+| Codificación | Tamaño por carácter    | Rango                                         |
+| ------------ | ---------------------- | --------------------------------------------- |
+| ASCII        | 1 byte (7 bits usados) | 128 caracteres, sin diéresis ni tildes        |
+| UTF-8        | 1 a 4 bytes            | Unicode completo, compatible con ASCII        |
+| UTF-16       | 2 o 4 bytes            | Unicode completo, usado por Java y C# `char` |
+
+**Dato curioso:** como un carácter se almacena como un número, la aritmética y la comparación funcionan con él: `'A' + 1` da como resultado `'B'`, y `'a' < 'b'` es `true`.
+
+---
+
+## Tipos de datos compuestos {/* #composite-data-types */}
+
+### Cadena {/* #string */}
+
+Una cadena es una secuencia de caracteres. Dos decisiones de diseño distinguen las implementaciones:
+
+- **Longitud:** fija (poco habitual en el código de aplicación) o variable
+- **Mutabilidad:** inmutable en Java, C# y Python, mutable en C++ y Rust
+
+Cuando una cadena es inmutable, cada modificación crea un objeto nuevo. Construir una cadena mediante concatenaciones repetidas dentro de un bucle copia por tanto todo el texto en cada pasada, y se sustituye por un tipo constructor (`StringBuilder`, `StringBuffer`).
+
+### Array {/* #array */}
+
+Un array almacena un número fijo de elementos **del mismo tipo** bajo un mismo nombre, a los que se accede mediante un índice que empieza en cero.
+
+```text
+scores = [17, 42, 8, 23]
+
+scores[0] = 17
+scores[3] = 23
+```
+
+Características:
+
+- El tamaño se fija en el momento de la creación, por lo que ampliarlo requiere un array nuevo y una copia
+- El acceso por índice tarda un tiempo constante, porque la dirección se calcula como `start + index x elementSize`
+- Los arrays multidimensionales (`matrix[row][column]`) modelan tablas y cuadrículas
+
+### Tupla {/* #tuple */}
+
+Una tupla agrupa un número fijo de valores **de tipos posiblemente distintos** en un orden fijo. Los elementos se direccionan por posición, no por nombre.
+
+```text
+point    = (3, 7)
+httpCall = ("GET", "/users", 200)
+```
+
+Las tuplas son útiles para devolver varios valores desde una función sin declarar un tipo específico. En cuanto las posiciones necesitan explicación, un registro es la mejor opción.
+
+### Registro, struct y objeto {/* #record-struct-and-object */}
+
+Un registro (también struct, o un objeto de una clase) agrupa valores de distintos tipos bajo campos **con nombre**.
+
+```text
+Customer {
+    id:      int
+    name:    string
+    active:  boolean
+    revenue: decimal
+}
+```
+
+A diferencia de una tupla, cada campo lleva un nombre, lo que hace explícito el significado de cada valor y permite ampliar el tipo sin romper las posiciones existentes.
+
+### Enumeración {/* #enumeration */}
+
+Un enum define un conjunto fijo y con nombre de valores permitidos.
+
+```text
+enum OrderState { NEW, PAID, SHIPPED, CANCELLED }
+```
+
+La ventaja frente a un número mágico o una constante de cadena suelta: el compilador rechaza cualquier valor fuera del conjunto y todos los estados válidos quedan documentados en un único lugar.
+
+### Colecciones {/* #collections */}
+
+Las listas, los conjuntos, los mapas y las colas son tipos compuestos que proporciona la biblioteca estándar y no el núcleo del lenguaje. Se tratan por separado en estructuras de datos. {/* TODO: add link to datastructures.md here once it exists */}
+
+---
+
+## Conversión de tipos {/* #type-conversion */}
+
+La conversión de un valor de un tipo a otro es **implícita** (la realiza automáticamente el compilador) o **explícita** (se solicita en el código fuente mediante un cast o una función de conversión).
+
+| Dirección          | Significado                                   | Ejemplo             | Riesgo                              |
+| ------------------ | --------------------------------------------- | ------------------- | ----------------------------------- |
+| **Ampliación**     | el rango de destino contiene el rango de origen | `int` => `long` | ninguno, sin pérdida                |
+| **Estrechamiento** | el rango de destino es menor                  | `long` => `int`  | desbordamiento, truncamiento        |
+
+```text
+implicit widening:   long total = 42;          // int fits into long
+explicit narrowing:  int  count = (int) 42L;   // cast required
+truncation:          int  n     = (int) 3.99;  // yields 3, not 4
+```
+
+La conversión entre una cadena y un número no es un cast, sino un **análisis sintáctico** (parsing) o un **formateo**, porque la representación en memoria cambia por completo. El parsing depende de la entrada y, por tanto, puede fallar, por lo que devuelve un error o lanza una excepción.
+
+---
+
+## Errores habituales {/* #common-pitfalls */}
+
+- **Desbordamiento de enteros:** sumar 1 al valor máximo da la vuelta hasta el valor mínimo en la mayoría de los lenguajes en lugar de generar un error
+- **División entera:** `7 / 2` da como resultado `3`, no `3.5`, mientras ambos operandos sean enteros
+- **Comparación de flotantes:** `0.1 + 0.2 == 0.3` se evalúa como `false`
+- **Dinero como float:** los errores de redondeo se acumulan a lo largo de muchas operaciones
+- **Truncamiento al estrechar:** convertir un valor de coma flotante en un entero elimina la parte fraccionaria, no la redondea
+- **Tipos sobredimensionados por defecto:** un `long` donde basta un `byte` desperdicia memoria en arrays y registros grandes
+
+---
+
+## Elección de un tipo de datos {/* #choosing-a-data-type */}
+
+1. **Rango de valores:** el valor mayor y el menor que pueden darse legítimamente, incluido el crecimiento previsto
+2. **Precisión:** si se necesita una parte fraccionaria y si debe ser exacta (dinero) o puede ser aproximada (mediciones)
+3. **Memoria y rendimiento:** relevante para arrays grandes, sistemas embebidos y transferencia por red, despreciable para variables individuales
+4. **Semántica:** si el propio tipo puede excluir valores no válidos, p. ej., un enum en lugar de una cadena o un booleano en lugar de `0` y `1`, de modo que un valor incorrecto falle en tiempo de compilación
+
+## Véase también {/* #see-also */}
+
+- [Conversiones de bits, bytes y unidades](./bit-byte-conversions.md): conversión entre bits, bytes y sus múltiplos decimales y binarios

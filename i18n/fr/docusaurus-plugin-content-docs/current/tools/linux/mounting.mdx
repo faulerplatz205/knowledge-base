@@ -1,0 +1,29 @@
+---
+title: "Montage sous Linux"
+description: "Attacher et détacher des systèmes de fichiers sous Linux avec les commandes `mount` et `umount`."
+keywords:
+    - Linux
+    - mount
+    - umount
+    - Système de fichiers
+    - point de montage
+machine_translated: true
+---
+
+# Montage sous Linux
+
+Sous Linux, un périphérique de stockage (disque, partition ou clé USB) n'est pas accessible par une lettre de lecteur, mais est **monté** dans l'arborescence des répertoires à un **point de montage** choisi. Une fois monté, son contenu apparaît sous ce répertoire.
+
+## Montage {/* #mounting */}
+
+```bash
+mount /dev/sdb1 /mnt/usb    # Attach the device /dev/sdb1 at /mnt/usb
+```
+
+## Démontage {/* #unmounting */}
+
+```bash
+umount /mnt/usb    # Detach the filesystem (note: the command is "umount", without the first "n")
+```
+
+{/* TODO: Still to be added => /etc/fstab (automatic mounting at boot), lsblk and findmnt for listing, df for usage, and mount options (e.g. -o ro). */}

@@ -1,0 +1,227 @@
+---
+title: "Types de données"
+description: "Types de données primitifs et composites dans les langages de programmation, leurs plages de valeurs, leur occupation mémoire et les règles de conversion."
+keywords:
+    - "Types de données"
+    - "Datatypes"
+    - "Types primitifs"
+    - "Types composites"
+    - "Entier"
+    - "Virgule flottante"
+    - "Booléen"
+    - "Caractère"
+    - "Chaîne de caractères"
+    - "Tuple"
+    - "Tableau"
+    - "Énumération"
+    - "Conversion de type"
+    - "Plage de valeurs"
+    - "Dépassement de capacité"
+tags:
+    - ap2
+machine_translated: true
+---
+
+# Types de données
+
+## Vue d'ensemble {/* #overview */}
+
+Un type de données définit trois éléments pour chaque variable, paramètre et valeur de retour :
+
+- **Plage de valeurs :** quelles valeurs sont valides, par ex. `true` et `false` pour un booléen
+- **Occupation mémoire :** combien d'octets sont réservés pour une valeur
+- **Opérations :** ce qui peut être fait avec la valeur, par ex. `+` signifie addition sur des nombres, mais concaténation sur des chaînes
+
+| Catégorie     | Contient                                | Exemples                                  |
+| ------------- | --------------------------------------- | ----------------------------------------- |
+| **Primitif**  | exactement une valeur indivisible       | `int`, `double`, `boolean`, `char`        |
+| **Composite** | plusieurs valeurs sous un même nom      | tableau, tuple, enregistrement, objet, chaîne de caractères |
+| **Abstrait**  | un contrat, non une structure concrète  | interface, paramètre de type générique    |
+
+:::info
+Les noms et tailles de types ci-dessous suivent la famille usuelle C/Java/C#. D'autres langages diffèrent : les entiers Python ont une précision arbitraire, JavaScript ne connaît qu'un seul type `number` reposant sur un flottant 64 bits, et Go nomme ses types selon leur largeur (`int32`, `uint64`).
+:::
+
+---
+
+## Types de données primitifs {/* #primitive-data-types */}
+
+### Types entiers {/* #integer-types */}
+
+Les entiers stockent des nombres entiers sans partie fractionnaire. La plage de valeurs découle directement du nombre de bits `n` :
+
+```text
+signed:    -2^(n-1)  to  2^(n-1) - 1
+unsigned:         0  to  2^n - 1
+```
+
+| Bits | Nom usuel | Plage signée                                            | Plage non signée                |
+| ---- | --------- | ------------------------------------------------------- | ------------------------------- |
+| 8    | `byte`    | -128 à 127                                              | 0 à 255                         |
+| 16   | `short`   | -32 768 à 32 767                                        | 0 à 65 535                      |
+| 32   | `int`     | -2 147 483 648 à 2 147 483 647                          | 0 à 4 294 967 295               |
+| 64   | `long`    | -9 223 372 036 854 775 808 à 9 223 372 036 854 775 807  | 0 à 18 446 744 073 709 551 615  |
+
+**Informations complémentaires :**
+
+- Un bit d'un entier signé code le signe, ce qui explique que la plage signée couvre environ la moitié de la plage non signée.
+- Le côté négatif va un cran plus loin que le côté positif, car zéro occupe une place parmi les valeurs non négatives.
+
+### Types à virgule flottante {/* #floating-point-types */}
+
+Les types à virgule flottante stockent des nombres avec partie fractionnaire sous forme de signe, de mantisse et d'exposant, selon IEEE 754.
+
+| Bits | Nom usuel         | Chiffres décimaux significatifs | Ordre de grandeur approximatif |
+| ---- | ----------------- | ------------------------------- | ------------------------------ |
+| 32   | `float`, `single` | environ 7                       | jusqu'à 3,4 x 10^38            |
+| 64   | `double`          | environ 15 à 16                 | jusqu'à 1,8 x 10^308           |
+
+Comme la mantisse est binaire, les fractions décimales telles que `0.1` n'ont pas de représentation exacte :
+
+```text
+0.1 + 0.2 = 0.30000000000000004
+```
+
+**Conséquences importantes :**
+
+- Les valeurs à virgule flottante ne se comparent jamais avec `==`, mais avec une petite tolérance
+- Les montants monétaires ne sont pas stockés en `float` ou `double`, mais dans un [type à virgule fixe](#fixed-point-types) ou sous forme de nombre entier de centimes
+
+### Types à virgule fixe {/* #fixed-point-types */}
+
+Un type à virgule fixe stocke un nombre fixe de décimales. En interne, la valeur est un entier mis à l'échelle par une puissance de dix : `12.34` est ainsi conservé sous la forme `1234` avec une échelle de 2. Les fractions décimales sont donc représentées exactement, ce qu'un type à virgule flottante ne peut pas faire.
+
+**Exemple :**
+
+`DECIMAL(10, 2)` signifie 10 chiffres au total, dont 2 après la virgule, ce qui laisse 8 chiffres avant celle-ci.
+
+Le prix de cette exactitude est une arithmétique nettement plus lente que `double` et une empreinte mémoire plus importante. Les types à virgule fixe sont donc employés là où l'exactitude est impérative, avant tout pour les montants monétaires, les taux de taxe et les totaux de factures, et non pour des mesures ou des graphiques.
+
+### Booléen {/* #boolean */}
+
+Un booléen contient exactement l'une des deux valeurs de vérité `true` et `false` et constitue le type de résultat de toute comparaison et de toute opération logique (`&&`, `||`, `!`). Un seul bit suffirait, mais au moins un octet est généralement réservé, car la mémoire est adressée octet par octet.
+
+### Caractère {/* #character */}
+
+Un type caractère contient un seul caractère, stocké sous la forme du point de code numérique d'un encodage de caractères.
+
+| Encodage | Taille par caractère    | Étendue                                      |
+| -------- | ----------------------- | -------------------------------------------- |
+| ASCII    | 1 octet (7 bits utilisés) | 128 caractères, sans caractères accentués  |
+| UTF-8    | 1 à 4 octets            | Unicode complet, compatible ASCII            |
+| UTF-16   | 2 ou 4 octets           | Unicode complet, utilisé par Java et C# `char` |
+
+**Anecdote :** Un caractère étant stocké sous forme de nombre, l'arithmétique et la comparaison s'appliquent à lui : `'A' + 1` donne `'B'`, et `'a' < 'b'` vaut `true`.
+
+---
+
+## Types de données composites {/* #composite-data-types */}
+
+### Chaîne de caractères {/* #string */}
+
+Une chaîne de caractères est une séquence de caractères. Deux choix de conception distinguent les implémentations :
+
+- **Longueur :** fixe (rare dans le code applicatif) ou variable
+- **Mutabilité :** immuable en Java, C# et Python, modifiable en C++ et Rust
+
+Lorsqu'une chaîne est immuable, chaque modification crée un nouvel objet. Construire une chaîne par concaténations répétées dans une boucle copie donc tout le texte à chaque itération et se remplace par un type de construction de chaînes (`StringBuilder`, `StringBuffer`).
+
+### Tableau {/* #array */}
+
+Un tableau stocke un nombre fixe d'éléments **du même type** sous un même nom, accessibles par un indice commençant à zéro.
+
+```text
+scores = [17, 42, 8, 23]
+
+scores[0] = 17
+scores[3] = 23
+```
+
+Caractéristiques :
+
+- La taille est fixée à la création, de sorte qu'un agrandissement exige un nouveau tableau et une copie
+- L'accès par indice s'effectue en temps constant, car l'adresse est calculée comme `start + index x elementSize`
+- Les tableaux multidimensionnels (`matrix[row][column]`) modélisent des tables et des grilles
+
+### Tuple {/* #tuple */}
+
+Un tuple regroupe un nombre fixe de valeurs **de types éventuellement différents** dans un ordre fixe. Les éléments sont adressés par leur position, non par leur nom.
+
+```text
+point    = (3, 7)
+httpCall = ("GET", "/users", 200)
+```
+
+Les tuples permettent de renvoyer plusieurs valeurs depuis une fonction sans déclarer de type dédié. Dès que les positions nécessitent une explication, un enregistrement est le meilleur choix.
+
+### Enregistrement, struct et objet {/* #record-struct-and-object */}
+
+Un enregistrement (aussi struct, ou objet d'une classe) regroupe des valeurs de types différents sous des champs **nommés**.
+
+```text
+Customer {
+    id:      int
+    name:    string
+    active:  boolean
+    revenue: decimal
+}
+```
+
+Contrairement à un tuple, chaque champ porte un nom, ce qui rend explicite la signification de chaque valeur et permet d'étendre le type sans casser les positions existantes.
+
+### Énumération {/* #enumeration */}
+
+Une énumération définit un ensemble fixe et nommé de valeurs autorisées.
+
+```text
+enum OrderState { NEW, PAID, SHIPPED, CANCELLED }
+```
+
+L'avantage par rapport à un nombre magique ou à une constante de chaîne libre : le compilateur rejette toute valeur extérieure à l'ensemble, et tous les états valides sont documentés en un seul endroit.
+
+### Collections {/* #collections */}
+
+Les listes, ensembles, tables associatives et files sont des types composites fournis par la bibliothèque standard plutôt que par le noyau du langage. Ils sont traités séparément dans les structures de données. {/* TODO: add link to datastructures.md here once it exists */}
+
+---
+
+## Conversion de type {/* #type-conversion */}
+
+La conversion d'une valeur d'un type vers un autre est soit **implicite** (effectuée automatiquement par le compilateur), soit **explicite** (demandée dans le code source par un cast ou une fonction de conversion).
+
+| Direction         | Signification                          | Exemple             | Risque                              |
+| ----------------- | -------------------------------------- | ------------------- | ----------------------------------- |
+| **Élargissement** | la plage cible contient la plage source | `int` => `long` | aucun, sans perte                   |
+| **Rétrécissement** | la plage cible est plus petite        | `long` => `int` | dépassement de capacité, troncature |
+
+```text
+implicit widening:   long total = 42;          // int fits into long
+explicit narrowing:  int  count = (int) 42L;   // cast required
+truncation:          int  n     = (int) 3.99;  // yields 3, not 4
+```
+
+La conversion entre une chaîne et un nombre n'est pas un cast, mais une opération d'**analyse** (parsing) ou de **formatage**, car la représentation en mémoire change complètement. L'analyse dépend de l'entrée et peut donc échouer, c'est pourquoi elle renvoie une erreur ou lève une exception.
+
+---
+
+## Pièges courants {/* #common-pitfalls */}
+
+- **Dépassement d'entier :** ajouter 1 à la valeur maximale revient à la valeur minimale dans la plupart des langages, au lieu de déclencher une erreur
+- **Division entière :** `7 / 2` donne `3`, et non `3.5`, tant que les deux opérandes sont des entiers
+- **Comparaison de flottants :** `0.1 + 0.2 == 0.3` est évalué à `false`
+- **Argent en flottant :** les erreurs d'arrondi s'accumulent au fil des opérations
+- **Troncature lors du rétrécissement :** convertir une valeur à virgule flottante en entier supprime la partie fractionnaire, sans arrondir
+- **Types surdimensionnés par défaut :** un `long` là où un `byte` suffit gaspille de la mémoire dans de grands tableaux et enregistrements
+
+---
+
+## Choix d'un type de données {/* #choosing-a-data-type */}
+
+1. **Plage de valeurs :** la plus grande et la plus petite valeur pouvant légitimement apparaître, croissance attendue comprise
+2. **Précision :** si une partie fractionnaire est nécessaire, et si elle doit être exacte (argent) ou peut être approximative (mesures)
+3. **Mémoire et performance :** pertinentes pour les grands tableaux, les systèmes embarqués et les transferts réseau, négligeables pour des variables isolées
+4. **Sémantique :** si les valeurs invalides peuvent être exclues par le type lui-même, par ex. une énumération au lieu d'une chaîne ou un booléen au lieu de `0` et `1`, de sorte qu'une valeur erronée échoue à la compilation
+
+## Voir aussi {/* #see-also */}
+
+- [Bit, octet et conversions d'unités](./bit-byte-conversions.md) : conversion entre bits, octets et leurs multiples décimaux et binaires

@@ -1,0 +1,67 @@
+---
+title: "Permissions de fichiers sous Linux"
+description: "Lecture des métadonnées et des permissions de fichiers sous Linux avec `ls -l`, affichage des fichiers cachés avec `ls -a` et lecture de la notation de permissions `-rwxr-xr-x`."
+keywords:
+    - Linux
+    - Permissions de fichiers
+    - ls
+    - rwx
+    - Système de fichiers
+    - fichiers cachés
+machine_translated: true
+---
+
+# Permissions de fichiers sous Linux
+
+Deux options de `ls` couvrent les cas courants : afficher les détails (y compris les permissions) et afficher les fichiers cachés.
+
+## Lister les fichiers {/* #listing-files */}
+
+```bash
+ls -l    # Long format: permissions, owner, size, date, name
+ls -a    # Show all files, including hidden ones
+```
+
+Les fichiers et répertoires dont le nom commence par un point (`.bashrc`, `.config`) sont **cachés** et n'apparaissent qu'avec `ls -a`. Les deux options sont souvent combinées sous la forme `ls -la`.
+
+## Exemple de sortie {/* #example-output */}
+
+Chaque ligne de `ls -l` décrit une entrée sur plusieurs colonnes :
+
+```bash
+-rw-r--r-- 1 user staff 1024 Apr 25 10:00 notes.txt
+drwxr-xr-x 2 user staff 4096 Apr 25 09:30 projects
+```
+
+| Colonne      | Exemple        | Signification                          |
+| ------------ | -------------- | -------------------------------------- |
+| Permissions  | `-rw-r--r--`   | Type de fichier et permissions         |
+| Liens        | `1`            | Nombre de liens physiques              |
+| Propriétaire | `user`         | Propriétaire du fichier                |
+| Groupe       | `staff`        | Groupe auquel appartient le fichier    |
+| Taille       | `1024`         | Taille en octets                       |
+| Date et heure | `Apr 25 10:00` | Date de dernière modification          |
+| Nom          | `notes.txt`    | Nom du fichier ou du répertoire        |
+
+## Lire la notation des permissions {/* #reading-the-permission-notation */}
+
+Une ligne de `ls -l` commence par une chaîne de 10 caractères telle que `-rwxr-xr-x`. Elle se décompose en quatre parties :
+
+| Position | Exemple | Signification                                                          |
+| -------- | ------- | ---------------------------------------------------------------------- |
+| 1        | `-`     | Type de fichier (`-` = fichier, `d` = répertoire, `l` = lien symbolique) |
+| 2-4      | `rwx`   | Permissions du **propriétaire**                                        |
+| 5-7      | `r-x`   | Permissions du **groupe**                                              |
+| 8-10     | `r-x`   | Permissions des **autres**                                             |
+
+Chacun des trois groupes utilise les mêmes trois indicateurs :
+
+| Indicateur | Signification | Effet sur un fichier   | Effet sur un répertoire        |
+| ---------- | ------------- | ---------------------- | ------------------------------ |
+| `r`    | lecture       | Lire le contenu        | Lister les entrées             |
+| `w`    | écriture      | Modifier le contenu    | Créer/supprimer des entrées    |
+| `x`    | exécution     | Exécuter comme programme | Entrer (`cd`) dans le répertoire |
+
+Un `-` à la place d'une lettre signifie que la permission n'est pas accordée. Ainsi, `-rwxr-xr-x` signifie : un fichier ordinaire, le propriétaire peut lire/écrire/exécuter, le groupe et les autres peuvent lire et exécuter mais pas écrire.
+
+{/* TODO: Still to be added => chmod, octal notation (e.g. 755, 644), and chown. */}

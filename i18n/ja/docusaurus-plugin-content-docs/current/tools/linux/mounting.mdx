@@ -1,0 +1,29 @@
+---
+title: "Linuxでのマウント"
+description: "`mount`および`umount`コマンドによるLinuxでのファイルシステムの接続と切り離し。"
+keywords:
+    - Linux
+    - mount
+    - umount
+    - ファイルシステム
+    - マウントポイント
+machine_translated: true
+---
+
+# Linuxでのマウント
+
+Linuxでは、ストレージデバイス(ディスク、パーティション、USBメモリ)はドライブレターではなく、ディレクトリツリー内の任意の**マウントポイント**に**マウント**することでアクセスされる。マウント後、その内容はこのディレクトリの下に表示される。
+
+## マウント {/* #mounting */}
+
+```bash
+mount /dev/sdb1 /mnt/usb    # Attach the device /dev/sdb1 at /mnt/usb
+```
+
+## アンマウント {/* #unmounting */}
+
+```bash
+umount /mnt/usb    # Detach the filesystem (note: the command is "umount", without the first "n")
+```
+
+{/* TODO: Still to be added => /etc/fstab (automatic mounting at boot), lsblk and findmnt for listing, df for usage, and mount options (e.g. -o ro). */}
