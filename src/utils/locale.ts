@@ -1,5 +1,7 @@
-export const AVAILABLE_LOCALES = new Set([ "en", "de" ]);
-export const DEFAULT_LOCALE = "en";
+import siteConfig from "@generated/docusaurus.config";
+
+export const AVAILABLE_LOCALES = new Set(siteConfig.i18n.locales);
+export const DEFAULT_LOCALE = siteConfig.i18n.defaultLocale;
 export const STORAGE_KEY = "preferred-locale";
 
 export function localeFromPath(path: string): string {

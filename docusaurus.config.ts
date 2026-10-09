@@ -2,8 +2,19 @@ import "dotenv/config";
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import { existsSync, readFileSync } from "node:fs";
+import { DEFAULT_LOCALE, MACHINE_TRANSLATED_LOCALES, MANUAL_LOCALES } from "./src/utils/locales.mjs";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+// A machine-translated locale is published once fully translated; INCLUDE_ALL_LOCALES=true shows all
+function isTranslationComplete(locale: string): boolean {
+    if (process.env.INCLUDE_ALL_LOCALES === "true") return true;
+    const statePath = `./i18n/${locale}/translation-state.json`;
+    return existsSync(statePath) && (JSON.parse(readFileSync(statePath, "utf8")) as { complete?: boolean }).complete === true;
+}
+
+const LOCALES = [ DEFAULT_LOCALE, ...MANUAL_LOCALES, ...MACHINE_TRANSLATED_LOCALES.filter(isTranslationComplete) ];
 
 const config: Config = {
     title: "MORITZ // KNOWLEDGE BASE",
@@ -28,8 +39,13 @@ const config: Config = {
     onBrokenLinks: "warn",
 
     i18n: {
-        defaultLocale: "en",
-        locales: [ "en", "de" ],
+        defaultLocale: DEFAULT_LOCALE,
+        locales: LOCALES,
+        localeConfigs: {
+            ar: {
+                direction: "rtl",
+            },
+        },
     },
 
     clientModules: [ "./src/clientModules/rememberLocale.ts" ],
@@ -74,7 +90,7 @@ const config: Config = {
                 "@type": "WebSite",
                 "name": "Knowledge Base",
                 "url": "https://knowledge.moritz-grimm.dev",
-                "inLanguage": [ "en", "de" ],
+                "inLanguage": LOCALES,
                 "author": {
                     "@type": "Person",
                     "name": "Moritz Grimm",

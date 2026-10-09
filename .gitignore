@@ -21,3 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+# Generated temporarily by scripts/translate.mjs
+/i18n/en
+/.translation-queue

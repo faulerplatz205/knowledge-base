@@ -131,7 +131,7 @@ html[data-theme-style='homepage'] .footer {
 }
 
 html[data-theme-style='homepage'] .menu__list .menu__list {
-    border-left: 1px solid var(--homepage-border);
+    border-inline-start: 1px solid var(--homepage-border);
 }
 
 /* Code blocks */
@@ -429,6 +429,6 @@ html[data-theme-style='homepage'] {
     box-shadow: none;
     color: #777777;
     text-shadow: none;
-    margin-right: 2px;
+    margin-inline-end: 2px;
     padding-bottom: 0;
 }

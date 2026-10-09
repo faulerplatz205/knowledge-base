@@ -500,5 +500,17 @@
   "theme.SearchModal.placeholder": {
     "message": "Search docs",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "doc.machineTranslated": {
+    "message": "Diese Seite wurde automatisch übersetzt und kann Fehler enthalten. Maßgeblich ist das {originalLink}.",
+    "description": "Banner on a doc page that was translated automatically from English; {originalLink} is the link to the English page"
+  },
+  "doc.machineTranslated.originalLink": {
+    "message": "englische Original",
+    "description": "Text of the link to the English original of a machine-translated doc page"
+  },
+  "doc.notTranslated": {
+    "message": "Diese Seite wurde noch nicht ins Deutsche übersetzt",
+    "description": "Banner on a doc page that is shown in English because no translation exists yet"
   }
 }
