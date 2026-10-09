@@ -73,4 +73,4 @@ El subproceso **Request Fulfillment** gestiona las solicitudes de servicio (cons
 - Responsable: soporte de primer nivel
 - Herramientas utilizadas: sistema de seguimiento de incidencias, base de conocimiento, manual
 - Desencadenante: un cliente contacta con el soporte con una consulta de usuario
-- Punto de decisión: clasificación de la consulta del usuario (Hilfestellung / Änderungswunsch / Passwortanfrage)
+- Punto de decisión: clasificación de la consulta del usuario (ayuda / solicitud de cambio / solicitud de contraseña)

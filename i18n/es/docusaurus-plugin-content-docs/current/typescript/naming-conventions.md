@@ -13,7 +13,7 @@ machine_translated: true
 
 # Convenciones de nomenclatura
 
-## Resumen {/*#overview*/}
+## Visión general {/*#overview*/}
 
 Una nomenclatura coherente facilita la lectura y el mantenimiento del código. Estas convenciones reflejan los estándares de la comunidad de TypeScript más extendidos.
 

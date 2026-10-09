@@ -38,7 +38,7 @@ Aplicações típicas:
 | --------------- | -------------------------------------------- | ------------------------------------------------------------------ |
 | Nó inicial      | Círculo preenchido `●`                       | Início da atividade, exatamente um por diagrama                    |
 | Ação            | Retângulo arredondado                        | Um passo de trabalho indivisível, nomeado *verbo + objeto*         |
-| Atividade (chamada) | Retângulo arredondado com símbolo de rake | Um passo detalhado em um diagrama próprio                         |
+| Atividade (chamada) | Retângulo arredondado com símbolo de ancinho | Um passo detalhado em um diagrama próprio                         |
 | Fluxo de controle | Seta contínua                              | Ordem de execução, leva de uma ação à seguinte                     |
 | Guarda          | `[condition]` escrito sobre um fluxo               | Condição sob a qual esse fluxo pode ser seguido                    |
 | Nó de decisão   | Losango, uma entrada e várias saídas         | Ramificação, os fluxos de saída têm guardas mutuamente exclusivas  |

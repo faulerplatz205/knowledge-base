@@ -21,7 +21,7 @@ machine_translated: true
 
 ## 概要 {/*#overview*/}
 
-**リリース管理(Release Management)**はITSMの第4段階であり、変更管理の延長にある。変更管理が変更を承認して計画するのに対し、リリース管理は変更を**実行**し、円滑で中断のないロールアウトを目指す。
+**リリース管理** (Release Management) はITSMの第4段階であり、変更管理の延長にある。変更管理が変更を承認して計画するのに対し、リリース管理は変更を**実行**し、円滑で中断のないロールアウトを目指す。
 
 ## 変更管理との関係 {/*#relationship-to-change-management*/}
 

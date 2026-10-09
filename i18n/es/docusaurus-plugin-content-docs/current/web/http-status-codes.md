@@ -13,7 +13,7 @@ machine_translated: true
 
 # Códigos de estado HTTP
 
-## Resumen {/*#overview*/}
+## Visión general {/*#overview*/}
 
 Los códigos de estado HTTP son números de tres dígitos que un servidor devuelve en respuesta a una petición de un cliente. Indican si la petición se ha realizado correctamente, se ha redirigido o ha producido un error. Los códigos de estado se agrupan en cinco clases según su primer dígito.
 

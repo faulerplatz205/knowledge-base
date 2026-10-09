@@ -50,9 +50,9 @@ machine_translated: true
 
 已知错误一旦存在，错误控制便负责管理从临时解决方案到永久修复的过程。
 
-- 立即提供**临时解决方案（Workaround）**以恢复服务
-- 通过 **[RFC](./change-management.md#request-for-change-rfc)** 启动永久修复
-- 变更实施后，问题管理通过**[实施后评审（PIR）](./change-management.md#closing-a-change-pir)**收到确认
+- 立即提供**临时解决方案**（Workaround）以恢复服务
+- 通过 [**RFC**](./change-management.md#request-for-change-rfc) 启动永久修复
+- 变更实施后，问题管理通过[**实施后评审（PIR）**](./change-management.md#closing-a-change-pir)收到确认
 - 通知一线支持，以便其向客户更新情况
 
 ### 3. 主动问题管理 {/*#3-proactive-problem-management*/}

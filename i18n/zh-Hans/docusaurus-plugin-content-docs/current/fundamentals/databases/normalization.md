@@ -27,7 +27,7 @@ machine_translated: true
 
 ## 第一范式（1NF） {/*#first-normal-form-1nf*/}
 
-**规则：**每一列必须包含原子（不可再分）值，且每一行必须唯一。
+**规则**：每一列必须包含原子（不可再分）值，且每一行必须唯一。
 
 **违反：**`Phone` 列在一个单元格中存储多个号码。
 
@@ -42,7 +42,7 @@ machine_translated: true
 | 1          | Alice | 111-111 |
 | 1          | Alice | 222-222 |
 
-**违反：**同一属性使用多个列。
+**违反**：同一属性使用多个列。
 
 | CustomerID | Name  | Phone1  | Phone2  |
 | ---------- | ----- | ------- | ------- |
@@ -59,14 +59,14 @@ machine_translated: true
 
 **规则：**必须满足 1NF，且每个非键属性必须依赖于**整个**主键，而不是仅依赖其一部分
 
-**违反：**该表使用 `(OrderID, ProductID)` 作为复合键，但 `ProductName` 仅依赖于 `ProductID`。
+**违反**：该表使用 `(OrderID, ProductID)` 作为复合键，但 `ProductName` 仅依赖于 `ProductID`。
 
 | OrderID | ProductID | ProductName | Quantity |
 | ------- | --------- | ----------- | -------- |
 | 1       | 42        | Keyboard    | 2        |
 | 2       | 42        | Keyboard    | 1        |
 
-**修正后：**将 `ProductName` 移到单独的 `Products` 表中。
+**修正后**：将 `ProductName` 移到单独的 `Products` 表中。
 
 **Orders：**
 
@@ -83,7 +83,7 @@ machine_translated: true
 
 ## 第三范式（3NF） {/*#third-normal-form-3nf*/}
 
-**规则：**必须满足 2NF，且任何非键属性都不得依赖于另一个非键属性（无传递依赖）。
+**规则**：必须满足 2NF，且任何非键属性都不得依赖于另一个非键属性（无传递依赖）。
 
 **违反：**`DepartmentHead` 依赖于 `Department`，而不是直接依赖于 `EmployeeID`。
 
@@ -93,7 +93,7 @@ machine_translated: true
 | 2          | Sales      | Carol          |
 | 3          | IT         | Dave           |
 
-**修正后：**将 `DepartmentHead` 移到单独的 `Departments` 表中。
+**修正后**：将 `DepartmentHead` 移到单独的 `Departments` 表中。
 
 **Employees：**
 

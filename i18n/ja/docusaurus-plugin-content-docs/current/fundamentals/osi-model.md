@@ -88,6 +88,6 @@ OSI (Open Systems Interconnection) モデルは、異なるネットワークシ
 
 下(1)から上(7)への層を覚えるために:
 
-> **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way`
+> **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way
 
 **P**hysical、**D**ata Link、**N**etwork、**T**ransport、**S**ession、**P**resentation、**A**pplication

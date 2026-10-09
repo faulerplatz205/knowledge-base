@@ -96,7 +96,7 @@ Los 17 componentes estándar:
 
 ## Incidente mayor {/*#major-incident*/}
 
-Un **incidente mayor (Major Incident)** es un suceso de alta prioridad y gran impacto que provoca una caída crítica de un servicio o una interrupción masiva que afecta de forma significativa a las operaciones del negocio. Normalmente se le asigna la prioridad "Critical" o "High".
+Un **incidente mayor (Major Incident)** es un suceso de alta prioridad y gran impacto que provoca una caída crítica de un servicio o una interrupción masiva que afecta de forma significativa a las operaciones del negocio. Normalmente se le asigna la prioridad "Crítica" o "Alta".
 
 Características:
 

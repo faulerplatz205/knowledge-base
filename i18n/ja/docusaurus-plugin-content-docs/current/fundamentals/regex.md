@@ -322,7 +322,7 @@ const result = "2026-03-18".match(/(\d{4})-(\d{2})-(\d{2})/);
 // => ["cat", "bat", "sat"]
 ```
 
-何もマッチしない場合、`match()`は空の配列ではなく`null`を返す。
+何もマッチしない場合、`match()`は`null`を返し、空の配列は**返さない**。
 
 ```javascript
 "hello".match(/\d+/); // null

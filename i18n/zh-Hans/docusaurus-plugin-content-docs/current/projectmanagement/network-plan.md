@@ -44,8 +44,8 @@ machine_translated: true
 - **EET**（最早结束时间）：任务最早可以结束的时间
 - **LAT**（最晚开始时间）：在不延误项目的前提下，任务最晚可以开始的时间
 - **LET**（最晚结束时间）：任务最晚可以结束的时间
-- **自由时差**:`min(EAT of all successors) − EET`；任务可以推迟多久而不延误其任何紧后任务
-- **总时差**:`LAT − EAT`；任务可以推迟的时间量，而不延误项目结束日期
+- **自由时差**：`min(EAT of all successors) − EET`；任务可以推迟多久而不延误其任何紧后任务
+- **总时差**：`LAT − EAT`；任务可以推迟的时间量，而不延误项目结束日期
 
 ## 时差类型 {/*#buffer-types*/}
 
@@ -57,12 +57,12 @@ machine_translated: true
 
 ## 计算网络图 {/*#calculating-the-plan*/}
 
-**正向计算**：从左到右计算 EAT 和 EET:
+**正向计算**：从左到右计算 EAT 和 EET：
 
 - EET = EAT + 工期
 - 如果一个任务有多个前置任务 => EAT = 所有前置任务 EET 的最大值
 
-**反向计算**：从右到左计算 LAT 和 LET:
+**反向计算**：从右到左计算 LAT 和 LET：
 
 - LAT = LET − 工期
 - 如果一个任务有多个后继任务 => LET = 所有后继任务 LAT 的最小值

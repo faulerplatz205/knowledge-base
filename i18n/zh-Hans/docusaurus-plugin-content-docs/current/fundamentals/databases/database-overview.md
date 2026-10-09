@@ -19,7 +19,7 @@ machine_translated: true
 
 ## 概述 {/*#overview*/}
 
-数据库是由数据库管理系统（DBMS）管理的有组织的结构化数据集合。两种主要范式是**关系型（SQL）**数据库和**非关系型（NoSQL）**数据库。
+数据库是由数据库管理系统（DBMS）管理的有组织的结构化数据集合。两种主要范式是**关系型**（SQL）数据库和**非关系型**（NoSQL）数据库。
 
 ## 关系型数据库（SQL） {/*#relational-databases-sql*/}
 
@@ -29,22 +29,22 @@ machine_translated: true
 - 模式预先定义，并由数据库强制执行
 - 最适合具有明确关系的结构化数据
 
-**常见系统：**PostgreSQL、MySQL、SQLite、Microsoft SQL Server、Oracle DB
+**常见系统**：PostgreSQL、MySQL、SQLite、Microsoft SQL Server、Oracle DB
 
 ### 关键概念 {/*#key-concepts*/}
 
-**[规范化](./normalization.md)：**组织表结构以减少数据冗余：
+**[规范化](./normalization.md)**：组织表结构以减少数据冗余：
 
-- **1NF：**原子值，无重复组
-- **2NF：**对复合键无部分依赖
-- **3NF：**无传递依赖
+- **1NF**：原子值，无重复组
+- **2NF**：对复合键无部分依赖
+- **3NF**：无传递依赖
 
-**ACID 特性：**可靠事务的保证：
+**ACID 特性**：可靠事务的保证：
 
-- **原子性（Atomicity）：**事务要么完全成功，要么完全失败
-- **一致性（Consistency）：**数据始终从一个有效状态转移到另一个有效状态
-- **隔离性（Isolation）：**并发事务互不干扰
-- **持久性（Durability）：**已提交的更改即使在崩溃后依然保留
+- **原子性（Atomicity）**：事务要么完全成功，要么完全失败
+- **一致性（Consistency）**：数据始终从一个有效状态转移到另一个有效状态
+- **隔离性（Isolation）**：并发事务互不干扰
+- **持久性（Durability）**：已提交的更改即使在崩溃后依然保留
 
 ## 非关系型数据库（NoSQL） {/*#non-relational-databases-nosql*/}
 

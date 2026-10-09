@@ -16,7 +16,7 @@ machine_translated: true
 
 ## Class {/*#class*/}
 
-kebap-case
+kebab-case
 
 ### مثال {/*#example*/}
 

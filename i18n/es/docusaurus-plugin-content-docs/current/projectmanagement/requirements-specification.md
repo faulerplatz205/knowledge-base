@@ -21,7 +21,7 @@ En la gestión de proyectos, el **pliego de requisitos** y el **pliego de especi
 
 ## Pliego de requisitos {/*#requirement-specification*/}
 
-Contiene los requisitos de un cliente a un contratista y una idea aproximada del sistema deseado.
+Contiene los requisitos que un cliente plantea a un contratista y una idea aproximada del sistema deseado.
 
 - Descripción de los objetivos del proyecto
 - Descripción de la situación actual

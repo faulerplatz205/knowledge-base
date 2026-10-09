@@ -39,7 +39,7 @@ machine_translated: true
 
 - 自由（自由主义）市场经济的奠基人
 - 著作：*The Wealth of Nations*（《国富论》）
-- 思想：市场的**"看不见的手"**，自由市场带来繁荣
+- 思想：市场的"**看不见的手**"，自由市场带来繁荣
 
 ## 为什么需要竞争？ {/*#why-competition*/}
 

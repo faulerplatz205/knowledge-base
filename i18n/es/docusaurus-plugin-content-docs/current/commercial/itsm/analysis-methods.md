@@ -75,7 +75,7 @@ El **ciclo DMAIC** se utiliza para problemas y proyectos complejos. El acrónimo
 | Fase        | Pregunta clave                        | Métodos / herramientas                                                                                                                  |
 | ----------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | **Define**  | ¿Cuál es el problema?                 | Comentarios de clientes, definición del problema, alcance, análisis de KPI, matriz RACI                                                 |
-| **Measure** | ¿Qué magnitud tiene el problema?      | Análisis de la situación IST, revisión del [SLA](./sla.md), aclaración del nivel de escalado                                            |
+| **Measure** | ¿Qué magnitud tiene el problema?      | Análisis de la situación actual (IST), revisión del [SLA](./sla.md), aclaración del nivel de escalado                                            |
 | **Analyse** | ¿Cuáles son las causas raíz?          | Método de los 5 porqués, encuestas a clientes, [base de datos de errores](./problem-management.md#known-error-database-kedb), diagrama de Ishikawa |
 | **Improve** | ¿Puede desarrollarse una solución?    | Simulaciones, pruebas, matriz de soluciones, diagrama de Ishikawa                                                                       |
 | **Control** | ¿Puede asegurarse la mejora?          | Monitorización, sistema de gestión de servicios                                                                                         |
@@ -90,6 +90,6 @@ La **matriz causa-efecto** (basada en el método Kepner-Tregoe) analiza un probl
 | **Localizar (Dónde)**           | ¿Dónde se produce el problema?                | ¿Dónde NO se produce?                   | ¿Qué es distinto en ese lugar?                     | ¿Cuál es la posible causa?   |
 | **Tiempo (Cuándo)**             | ¿Cuándo apareció el problema?                 | ¿Cuándo NO apareció?                    | ¿Qué era distinto en ese momento?                  | ¿Cuál es la posible causa?   |
 |                                 | ¿En qué periodo se identificó el problema?    | ¿En qué periodo NO apareció?            | ¿Qué era distinto durante ese periodo?             |                              |
-| **Significancia (Cuánto)**      | ¿Qué magnitud / extensión tiene el problema?  | ¿Qué tan pequeño o limitado es?         | ¿Cuál es la diferencia en el alcance?              | ¿Cuál es la posible causa?   |
+| **Magnitud (Cuánto)**           | ¿Qué magnitud / extensión tiene el problema?  | ¿Cuán pequeño o limitado es?            | ¿Cuál es la diferencia en el alcance?              | ¿Cuál es la posible causa?   |
 |                                 | ¿Cuántas (unidades) están afectadas?          | ¿Cuántas (unidades) NO están afectadas? |                                                    |                              |
 |                                 | ¿Qué parte está afectada?                     | ¿Qué parte NO está afectada?            |                                                    |                              |

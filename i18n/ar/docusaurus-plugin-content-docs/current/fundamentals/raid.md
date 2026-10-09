@@ -1,6 +1,6 @@
 ---
 title: "RAID"
-description: "نظرة عامة على JBOD ومستويات RAID أرقام 0 و1 و5 و6 و10 و01 مع المفاضلات بين الأداء والتكرار الاحتياطي وكفاءة التخزين."
+description: "نظرة عامة على JBOD ومستويات RAID ‏0 و1 و5 و6 و10 و01 مع المفاضلات بين الأداء والتكرار الاحتياطي وكفاءة التخزين."
 keywords:
     - RAID
     - Redundant Array of Independent Disks

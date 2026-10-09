@@ -14,7 +14,7 @@ machine_translated: true
 
 # Tailscale
 
-## Qué es Tailscale {/*#what-is-tailscale*/}
+## ¿Qué es Tailscale? {/*#what-is-tailscale*/}
 
 Tailscale es un servicio de VPN en malla sin configuración construido sobre [WireGuard](../fundamentals/wireguard.md). Conecta dispositivos en una red privada llamada «**tailnet**», con independencia de su ubicación o de si están detrás de NAT, cortafuegos o proveedores de acceso a Internet distintos.
 

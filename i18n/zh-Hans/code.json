@@ -20,7 +20,7 @@
     "description": "Title of the 'About me' section"
   },
   "landingpage.aboutme.description1": {
-    "message": "我是一名二年级的开发学徒，专注于 JavaScript/Typescript、HTML 和 CSS。业余时间，我会做自己的项目，并尝试与软件相关的各种事物。",
+    "message": "我是一名二年级的开发学徒，专注于 JavaScript/TypeScript、HTML 和 CSS。业余时间，我会做自己的项目，并尝试与软件相关的各种事物。",
     "description": "First paragraph about the about me section"
   },
   "landingpage.aboutme.description2": {

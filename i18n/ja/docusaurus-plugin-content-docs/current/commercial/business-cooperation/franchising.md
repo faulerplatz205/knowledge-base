@@ -54,7 +54,7 @@ machine_translated: true
 ## 競争、消費者、経済への影響 {/*#effects-on-competition-consumers-and-economy*/}
 
 - **競争**: 大手ブランドを強化し、小規模事業者への圧力となる
-- **消費者**: 一貫した品質と認知による安心感
+- **消費者**: 一貫した品質と高い認知度
 - **経済**: 雇用を創出し、起業を促進する
 
 ## 例 {/*#examples*/}

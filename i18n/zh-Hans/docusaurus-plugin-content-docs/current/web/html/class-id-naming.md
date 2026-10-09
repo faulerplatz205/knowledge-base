@@ -1,6 +1,6 @@
 ---
 title: "Class 与 ID 命名规范"
-description: "HTML 的 class 和 ID 命名规范：class 使用 kebab-case,ID 使用 camelCase"
+description: "HTML 的 class 和 ID 命名规范：class 使用 kebab-case，ID 使用 camelCase"
 keywords:
   - "HTML"
   - "CSS"
@@ -16,7 +16,7 @@ machine_translated: true
 
 ## Class {/*#class*/}
 
-kebap-case
+kebab-case
 
 ### 示例 {/*#example*/}
 

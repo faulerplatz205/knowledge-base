@@ -19,7 +19,7 @@ machine_translated: true
 
 ## 文件与目录 {/*#files--directories*/}
 
-- 文件和目录名使用 **kebab-case**:`user-service.ts`、`auth-utils/`
+- 文件和目录名使用 **kebab-case**：`user-service.ts`、`auth-utils/`
 - 纯 TypeScript 使用 `.ts`，包含 JSX 的文件使用 `.tsx`
 - 测试文件：`user-service.test.ts` 或 `user-service.spec.ts`
 - 尽可能以文件的主要导出命名文件
@@ -146,7 +146,7 @@ TypeScript 编译器和标准库对枚举成员使用 PascalCase（例如 `TypeS
 
 ## 泛型 {/*#generics*/}
 
-- 对简单、众所周知的类型参数使用**单个大写字母**:`T`(类型)、`K`(键)、`V`(值)、`E`(元素)
+- 对简单、众所周知的类型参数使用**单个大写字母**：`T`（类型）、`K`（键）、`V`（值）、`E`（元素）
 - 当含义不明显或存在多个类型参数时，使用以 `T` 为前缀的**具有描述性的 PascalCase 名称**
 
 ```typescript

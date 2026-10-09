@@ -34,7 +34,7 @@ ITIL define **procesos**, **roles** y **términos** fundamentales para las organ
 
 ## Ciclo de vida del servicio ITIL {/*#itil-service-lifecycle*/}
 
-El ciclo de vida del servicio ITIL consta de cinco fases más una envolvente de mejora continua:
+El ciclo de vida del servicio ITIL consta de cinco fases: cuatro fases consecutivas y una fase de mejora continua que las envuelve a todas:
 
 ### Estrategia del servicio (Service Strategy) {/*#service-strategy*/}
 

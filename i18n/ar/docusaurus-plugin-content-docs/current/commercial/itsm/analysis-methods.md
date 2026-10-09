@@ -33,7 +33,7 @@ machine_translated: true
 | لماذا؟    | لماذا لا تُظهر جميع الأحرف بوضوح؟ | الحبر/المسحوق رديء                                       |
 | لماذا؟    | لماذا الحبر/المسحوق رديء؟                  | يتلطخ وأحيانًا لا يطبع إطلاقًا                   |
 | لماذا؟    | لماذا يتلطخ وأحيانًا لا يطبع؟  | جودة المسحوق منخفضة                                        |
-| لماذا؟    | لماذا جودة المسحوق منخفضة؟               | **شُري أرخص مسحوق** (السبب الجذري)               |
+| لماذا؟    | لماذا جودة المسحوق منخفضة؟               | **اشتُري أرخص مسحوق** (السبب الجذري)               |
 
 ## مخطط إيشيكاوا (مخطط عظم السمكة) {/*#ishikawa-diagram-fishbone-diagram*/}
 
@@ -49,15 +49,15 @@ machine_translated: true
 
 ### فئات التأثير الرئيسية (8M) {/*#main-influence-categories-8m*/}
 
-- Category
-- Material
-- People
-- Machine
-- Method
-- Management
-- Environment
-- Measurement
-- Money
+- الفئة (Category)
+- المواد (Material)
+- الأفراد (People)
+- الآلات (Machine)
+- الطريقة (Method)
+- الإدارة (Management)
+- البيئة (Environment)
+- القياس (Measurement)
+- المال (Money)
 
 ويمكن اعتماد فئات تأثير أخرى بحسب المشكلة.
 

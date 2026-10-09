@@ -34,7 +34,7 @@ python -snake
 
 ## OR 运算符 {/*#or-operator*/}
 
-在词项之间使用 `OR`(大写)，即可查找包含任一词项的页面。
+在词项之间使用 `OR`（大写），即可查找包含任一词项的页面。
 
 ```text
 React OR Vue

@@ -191,8 +191,8 @@ machine_translated: true
 
 ## 在需求分析中的作用 {/*#role-in-requirements-analysis*/}
 
-- **[需求规格说明书](../../projectmanagement/requirements-specification.md#requirement-specification)**由客户编写，说明需要*什么*以及*为什么*。用例是其出色的结构，因为每个用例都描述一项需求而不规定解决方案
-- **[功能规格说明书](../../projectmanagement/requirements-specification.md#functional-specification)**由承包方编写，说明需求*如何*得到满足。用例图被沿用，描述得到细化，并补充技术约束
+- [**需求规格说明书**](../../projectmanagement/requirements-specification.md#requirement-specification)由客户编写，说明需要*什么*以及*为什么*。用例是其出色的结构，因为每个用例都描述一项需求而不规定解决方案
+- [**功能规格说明书**](../../projectmanagement/requirements-specification.md#functional-specification)由承包方编写，说明需求*如何*得到满足。用例图被沿用，描述得到细化，并补充技术约束
 - **可追溯性：** 每项需求都应能追溯到至少一个用例，每个用例也应能追溯到至少一项需求。没有需求的用例是镀金，没有用例的需求则被遗忘了
 - **估算与规划：** 用例是工作量估算、发布规划和验收测试的天然单元，因为每个用例都可以单独验收
 - **测试依据：** 主场景产生正常路径的测试用例，每个备选流程和每个异常至少产生一个进一步的测试用例

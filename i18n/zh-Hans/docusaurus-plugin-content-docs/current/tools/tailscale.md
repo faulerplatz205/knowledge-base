@@ -26,7 +26,7 @@ Tailscale 是构建在 [WireGuard](../fundamentals/wireguard.md) 之上的零配
 
 Tailscale 有两个主要组成部分：
 
-- **控制平面**:Tailscale 的协调服务器负责管理密钥交换、身份验证，并向所有节点分发网络配置。它从不接触实际流量。
+- **控制平面**：Tailscale 的协调服务器负责管理密钥交换、身份验证，并向所有节点分发网络配置。它从不接触实际流量。
 - **数据平面**：实际流量通过加密的 WireGuard 隧道在节点之间直接传输，绕过 Tailscale 的服务器。
 
 ```text

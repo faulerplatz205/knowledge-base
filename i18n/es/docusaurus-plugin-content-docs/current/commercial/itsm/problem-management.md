@@ -20,7 +20,7 @@ machine_translated: true
 
 ## Visión general {/*#overview*/}
 
-La gestión de problemas es el **segundo nivel de la gestión de incidentes**. Mientras que la gestión de incidentes se centra en restablecer el servicio lo más rápido posible, la gestión de problemas identifica y elimina la causa raíz subyacente para evitar incidentes futuros.
+La gestión de problemas es el **segundo nivel de ITSM**. Mientras que la gestión de incidentes se centra en restablecer el servicio lo más rápido posible, la gestión de problemas identifica y elimina la causa raíz subyacente para evitar incidentes futuros.
 
 ## Incidente, problema y error conocido {/*#incident-vs-problem-vs-known-error*/}
 

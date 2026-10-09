@@ -197,6 +197,7 @@ Rules:
 - Keep the Markdown/MDX structure exactly: frontmatter delimiters, headings, lists, tables, admonitions (:::note etc.), HTML/JSX tags, import and export lines, blank lines, two trailing spaces that mark a line break.
 - Frontmatter: translate the values of title, description, keywords and sidebar_label. Copy all other keys and their values unchanged (e.g. tags, slug, sidebar_position).
 - Translate the visible text of links.
+- Bold markers (**) directly between punctuation and a letter are not rendered. Put colons, brackets and quotes outside the markers ("**术语**：" instead of "**术语：**", "**名称**（ABC）" instead of "**名称（ABC）**") and bold the text of a bold link ("[**text**](target)").
 - Keep technical terms, product names and abbreviations that are customarily left in English in ${language}.
 - Use the decimal separator customary in ${language}. Keep "x" as multiplication sign and "=>" as arrow.
 - Write in an impersonal, neutral style that does not address the reader directly.`;
@@ -271,10 +272,23 @@ async function validateDoc(source, translation) {
     }
 
     try {
-        await compile(match ? match[2] : translation);
+        await compile(match ? match[2] : translation, { remarkPlugins: [ rejectUnparsedEmphasis ] });
     } catch (error) {
+        if (error instanceof ValidationError) throw error;
         throw new ValidationError(`MDX does not compile: ${String(error.message).split("\n")[0]}`);
     }
+}
+
+// Emphasis markers next to punctuation without a space (e.g. "**term：**text" in Chinese or Japanese) are not
+// parsed as emphasis and would show up as literal asterisks
+function rejectUnparsedEmphasis() {
+    const visit = (node) => {
+        if (node.type === "text" && /\*\*|__/.test(node.value)) {
+            throw new ValidationError(`emphasis markers not parsed near "${node.value.trim().slice(0, 40)}"`);
+        }
+        node.children?.forEach(visit);
+    };
+    return visit;
 }
 
 function markMachineTranslated(content) {

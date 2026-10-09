@@ -242,7 +242,7 @@ Uma extensão realista envolveria `OrderService`, `PaymentService` e `StockServi
 
 1. **Componentes conectados sem uma interface:** uma linha simples mostra que dois componentes estão acoplados, mas não por meio de qual contrato. Onde existe uma interface, ela é desenhada como ball and socket.
 2. **Ball e socket trocados:** o círculo preenchido pertence ao componente que *oferece* o serviço, o semicírculo ao que *precisa* dele.
-3. **Interface requerida sem fornecedor:** um socket aberto significa que o sistema não consegue ser executado. Ou falta um componente ou o requisito é obsoleto.
+3. **Interface requerida sem fornecedor:** um socket aberto significa que o sistema não pode ser executado. Ou falta um componente ou o requisito está obsoleto.
 4. **Classes desenhadas como componentes:** atributos, operações e associações pertencem ao diagrama de classes.
 5. **Partes internas conectadas além do limite:** um conector de um componente interno diretamente ao exterior contorna a porta do componente que o envolve.
 6. **Dependências cíclicas:** dois componentes que requerem as interfaces um do outro não podem mais ser construídos, implantados ou substituídos separadamente.
@@ -266,4 +266,4 @@ Uma extensão realista envolveria `OrderService`, `PaymentService` e `StockServi
 - [Diagrama de Sequência](./sequence-diagram.md): mostra como os componentes interagem ao longo do tempo por meio de suas interfaces
 - [Diagrama de Atividades](./activity-diagram.md): os processos que atravessam os componentes
 - [Visão Geral da UML](./uml-overview.mdx): classificação dos tipos de diagramas
-- [Fundamentos da Notação UML](./uml-notation-basics.md): palavras-chave, estereótipos, notas e os elementos comuns a todos os tipos de diagramas
+- [Noções Básicas de Notação UML](./uml-notation-basics.md): palavras-chave, estereótipos, notas e os elementos comuns a todos os tipos de diagramas

@@ -32,7 +32,7 @@
     "description": "Call-to-action button text linking to the documentation"
   },
   "doc.machineTranslated": {
-    "message": "Esta página ha sido traducida automáticamente y puede contener errores. El {originalLink} es la versión autorizada.",
+    "message": "Esta página ha sido traducida automáticamente y puede contener errores. El {originalLink} es la versión de referencia.",
     "description": "Banner on a doc page that was translated automatically from English; {originalLink} is the link to the English page"
   },
   "doc.machineTranslated.originalLink": {

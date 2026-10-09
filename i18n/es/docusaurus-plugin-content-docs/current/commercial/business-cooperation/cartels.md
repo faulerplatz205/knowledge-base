@@ -38,7 +38,7 @@ Ejemplo: el **cártel del azúcar**, con acuerdos sobre precios, territorios de 
 - **Cártel de crisis estructural**: reducción conjunta de la producción en tiempos de crisis
 - **Sindicato**: una oficina de ventas conjunta que gestiona pedidos y pagos de todos los miembros
 
-Ejemplo: la **fusión E.ON / Innogy** tuvo que notificarse a la Bundeskartellamt porque la cuota de mercado combinada en el sector energético habría sido considerable.
+Ejemplo: la **fusión E.ON / Innogy** tuvo que notificarse al Bundeskartellamt porque la cuota de mercado combinada en el sector energético habría sido considerable.
 
 ## Efecto sobre la independencia {/*#effect-on-independence*/}
 

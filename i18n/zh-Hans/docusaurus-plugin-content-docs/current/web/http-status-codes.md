@@ -43,9 +43,9 @@ HTTP 状态码是服务器响应客户端请求时返回的三位数字。它们
 
 ### 示例 {/*#examples-1*/}
 
-- **200 OK**:`GET /api/users/42` => 服务器以 JSON 形式返回用户对象。
+- **200 OK**：`GET /api/users/42` => 服务器以 JSON 形式返回用户对象。
 - **201 Created**：带有请求体的 `POST /api/users` => 服务器创建该用户，并返回带有 `Location` 标头的新资源。
-- **204 No Content**:`DELETE /api/users/42` => 服务器删除该用户并返回空响应。
+- **204 No Content**：`DELETE /api/users/42` => 服务器删除该用户并返回空响应。
 
 ## 3xx - 重定向 {/*#3xx---redirection*/}
 
@@ -61,11 +61,11 @@ HTTP 状态码是服务器响应客户端请求时返回的三位数字。它们
 
 ### 示例 {/*#examples-2*/}
 
-- **301 Moved Permanently**:`GET /old-page` => 服务器以 `301` 和 `Location: /new-page` 响应。搜索引擎会相应地更新其索引。
-- **302 Found**:`GET /promo` => 服务器临时重定向到 `/current-sale`。原始 URL 对未来的请求仍然有效。
+- **301 Moved Permanently**：`GET /old-page` => 服务器以 `301` 和 `Location: /new-page` 响应。搜索引擎会相应地更新其索引。
+- **302 Found**：`GET /promo` => 服务器临时重定向到 `/current-sale`。原始 URL 对未来的请求仍然有效。
 - **304 Not Modified**：客户端发送带有 `If-None-Match` 标头（包含缓存的 ETag）的 `GET /style.css`。服务器确认资源未发生变化，并返回不带响应体的 `304`。
-- **307 Temporary Redirect**:`POST /api/submit` => 服务器临时重定向到 `/api/v2/submit`。客户端必须重新发送 `POST` 请求（而不是将其改为 `GET`）。
-- **308 Permanent Redirect**:`POST /api/old-endpoint` => 服务器永久重定向到 `/api/new-endpoint`。客户端必须向新 URL 重新发送 `POST` 请求。
+- **307 Temporary Redirect**：`POST /api/submit` => 服务器临时重定向到 `/api/v2/submit`。客户端必须重新发送 `POST` 请求（而不是将其改为 `GET`）。
+- **308 Permanent Redirect**：`POST /api/old-endpoint` => 服务器永久重定向到 `/api/new-endpoint`。客户端必须向新 URL 重新发送 `POST` 请求。
 
 ## 4xx - 客户端错误 {/*#4xx---client-error*/}
 
@@ -91,13 +91,13 @@ HTTP 状态码是服务器响应客户端请求时返回的三位数字。它们
 - **400 Bad Request**：带有 `{ name: }` 的 `POST /api/users` => JSON 请求体格式错误，无法解析。
 - **401 Unauthorized**：不带 `Authorization` 标头的 `GET /api/profile` => 服务器要求身份验证。
 - **403 Forbidden**：对非管理员用户使用有效令牌的 `DELETE /api/users/1` => 该用户已通过身份验证，但缺少权限。
-- **404 Not Found**:`GET /api/users/99999` => 不存在具有该 ID 的用户。
-- **405 Method Not Allowed**:`DELETE /api/login` => `/api/login` 端点仅支持 `POST`。
+- **404 Not Found**：`GET /api/users/99999` => 不存在具有该 ID 的用户。
+- **405 Method Not Allowed**：`DELETE /api/login` => `/api/login` 端点仅支持 `POST`。
 - **408 Request Timeout**：客户端打开连接并开始发送大型请求体，但在传输中途停滞。服务器在超时后关闭连接。
 - **409 Conflict**：带有 `{ "email": "a@b.com" }` 的 `POST /api/users` => 具有该电子邮件的用户已存在。
 - **413 Content Too Large**：上传 500 MB 文件的 `POST /api/upload` => 服务器的上传限制为 50 MB。
 - **415 Unsupported Media Type**：带有 `Content-Type: text/xml` 的 `POST /api/data` => 该端点仅接受 `application/json`。
-- **418 I'm a Teapot**:`BREW /coffee` => 茶壶礼貌地拒绝了。
+- **418 I'm a Teapot**：`BREW /coffee` => 茶壶礼貌地拒绝了。
 - **422 Unprocessable Content**：带有 `{ "email": "not-an-email" }` 的 `POST /api/users` => JSON 有效，但电子邮件字段未通过验证。
 - **429 Too Many Requests**：客户端每分钟向 `/api/search` 发送 1000 个请求 => 服务器强制执行速率限制，并以 `429` 和 `Retry-After` 标头响应。
 
@@ -114,7 +114,7 @@ HTTP 状态码是服务器响应客户端请求时返回的三位数字。它们
 
 ### 示例 {/*#examples-4*/}
 
-- **500 Internal Server Error**:`GET /api/reports` => 服务器代码中出现未处理的异常（例如空指针、除以零）。
+- **500 Internal Server Error**：`GET /api/reports` => 服务器代码中出现未处理的异常（例如空指针、除以零）。
 - **502 Bad Gateway**：反向代理（例如 Nginx）将请求转发到后端，而后端返回了乱码或不完整的响应。
 - **503 Service Unavailable**：服务器正在进行计划内维护或过载，暂时无法处理请求。通常包含 `Retry-After` 标头。
 - **504 Gateway Timeout**：反向代理将请求转发到响应时间过长的后端（例如缓慢的数据库查询超过了代理的超时时间）。

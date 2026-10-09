@@ -55,7 +55,7 @@ machine_translated: true
 - 节点按类型命名，`ApplicationServer`，或按具体机器命名，`appsrv01:ApplicationServer`。在绘图工具中，实例名带有下划线。
 - 制品使用包含扩展名的真实文件名：`shop.war`，而不是 `Shop application`。
 - 每条通信路径都带有协议构造型，未加标注的线只表示*以某种方式相连*。
-- 关键字和构造型写在书名号（guillemets）中，`«device»`。写法 `<<device>>` 是基于文本的工具所使用的 ASCII 形式，下文即采用这种形式。
+- 关键字和构造型写在尖括号引号（guillemets）中，`«device»`。写法 `<<device>>` 是基于文本的工具所使用的 ASCII 形式，下文即采用这种形式。
 
 ---
 

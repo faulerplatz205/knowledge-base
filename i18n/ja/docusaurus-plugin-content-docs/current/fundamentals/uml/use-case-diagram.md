@@ -191,8 +191,8 @@ machine_translated: true
 
 ## 要求分析における役割 {/*#role-in-requirements-analysis*/}
 
-- **[要求仕様書](../../projectmanagement/requirements-specification.md#requirement-specification)**はクライアントが作成し、*何が*、*なぜ*必要かを記述する。ユースケースは、解決策を規定せずに1つひとつの要求を記述するため、その構造として優れている
-- **[機能仕様書](../../projectmanagement/requirements-specification.md#functional-specification)**は受託者が作成し、要求を*どのように*満たすかを記述する。ユースケース図は引き継がれ、記述は詳細化され、技術的な制約が追加される
+- [**要求仕様書**](../../projectmanagement/requirements-specification.md#requirement-specification)はクライアントが作成し、*何が*、*なぜ*必要かを記述する。ユースケースは、解決策を規定せずに1つひとつの要求を記述するため、その構造として優れている
+- [**機能仕様書**](../../projectmanagement/requirements-specification.md#functional-specification)は受託者が作成し、要求を*どのように*満たすかを記述する。ユースケース図は引き継がれ、記述は詳細化され、技術的な制約が追加される
 - **トレーサビリティ:** すべての要求は少なくとも1つのユースケースまで、すべてのユースケースは少なくとも1つの要求まで追跡できるべきである。要求のないユースケースは過剰な作り込みであり、ユースケースのない要求は見落とされている
 - **見積りと計画:** ユースケースは、それぞれを単独で受け入れられるため、工数見積り、リリース計画、受け入れテストの自然な単位である
 - **テストの基礎:** 基本シナリオからは正常系のテストケースが得られ、すべての代替フローとすべての例外からは、それぞれ少なくとも1つのテストケースが得られる

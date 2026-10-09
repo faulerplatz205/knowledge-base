@@ -51,7 +51,7 @@ null == undefined // true
 | `NaN === NaN`        | `false` | `NaN` لا تساوي أي شيء         |
 | `null === undefined` | `false` | أنواع مختلفة                        |
 | `null == undefined`  | `true`  | قاعدة خاصة في المساواة المرنة         |
-| `null == 0`          | `false` | `null` تساوي `undefined` مساواةً مرنة فقط |
+| `null == 0`          | `false` | `null` لا تساوي مساواةً مرنة إلا `undefined` |
 
 ## أسبقية العوامل {/*#operator-precedence*/}
 
@@ -65,7 +65,7 @@ null == undefined // true
 | 4           | `===`، `!==`، `==`، `!=` | المساواة           |
 | 5           | `&&`                     | AND المنطقي           |
 | 6           | `\|\|`                   | OR المنطقي            |
-| 7 (الأدنى)  | `??`                     | الدمج الاختياري (nullish coalescing) |
+| 7 (الأدنى)  | `??`                     | دمج القيم الفارغة (nullish coalescing) |
 
 ### مثال {/*#example*/}
 

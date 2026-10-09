@@ -79,5 +79,5 @@ machine_translated: true
 
 ## أمثلة {/*#examples*/}
 
-- **توسعة الطريق السريع A7** (ألمانيا): مجموعة عمل من EUROVIA وROHDE وSTUTZ، توسعة إلى ست مسارات بين Bockenem وNortheim-Nord، انتهت في 2023
+- **توسعة الطريق السريع A7** (ألمانيا): مجموعة عمل من EUROVIA وROHDE وSTUTZ، توسعة إلى ستة مسارات بين Bockenem وNortheim-Nord، انتهت في 2023
 - **Stuttgart 21**: مشروع بنية تحتية ضخم للسكك الحديدية مع Züblin وHOCHTIEF وDeutsche Bahn وغيرها، جمع الخبرات في الأنفاق والأساسات العميقة والإنشاءات

@@ -48,18 +48,18 @@ Las RFC entrantes se priorizan según la **urgencia** y el **impacto**:
 
 | Nivel                  | Descripción                  |
 | ---------------------- | ---------------------------- |
-| **Priority Low**       | Deseable, pero no urgente    |
-| **Priority Middle**    | Necesario, pero no urgente   |
-| **Priority High**      | Se requiere acción inmediata |
-| **Priority Immediate** | Se requiere acción inmediata |
+| **Prioridad baja**     | Deseable, pero no urgente    |
+| **Prioridad media**    | Necesario, pero no urgente   |
+| **Prioridad alta**     | Se requiere acción inmediata |
+| **Prioridad inmediata** | Se requiere acción inmediata |
 
 ### Niveles de impacto {/*#impact-levels*/}
 
 | Nivel             | Descripción                                             | Ejemplo                        |
 | ----------------- | ------------------------------------------------------- | ------------------------------ |
-| **Effect Low**    | Efecto mínimo en los servicios de TI, poco esfuerzo     | Sustituir un PC                |
-| **Effect Middle** | Efecto moderado, mayor esfuerzo                         | Actualizar el SO de todos los PC |
-| **Effect High**   | Efecto alto en los servicios de TI, esfuerzo muy elevado | Caída completa de un servidor |
+| **Impacto bajo**  | Efecto mínimo en los servicios de TI, poco esfuerzo     | Sustituir un PC                |
+| **Impacto medio** | Efecto moderado, mayor esfuerzo                         | Actualizar el SO de todos los PC |
+| **Impacto alto**  | Efecto alto en los servicios de TI, esfuerzo muy elevado | Caída completa de un servidor |
 
 ## Tipos de cambio {/*#change-types*/}
 

@@ -8,11 +8,11 @@
     "description": "The label for category 'Cloud Computing' in sidebar 'docs'"
   },
   "sidebar.docs.category.Commercial": {
-    "message": "商业",
+    "message": "商务",
     "description": "The label for category 'Commercial' in sidebar 'docs'"
   },
   "sidebar.docs.category.Business Cooperation": {
-    "message": "业务合作",
+    "message": "企业合作",
     "description": "The label for category 'Business Cooperation' in sidebar 'docs'"
   },
   "sidebar.docs.category.IT Service Management (ITSM)": {

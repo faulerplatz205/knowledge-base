@@ -76,7 +76,7 @@ Scrum Master **负责流程**本身。他们不是传统意义上的经理，而
 
 ### 每日站会（Daily Scrum / Daily Standup） {/*#daily-scrum--daily-standup*/}
 
-每日站会是一个**简短的同步会议**，开发人员在会上对齐进展并识别阻碍。它也被称为“站会”(standup)，因为参与者在会议期间通常站着，以保持简短并确保遵守 **15 分钟的时间盒**。
+每日站会是一个**简短的同步会议**，开发人员在会上对齐进展并识别阻碍。它也被称为“站会”（standup），因为参与者在会议期间通常站着，以保持简短并确保遵守 **15 分钟的时间盒**。
 
 - **时长：** 15 分钟
 - **参与者：** 开发人员
@@ -95,7 +95,7 @@ Scrum Master **负责流程**本身。他们不是传统意义上的经理，而
 - 相关方的反馈
 - 调整产品待办列表
 
-### 冲刺回顾（Sprint Retrospective,Retro） {/*#sprint-retrospective-retro*/}
+### 冲刺回顾（Sprint Retrospective，Retro） {/*#sprint-retrospective-retro*/}
 
 回顾会是 Scrum 团队的**内部会议**，用于反思刚结束的冲刺。其目标是为下一个冲刺确定**具体的改进措施**，使其成为持续改进的关键事件。
 
@@ -138,7 +138,7 @@ Scrum Master **负责流程**本身。他们不是传统意义上的经理，而
 
 ## 重要术语 {/*#important-terms*/}
 
-### 完成的定义（Definition of Done,DoD） {/*#definition-of-done-dod*/}
+### 完成的定义（Definition of Done，DoD） {/*#definition-of-done-dod*/}
 
 完成的定义是团队内部的**共同约定**，为待办条目何时被视为“已完成”设定明确的标准。它确保**质量一致**，并防止交付未完成的工作。
 

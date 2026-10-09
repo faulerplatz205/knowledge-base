@@ -102,7 +102,7 @@ RFC 描述**做什么**，而不描述**怎么做**，因为"怎么做"是在变
 
 变更实施后，变更管理会将所有措施以及失败的根本原因记录在 CMDB 和 KEDB 中，以备日后参考。
 
-**实施后评审（PIR，Post Implementation Review）**记录变更的所有关键点：
+**实施后评审**（PIR，Post Implementation Review）记录变更的所有关键点：
 
 - 测试结果
 - 实施细节
