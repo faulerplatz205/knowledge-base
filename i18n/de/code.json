@@ -347,12 +347,16 @@
     "description": "Title of the 'About me' section"
   },
   "landingpage.aboutme.description1": {
-    "message": "Ich bin Auszubildender im zweiten Lehrjahr zum Anwendungsentwickler mit den Schwerpunkten JavaScript/Typescript & HTML, CSS. In meiner Freizeit entwickle ich eigene Projekte und experimentiere mit allem anderen, was mit Software zu tun hat.",
+    "message": "Ich bin Auszubildender zum Anwendungsentwickler im letzten Lehrjahr. Bei der Arbeit entwickle ich Geschäftslogik, Oberflächen und REST-Schnittstellen für eine xRM-Plattform. In meiner Freizeit baue ich mit TypeScript Web-Frontends, Backends, APIs und Entwickler-Tools, von denen ich einige als Open-Source-Pakete auf npm veröffentliche.",
     "description": "First paragraph about the about me section"
   },
   "landingpage.aboutme.description2": {
-    "message": "Ich entwickle Software nicht nur für die Schule oder die Arbeit, sondern weil es mir Spaß macht, neue Dinge zu bauen, Probleme zu lösen und ständig Neues zu lernen.",
+    "message": "Neben der Entwicklung betreibe ich meine eigene Infrastruktur mit Docker und Linux. Auf drei Servern in Nürnberg, New York und Singapur laufen über 20 selbst gehostete Dienste, darunter diese Wissensdatenbank mit ihrer Typesense-Suche, meine persönliche API, Umami-Analytics, ntfy-Push-Benachrichtigungen und ein Monitoring-Stack aus Grafana, Prometheus und Loki.",
     "description": "Second paragraph about the about me section"
+  },
+  "landingpage.aboutme.description3": {
+    "message": "Ich entwickle Software nicht nur für die Schule oder die Arbeit, sondern weil es mir Spaß macht, neue Dinge zu bauen, Probleme selbstständig zu lösen und ständig dazuzulernen.",
+    "description": "Third paragraph about the about me section"
   },
   "landingpage.cta": {
     "message": "Zu den Docs →",

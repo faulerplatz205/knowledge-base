@@ -1,11 +1,10 @@
-import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
-import styles from "./index.module.css";
 import Translate from "@docusaurus/Translate";
+import Layout from "@theme/Layout";
+import type { ReactElement, ReactNode } from "react";
+import styles from "./index.module.css";
 
-function HomepageHeader() {
+function HomepageHeader(): ReactElement {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Knowledge Base</h1>
@@ -22,8 +21,9 @@ function HomepageHeader() {
 
             <div className={styles.about}>
                 <h2><Translate id="landingpage.aboutme.title" description="Title of the 'About me' section">About me</Translate></h2>
-                <p><Translate id="landingpage.aboutme.description1" description="First paragraph about the about me section">I am a second-year apprentice developer specializing in JavaScript/Typescript, HTML & CSS. In my spare time, I work on my own projects and experiment with everything else related to software.</Translate></p>
-                <p><Translate id="landingpage.aboutme.description2" description="Second paragraph about the about me section">I develop software not only for school or work, but because I enjoy building new things, solving problems independently, and constantly learning new things.</Translate></p>
+                <p><Translate id="landingpage.aboutme.description1" description="First paragraph about the about me section">I am an apprentice software developer in my final year. At work, I build business logic, interfaces and REST integrations for an xRM platform. In my spare time, I develop web frontends, backends, APIs and developer tools with TypeScript, some of which I publish as open-source packages on npm.</Translate></p>
+                <p><Translate id="landingpage.aboutme.description2" description="Second paragraph about the about me section">Besides development, I run my own infrastructure with Docker and Linux. Three servers in Nuremberg, New York and Singapore host more than 20 self-hosted services, including this knowledge base with its Typesense search, my personal API, Umami analytics, ntfy push notifications and a monitoring stack built on Grafana, Prometheus and Loki.</Translate></p>
+                <p><Translate id="landingpage.aboutme.description3" description="Third paragraph about the about me section">I develop software not only for school or work, but because I enjoy building new things, solving problems independently and learning constantly.</Translate></p>
             </div>
 
             <Link to="/docs/" className={styles.cta}>
@@ -34,7 +34,6 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-    const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
             title="Knowledge Base"
