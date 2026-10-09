@@ -36,6 +36,11 @@ const config: Config = {
 
     customFields: {
         "disableLocaleMemory": process.env.DISABLE_LOCALE_MEMORY === "true",
+        // PLACEHOLDER: production URL of the feedback server, see feedback-server/README.md (muas Mosl macha)
+        feedbackEndpoint: process.env.FEEDBACK_ENDPOINT
+            ?? (process.env.NODE_ENV === "development"
+                ? "http://localhost:8787/feedback"
+                : "https://api.moritz-grimm.dev/feedback"),
     },
 
     presets: [
@@ -157,6 +162,10 @@ const config: Config = {
                     to: "/docs/tags/ap2",
                     position: "left",
                     label: "AP2",
+                },
+                {
+                    type: "custom-feedback",
+                    position: "right",
                 },
                 {
                     type: "localeDropdown",

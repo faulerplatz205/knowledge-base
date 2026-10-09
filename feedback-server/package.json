@@ -1,0 +1,13 @@
+{
+    "name": "knowledge-base-feedback-server",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "node server.mjs",
+        "list": "node list.mjs"
+    },
+    "engines": {
+        "node": ">=22.13"
+    }
+}

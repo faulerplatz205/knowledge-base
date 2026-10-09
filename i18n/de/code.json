@@ -504,5 +504,57 @@
   "theme.SearchModal.placeholder": {
     "message": "Search docs",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "feedback.button": {
+    "message": "Feedback",
+    "description": "Label of the feedback button in the navbar"
+  },
+  "feedback.title": {
+    "message": "Feedback",
+    "description": "Title of the feedback dialog"
+  },
+  "feedback.close": {
+    "message": "Schließen",
+    "description": "Label for closing the feedback dialog"
+  },
+  "feedback.success": {
+    "message": "Vielen Dank für das Feedback.",
+    "description": "Message after the feedback was sent"
+  },
+  "feedback.rating": {
+    "message": "Bewertung",
+    "description": "ARIA label of the rating group"
+  },
+  "feedback.helpful": {
+    "message": "Hilfreich",
+    "description": "ARIA label of the thumbs up button"
+  },
+  "feedback.notHelpful": {
+    "message": "Nicht hilfreich",
+    "description": "ARIA label of the thumbs down button"
+  },
+  "feedback.comment": {
+    "message": "Kommentar (optional)",
+    "description": "Label of the comment field"
+  },
+  "feedback.contact": {
+    "message": "Name oder E-Mail (optional)",
+    "description": "Label of the contact field"
+  },
+  "feedback.error": {
+    "message": "Das Feedback konnte nicht gesendet werden. Bitte später erneut versuchen.",
+    "description": "Error message when sending failed"
+  },
+  "feedback.submit": {
+    "message": "Absenden",
+    "description": "Label of the submit button"
+  },
+  "feedback.question": {
+    "message": "Was hältst du von dieser Seite?",
+    "description": "Question above the rating options"
+  },
+  "feedback.home": {
+    "message": "Start",
+    "description": "Section name in the feedback dialog title on pages outside the docs"
   }
 }

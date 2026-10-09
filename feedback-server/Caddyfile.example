@@ -1,0 +1,11 @@
+# Replace every <PLACEHOLDER>. See README.md, section "Placeholders". (muas Mosl macha)
+# Add the two handle blocks to the existing site block of <API_DOMAIN>, or use the block as a new one. (muas Mosl macha)
+# Caddy sets X-Forwarded-For itself, so TRUST_PROXY=1 in the service file is safe.
+<API_DOMAIN> {
+    handle /feedback* {
+        reverse_proxy 127.0.0.1:<PORT>
+    }
+    handle /health {
+        reverse_proxy 127.0.0.1:<PORT>
+    }
+}

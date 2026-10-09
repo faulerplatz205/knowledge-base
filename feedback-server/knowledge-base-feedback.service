@@ -1,0 +1,26 @@
+# Replace every <PLACEHOLDER> before installing. See README.md, section "Placeholders". (muas Mosl macha)
+[Unit]
+Description=Knowledge base feedback server
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+WorkingDirectory=<INSTALL_DIR>
+ExecStart=<NODE_PATH> server.mjs
+Environment=PORT=<PORT>
+Environment=HOST=127.0.0.1
+# StateDirectory creates /var/lib/knowledge-base-feedback, owned by the dynamic user.
+StateDirectory=knowledge-base-feedback
+Environment=DB_PATH=/var/lib/knowledge-base-feedback/feedback.db
+Environment=ALLOWED_ORIGINS=<SITE_ORIGIN>
+# Only valid because the reverse proxy sets X-Forwarded-For. Remove without a proxy. (muas Mosl macha)
+Environment=TRUST_PROXY=1
+Restart=on-failure
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
