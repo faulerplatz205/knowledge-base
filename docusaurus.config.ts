@@ -34,6 +34,10 @@ const config: Config = {
 
     clientModules: [ "./src/clientModules/rememberLocale.ts" ],
 
+    customFields: {
+        "disableLocaleMemory": process.env.DISABLE_LOCALE_MEMORY === "true",
+    },
+
     presets: [
         [
             "classic",

@@ -1,5 +1,6 @@
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { AVAILABLE_LOCALES, DEFAULT_LOCALE, isHomePath, localeFromPath, STORAGE_KEY } from "../utils/locale";
+import siteConfig from "@generated/docusaurus.config";
 
 if (ExecutionEnvironment.canUseDOM) {
     const currentLocale = localeFromPath(location.pathname);
@@ -11,7 +12,7 @@ if (ExecutionEnvironment.canUseDOM) {
         console.warn("Preferred locale could not be read from localStorage:", error);
     }
 
-    if (storedLocale && AVAILABLE_LOCALES.has(storedLocale) && isHomePath(currentPath) && storedLocale !== currentLocale) {
+    if (!siteConfig.customFields?.disableLocaleMemory && storedLocale && AVAILABLE_LOCALES.has(storedLocale) && isHomePath(currentPath) && storedLocale !== currentLocale) {
         location.replace(storedLocale === DEFAULT_LOCALE ? "/" : `/${storedLocale}`);
     }
 }
