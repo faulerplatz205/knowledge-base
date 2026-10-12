@@ -1,6 +1,6 @@
 ---
 title: "HTTP Status Codes"
-description: "Overview of the most common HTTP status codes grouped by category."
+description: "Overview of the most common HTTP status codes."
 keywords:
     - HTTP
     - status codes
@@ -27,8 +27,8 @@ The request was received, and the server is continuing to process it.
 
 ### Examples
 
-- **100 Continue**: A client sends a large file upload with the `Expect: 100-continue` header. The server responds with `100` to signal that the client should proceed with sending the body.
-- **101 Switching Protocols**: A client sends an HTTP request with `Upgrade: websocket`. The server responds with `101` and switches to the WebSocket protocol.
+- **100 Continue:** A client sends a large file upload with the `Expect: 100-continue` header. The server responds with `100` to signal that the client should proceed with sending the body.
+- **101 Switching Protocols:** A client sends an HTTP request with `Upgrade: websocket`. The server responds with `101` and switches to the WebSocket protocol.
 
 ## 2xx - Success
 
@@ -42,9 +42,9 @@ The request was successfully received, understood, and accepted.
 
 ### Examples
 
-- **200 OK**: `GET /api/users/42` => the server returns the user object as JSON.
-- **201 Created**: `POST /api/users` with a request body => the server creates the user and returns the new resource with a `Location` header.
-- **204 No Content**: `DELETE /api/users/42` => the server deletes the user and returns an empty response.
+- **200 OK:** `GET /api/users/42` => the server returns the user object as JSON.
+- **201 Created:** `POST /api/users` with a request body => the server creates the user and returns the new resource with a `Location` header.
+- **204 No Content:** `DELETE /api/users/42` => the server deletes the user and returns an empty response.
 
 ## 3xx - Redirection
 
@@ -60,11 +60,11 @@ The client must take additional action to complete the request.
 
 ### Examples
 
-- **301 Moved Permanently**: `GET /old-page` => the server responds with `301` and `Location: /new-page`. Search engines update their index accordingly.
-- **302 Found**: `GET /promo` => the server temporarily redirects to `/current-sale`. The original URL remains valid for future requests.
-- **304 Not Modified**: The client sends `GET /style.css` with an `If-None-Match` header containing a cached ETag. The server confirms the resource hasn't changed and returns `304` with no body.
-- **307 Temporary Redirect**: `POST /api/submit` => the server temporarily redirects to `/api/v2/submit`. The client must resend the `POST` request (not change it to `GET`).
-- **308 Permanent Redirect**: `POST /api/old-endpoint` => the server permanently redirects to `/api/new-endpoint`. The client must resend the `POST` request to the new URL.
+- **301 Moved Permanently:** `GET /old-page` => the server responds with `301` and `Location: /new-page`. Search engines update their index accordingly.
+- **302 Found:** `GET /promo` => the server temporarily redirects to `/current-sale`. The original URL remains valid for future requests.
+- **304 Not Modified:** The client sends `GET /style.css` with an `If-None-Match` header containing a cached ETag. The server confirms the resource hasn't changed and returns `304` with no body.
+- **307 Temporary Redirect:** `POST /api/submit` => the server temporarily redirects to `/api/v2/submit`. The client must resend the `POST` request (not change it to `GET`).
+- **308 Permanent Redirect:** `POST /api/old-endpoint` => the server permanently redirects to `/api/new-endpoint`. The client must resend the `POST` request to the new URL.
 
 ## 4xx - Client Error
 
@@ -87,18 +87,18 @@ The request contains an error on the client side.
 
 ### Examples
 
-- **400 Bad Request**: `POST /api/users` with `{ name: }` => the JSON body is malformed and cannot be parsed.
-- **401 Unauthorized**: `GET /api/profile` without an `Authorization` header => the server requires authentication.
-- **403 Forbidden**: `DELETE /api/users/1` with a valid token for a non-admin user => the user is authenticated but lacks permission.
-- **404 Not Found**: `GET /api/users/99999` => no user with that ID exists.
-- **405 Method Not Allowed**: `DELETE /api/login` => the `/api/login` endpoint only supports `POST`.
-- **408 Request Timeout**: A client opens a connection and starts sending a large request body but stalls mid-transfer. The server closes the connection after its timeout.
-- **409 Conflict**: `POST /api/users` with `{ "email": "a@b.com" }` => a user with that email already exists.
-- **413 Content Too Large**: `POST /api/upload` with a 500 MB file => the server's upload limit is 50 MB.
-- **415 Unsupported Media Type**: `POST /api/data` with `Content-Type: text/xml` => the endpoint only accepts `application/json`.
-- **418 I'm a Teapot**: `BREW /coffee` => the teapot politely declines.
-- **422 Unprocessable Content**: `POST /api/users` with `{ "email": "not-an-email" }` => the JSON is valid but the email field fails validation.
-- **429 Too Many Requests**: A client sends 1000 requests per minute to `/api/search` => the server enforces a rate limit and responds with `429` and a `Retry-After` header.
+- **400 Bad Request:** `POST /api/users` with `{ name: }` => the JSON body is malformed and cannot be parsed.
+- **401 Unauthorized:** `GET /api/profile` without an `Authorization` header => the server requires authentication.
+- **403 Forbidden:** `DELETE /api/users/1` with a valid token for a non-admin user => the user is authenticated but lacks permission.
+- **404 Not Found:** `GET /api/users/99999` => no user with that ID exists.
+- **405 Method Not Allowed:** `DELETE /api/login` => the `/api/login` endpoint only supports `POST`.
+- **408 Request Timeout:** A client opens a connection and starts sending a large request body but stalls mid-transfer. The server closes the connection after its timeout.
+- **409 Conflict:** `POST /api/users` with `{ "email": "a@b.com" }` => a user with that email already exists.
+- **413 Content Too Large:** `POST /api/upload` with a 500 MB file => the server's upload limit is 50 MB.
+- **415 Unsupported Media Type:** `POST /api/data` with `Content-Type: text/xml` => the endpoint only accepts `application/json`.
+- **418 I'm a Teapot:** `BREW /coffee` => the teapot politely declines.
+- **422 Unprocessable Content:** `POST /api/users` with `{ "email": "not-an-email" }` => the JSON is valid but the email field fails validation.
+- **429 Too Many Requests:** `GET /api/search` as the 101st request within one minute => the rate limit is 100 requests per minute. The server responds with `429` and a `Retry-After` header.
 
 ## 5xx - Server Error
 
@@ -113,7 +113,7 @@ The server failed to fulfill a valid request.
 
 ### Examples
 
-- **500 Internal Server Error**: `GET /api/reports` => an unhandled exception occurs in the server code (e.g. null pointer, division by zero).
-- **502 Bad Gateway**: A reverse proxy (e.g. Nginx) forwards the request to a backend that returns a garbled or incomplete response.
-- **503 Service Unavailable**: The server is undergoing scheduled maintenance or is overloaded and temporarily cannot handle requests. Often includes a `Retry-After` header.
-- **504 Gateway Timeout**: A reverse proxy forwards the request to a backend that takes too long to respond (e.g. a slow database query exceeds the proxy's timeout).
+- **500 Internal Server Error:** `GET /api/reports` => an unhandled exception occurs in the server code (e.g. null pointer, division by zero).
+- **502 Bad Gateway:** A reverse proxy (e.g. Nginx) forwards the request to a backend that returns a garbled or incomplete response.
+- **503 Service Unavailable:** The server is undergoing scheduled maintenance or is overloaded and temporarily cannot handle requests. Often includes a `Retry-After` header.
+- **504 Gateway Timeout:** A reverse proxy forwards the request to a backend that takes too long to respond (e.g. a slow database query exceeds the proxy's timeout).
