@@ -190,6 +190,7 @@ Rules:
 - **No opening restatement**: A section that expands on a table row does not open by paraphrasing that row. It starts with what the table could not carry
 - **No filler words**: Intensifiers and hedges that add no content are dropped, e.g. "actually", "at all", "really", "simply", "basically", "just", or in German "tatsächlich", "überhaupt", "eigentlich", "einfach", "letztlich". Such a word stays only where removing it changes the statement
 - **No comma afterthoughts**: Sentences of the form "statement, short appended afterthought." are rewritten as complete, self-contained sentences, e.g. not "`Check availability` is a step, not a partner" or "Drawn as X, it looks like Y"
+- **Connected sentences**: Consecutive sentences that form one thought are joined into one sentence. This covers a second sentence that continues the first with the same subject ("A does X. A also does Y." => "A does X and Y.") and a cause followed by its consequence ("`--force` overwrites the branch unconditionally, so commits pushed in the meantime are lost."). The join is a complete clause attached with a conjunction such as "and", "so" or "sodass", never a verbless fragment (see **No comma afterthoughts**). A sentence that adds a separate thought stays separate. A cause with several consequences stays its own sentence, and the consequences are joined in a second one, so the result does not become one long chain
 
 ### Common Mistakes Section
 
